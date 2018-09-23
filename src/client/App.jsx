@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import './app.css';
 import ReactImage from './react.png';
-import TweetComponent from './TweetComponent.jsx'
+import StreamComponent from './StreamComponent.jsx'
 
 export default class App extends Component {
 
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
-      <div>
-        <TweetComponent 
-          user={'AngelaBaby'}
-          text={'I love jeffy'}
-        />
-      </div>
+      <StreamComponent/>
     );
   }
 }
