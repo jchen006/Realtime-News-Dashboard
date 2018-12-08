@@ -5,7 +5,9 @@ import Stream from './TwitterFeed/Stream.jsx'
 import io from 'socket.io-client'
 import Grid from '@material-ui/core/Grid'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles'
+import keydown from 'react-keydown'
+import SettingsModal from './SettingsModal/SettingsModal.jsx'
 
 class App extends Component {
 
@@ -18,16 +20,18 @@ class App extends Component {
       displayModal: false,
       isConnecting: true
     }
-    this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
+    // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
     // this.onUpdateFilter = this.onUpdateFilter.bind(this)
-    this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
-    this.onShowModal = this.onShowModal.bind(this)
-    this.onHideModal = this.onHideModal.bind(this)
+    // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
+    // this.onShowModal = this.onShowModal.bind(this)
+    // this.onHideModal = this.onHideModal.bind(this)
   }
 
-  onShowModal() {
+  @keydown('shift+up')
+  openModal() {
+    console.log("works");
     this.setState({
-      displayModal: true
+      displayModal: !this.state.displayModal
     })
   }
 
@@ -65,6 +69,7 @@ class App extends Component {
     })
 
     this.socket.on('tweet', (data) => {
+        console.log(data);
         if(this.state.tweets.length == this.state.maxTweets) {
             var newTweetsArray = this.state.tweets.slice()
             newTweetsArray.shift()
@@ -85,14 +90,10 @@ class App extends Component {
       <div className={classes.root}>
         <Grid container spacing={24}>
           <Grid item xs={3}>
-            <Stream
-              tweets = { tweets }
-              onUpdateMaxTweets = { this.onUpdateMaxTweets }
-              onUpdateLanguage = { this.onUpdateLanguage }
-              // onUpdateFilter = { this.onUpdateFilter }
-            />
+            <Stream tweets={tweets}/>
           </Grid>
         </Grid>
+        <SettingsModal open={this.state.displayModal}/>
       </div>
     );
   }

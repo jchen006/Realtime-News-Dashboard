@@ -21,7 +21,7 @@ const io = socket(server)
 var _stream = {}
 
 const client = new Twitter(config.twitter);
-var filter = {track: 'Javascript'}
+var filter = {track: 'NBA'}
 
 var initiateLiveStream = function(filter) {
     client.stream('statuses/filter', filter, function(stream) {
@@ -37,17 +37,18 @@ var initiateLiveStream = function(filter) {
     });
 }
 
-io.on('filter_update', function(data) {
+io.on('update', function(data) {
     _stream.destroy()
-    filter.track = data.filter
-    initiateLiveStream(filter)
-})
+    if(data.filter) {
+        filter.track = data.filter
+    }
 
-io.on('lang_update', function(data) {
-    _stream.destroy()
-    filter.lang = data.lang
+    if(data.lang) {
+        filter.lang = data.lang
+    }
+    
     initiateLiveStream(filter)
-})
+});
 
 initiateLiveStream(filter)
 
