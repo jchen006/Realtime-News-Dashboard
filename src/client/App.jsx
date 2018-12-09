@@ -27,6 +27,7 @@ class App extends Component {
       isConnecting: true
     }
     this.handleFiltersDelete = this.handleFiltersDelete.bind(this)
+    this.handleAddFilters = this.handleAddFilters.bind(this)
     // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
     // this.onUpdateFilter = this.onUpdateFilter.bind(this)
     // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
@@ -54,6 +55,16 @@ class App extends Component {
         };
     });
   };
+
+  handleAddFilters(data) {
+    const tokens = this.state.twitter.filters
+    tokens.push(data)
+    this.setState({
+      twitter: {
+        filters: tokens
+      }
+    })
+  }
 
   onHideModal() {
     this.setState({
@@ -122,6 +133,7 @@ class App extends Component {
           open={this.state.displayModal} 
           filters={this.state.twitter.filters}
           handleFiltersDelete={this.handleFiltersDelete}
+          handleAddFilters={this.handleAddFilters}
           />
       </div>
     );

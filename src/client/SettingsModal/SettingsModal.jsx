@@ -46,6 +46,7 @@ class SettingsModal extends Component {
                     <SettingsForm 
                         filters={this.props.filters}
                         handleFiltersDelete={this.props.handleFiltersDelete}
+                        handleAddFilters={this.props.handleAddFilters}
                         />
                 </div>
           </Modal>

@@ -11,13 +11,32 @@ class SettingsForm extends React.Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+            filterField: ''
+        }
+        this.onKeyPress = this.onKeyPress.bind(this)
+        this.onChange = this.onChange.bind(this)
     }
 
     onKeyPress(e) {
-        if(e.keyCode == 13){
-            console.log('value', e.target.value);
-            // should append immediately 
+        if(e.charCode == 13){
+            let key = this.props.filters.length
+            let label = this.state.filterField
+            let newFilter = {
+                key,
+                label
+            }
+            this.props.handleAddFilters(newFilter)
+            this.setState({
+                filterField: ''
+            })
          }
+    }
+
+    onChange(e) {
+        this.setState({
+            filterField: e.target.value
+        })
     }
 
     render() {
@@ -30,10 +49,13 @@ class SettingsForm extends React.Component {
                 <TextField
                     id="outlined-dense"
                     label="Filters"
+                    value={this.state.filterField}
                     className={classNames(classes.textField, classes.dense)}
                     margin="dense"
                     variant="outlined"
-                    onKeyPress={(e) => {console.log(e.key)}}
+                    onKeyPress={this.onKeyPress}
+                    onChange={this.onChange}
+
                 />
                 <FiltersChip 
                     filters={this.props.filters}
