@@ -43,7 +43,10 @@ class SettingsModal extends Component {
                     <Typography variant="h4" id="modal-title">
                         Settings
                     </Typography>
-                    <SettingsForm/>
+                    <SettingsForm 
+                        filters={this.props.filters}
+                        handleFiltersDelete={this.props.handleFiltersDelete}
+                        />
                 </div>
           </Modal>
         )

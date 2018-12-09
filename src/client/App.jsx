@@ -13,13 +13,20 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
+    this.state = 
+    {
       tweets: [],
-      maxTweets: 5,
-      filters: [],
+      twitter: {
+        filters: [
+          { key: 0, label: 'Javascript' },
+        ],
+        lang: 'en',
+        maxTweets: 5
+      },
       displayModal: false,
       isConnecting: true
     }
+    this.handleFiltersDelete = this.handleFiltersDelete.bind(this)
     // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
     // this.onUpdateFilter = this.onUpdateFilter.bind(this)
     // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
@@ -35,28 +42,45 @@ class App extends Component {
     })
   }
 
+  handleFiltersDelete = data => () => {
+    this.setState(state => {
+        const tokens = [...state.twitter.filters];
+        const tokenToDelete = tokens.indexOf(data);
+        tokens.splice(tokenToDelete, 1);
+        return { 
+          twitter: {
+            filters: tokens
+          } 
+        };
+    });
+  };
+
   onHideModal() {
     this.setState({
       displayModal: false
     })
   }
 
-
-  onUpdateFiter(filters) {
-    this.socket.emit('filter_update', {
-      filters
-    })
-  }
-
-  onUpdateLanguage(lang) {
-    this.socket.emit('lang_update', {
+  onUpdateFiter() {
+    const {
+      settings: {
+        twitter: {
+          filters,
+          lang
+        }
+      }
+    } = this.state
+    this.socket.emit('update', {
+      filters,
       lang
     })
   }
 
   onUpdateMaxTweets(num) {
     this.setState({
-        maxTweets: num
+        twitter: {
+          maxTweets: num
+        }
     })
   }
 
@@ -70,12 +94,12 @@ class App extends Component {
 
     this.socket.on('tweet', (data) => {
         console.log(data);
-        if(this.state.tweets.length == this.state.maxTweets) {
+        if(this.state.tweets.length == this.state.twitter.maxTweets) {
             var newTweetsArray = this.state.tweets.slice()
             newTweetsArray.shift()
             newTweetsArray.push(data)
             this.setState( { tweets: newTweetsArray } )
-        } else if(this.state.tweets.length < this.state.maxTweets) {
+        } else if(this.state.tweets.length < this.state.twitter.maxTweets) {
             var newTweetsArray = this.state.tweets.slice()
             newTweetsArray.push(data)
             this.setState( { tweets: newTweetsArray } )
@@ -86,6 +110,7 @@ class App extends Component {
   render() {
     const { classes } = this.props
     const { tweets } = this.state
+
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
@@ -93,7 +118,11 @@ class App extends Component {
             <Stream tweets={tweets}/>
           </Grid>
         </Grid>
-        <SettingsModal open={this.state.displayModal}/>
+        <SettingsModal 
+          open={this.state.displayModal} 
+          filters={this.state.twitter.filters}
+          handleFiltersDelete={this.handleFiltersDelete}
+          />
       </div>
     );
   }
