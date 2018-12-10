@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './app.css';
 import Stream from './TwitterFeed/Stream.jsx'
 // import GeoStreamComponent from './GeoStreamComponent.jsx'
-import io from 'socket.io-client'
+
 import Grid from '@material-ui/core/Grid'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -15,7 +15,6 @@ class App extends Component {
     super(props)
     this.state = 
     {
-      tweets: [],
       twitter: {
         filters: [
           { key: 0, label: 'Javascript' },
@@ -23,16 +22,18 @@ class App extends Component {
         lang: 'en',
         maxTweets: 5
       },
-      displayModal: false,
-      isConnecting: true
+      displayModal: false
     }
     this.handleFiltersDelete = this.handleFiltersDelete.bind(this)
     this.handleAddFilters = this.handleAddFilters.bind(this)
     // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
     // this.onUpdateFilter = this.onUpdateFilter.bind(this)
-    // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
     // this.onShowModal = this.onShowModal.bind(this)
     // this.onHideModal = this.onHideModal.bind(this)
+  }
+
+  componentDidMount() {
+
   }
 
   @keydown('shift+up')
@@ -95,28 +96,7 @@ class App extends Component {
     })
   }
 
-  componentDidMount() {
-    var endpoint = 'localhost:8080'
-    this.socket = io(endpoint)
 
-    this.socket.on('connect', () => {
-        this.setState( { isConnecting: false } )
-    })
-
-    this.socket.on('tweet', (data) => {
-        console.log(data);
-        if(this.state.tweets.length == this.state.twitter.maxTweets) {
-            var newTweetsArray = this.state.tweets.slice()
-            newTweetsArray.shift()
-            newTweetsArray.push(data)
-            this.setState( { tweets: newTweetsArray } )
-        } else if(this.state.tweets.length < this.state.twitter.maxTweets) {
-            var newTweetsArray = this.state.tweets.slice()
-            newTweetsArray.push(data)
-            this.setState( { tweets: newTweetsArray } )
-        }
-    })
-  }
 
   render() {
     const { classes } = this.props
@@ -126,7 +106,9 @@ class App extends Component {
       <div className={classes.root}>
         <Grid container spacing={24}>
           <Grid item xs={3}>
-            <Stream tweets={tweets}/>
+            <Stream 
+              maxTweets={this.state.twitter.maxTweets}
+              />
           </Grid>
         </Grid>
         <SettingsModal 
