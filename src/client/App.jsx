@@ -100,8 +100,6 @@ class App extends Component {
 
   render() {
     const { classes } = this.props
-    const { tweets } = this.state
-
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>

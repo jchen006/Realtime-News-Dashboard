@@ -65,7 +65,7 @@ class Stream extends Component {
     render() {
         return (
             <div>
-                { this.state.tweets.length > 0 ? this.renderTweetDisplay() : this.renderLoading() }
+                { !this.state.isConnecting && this.state.tweets.length > 0 ? this.renderTweetDisplay() : this.renderLoading() }
             </div>
         )
     }
