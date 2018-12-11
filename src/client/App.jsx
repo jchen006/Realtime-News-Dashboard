@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import keydown from 'react-keydown'
-import SettingsModal from './SettingsModal/SettingsModal.jsx'
+import TopBar from './TopBar/TopBar.jsx'
 
 class App extends Component {
 
@@ -30,10 +30,6 @@ class App extends Component {
     // this.onUpdateFilter = this.onUpdateFilter.bind(this)
     // this.onShowModal = this.onShowModal.bind(this)
     // this.onHideModal = this.onHideModal.bind(this)
-  }
-
-  componentDidMount() {
-
   }
 
   @keydown('shift+up')
@@ -102,6 +98,7 @@ class App extends Component {
     const { classes } = this.props
     return (
       <div className={classes.root}>
+        <TopBar/>
         <Grid container spacing={24}>
           <Grid item xs={3}>
             <Stream 
@@ -109,12 +106,12 @@ class App extends Component {
               />
           </Grid>
         </Grid>
-        <SettingsModal 
+        {/* <SettingsModal 
           open={this.state.displayModal} 
           filters={this.state.twitter.filters}
           handleFiltersDelete={this.handleFiltersDelete}
           handleAddFilters={this.handleAddFilters}
-          />
+          /> */}
       </div>
     );
   }
