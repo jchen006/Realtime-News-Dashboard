@@ -3,7 +3,8 @@ const config = require('./config')
 const http = require('http');
 const socket = require('socket.io');
 const Twitter = require('twitter');
-// const Google = require('googleAPI')
+const healthCheck = require('./controllers/healthCheck')
+const google = require('./controllers/google')
 
 const app = express();
 
@@ -11,7 +12,8 @@ app.use(express.static('../../public'));
 
 const port = 8080;
 
-// app.get('/googleAPI', Google.query);
+app.get('/healthCheck', healthCheck.healthCheck)
+app.get('/google/sources', google.getAllSources)
 
 const server = app.listen(port, () => {
     console.log(`Listening on port ${port}!`)
@@ -50,5 +52,5 @@ io.on('update', function(data) {
     initiateLiveStream(filter)
 });
 
-initiateLiveStream(filter)
+// initiateLiveStream(filter)
 

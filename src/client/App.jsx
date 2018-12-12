@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './app.css';
 import Stream from './TwitterFeed/Stream.jsx'
 // import GeoStreamComponent from './GeoStreamComponent.jsx'
-
+import SettingsDrawer from './SettingsDrawer/SettingsDrawer.jsx'
 import Grid from '@material-ui/core/Grid'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -22,7 +22,7 @@ class App extends Component {
         lang: 'en',
         maxTweets: 5
       },
-      displayModal: false
+      displaySettings: false
     }
     this.handleFiltersDelete = this.handleFiltersDelete.bind(this)
     this.handleAddFilters = this.handleAddFilters.bind(this)
@@ -36,7 +36,7 @@ class App extends Component {
   openModal() {
     console.log("works");
     this.setState({
-      displayModal: !this.state.displayModal
+      displaySettings: !this.state.displaySettings
     })
   }
 
@@ -92,8 +92,6 @@ class App extends Component {
     })
   }
 
-
-
   render() {
     const { classes } = this.props
     return (
@@ -106,6 +104,7 @@ class App extends Component {
               />
           </Grid>
         </Grid>
+        <SettingsDrawer displaySettings={this.props.displaySettings}/>
         {/* <SettingsModal 
           open={this.state.displayModal} 
           filters={this.state.twitter.filters}
