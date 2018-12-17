@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Chip from '@material-ui/core/Chip'
 import styles from './styles.js'
 
-class FiltersChip extends React.Component {
+class ChipList extends React.Component {
 
     constructor(props) {
         super(props)
@@ -29,8 +29,10 @@ class FiltersChip extends React.Component {
     }
 }
 
-FiltersChip.propTypes = {
+ChipList.propTypes = {
   classes: PropTypes.object.isRequired,
+  filters: PropTypes.object.isRequired,
+
 };
 
-export default withStyles(styles)(FiltersChip);
+export default withStyles(styles)(ChipList);
