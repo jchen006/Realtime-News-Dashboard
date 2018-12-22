@@ -13,6 +13,7 @@
   "author": "Sandeep Raveesh",
   "license": "ISC",
   "dependencies": {
+    "@kennethormandy/react-flipcard": "^0.4.3",
     "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "^3.0.1",
     "body-parser": "^1.18.3",

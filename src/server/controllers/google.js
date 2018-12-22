@@ -1,12 +1,14 @@
 const request = require('request')
-const config = require('../config')
+const tokens = require('../../config/tokens')
+const url = require('../../config/url')
 
+/** General batch of all the top headlines  */
 let queryTopHeadlines = (req, res) => {
     let qs = req.query
     var options = {
-        url: config.google.url,
+        url: url.google.topHeadlines,
         headers: {
-            'X-Api-Key': config.google.key
+            'X-Api-Key': tokens.google.key
         },
         qs
     }
@@ -19,12 +21,17 @@ let queryTopHeadlines = (req, res) => {
     });
 }
 
+/**
+ * Gets specifically by all the sources that exists. Used only for filtering and search.
+ * @param {*} req 
+ * @param {*} res 
+ */
 let getAllSources = (req, res) => {
     let qs = req.query
     var options = {
-        url: config.google.sources,
+        url: url.google.sources,
         headers: {
-            'X-Api-Key': config.google.key
+            'X-Api-Key': tokens.google.key
         },
         qs
     }
@@ -37,8 +44,27 @@ let getAllSources = (req, res) => {
     })
 }
 
+/**
+ * Gets by specific query on subject matter
+ * @param {*} req 
+ * @param {*} res 
+ */
 let queryEverything = (req, res) => {
-
+    let qs = req.query
+    var options = {
+        url: url.google.everything,
+        headers: {
+            'X-Api-Key': tokens.google.key
+        },
+        qs
+    }
+    request(options, (err, response, body) => {
+        if(!err) {
+            res.status(200).send(body)
+        } else {
+            res.status(500).send(err)
+        }
+    })
 }
 
 module.exports.queryTopHeadlines = queryTopHeadlines
