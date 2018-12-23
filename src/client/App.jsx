@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './app.css';
 import Stream from './TwitterFeed/Stream.jsx'
 // import GeoStreamComponent from './GeoStreamComponent.jsx'
 import SettingsDrawer from './SettingsDrawer/SettingsDrawer.jsx'
@@ -8,6 +7,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import keydown from 'react-keydown'
 import TopBar from './TopBar/TopBar.jsx'
+import NewsFeed from './NewsFeed/NewsFeed.jsx'
 
 class App extends Component {
 
@@ -21,6 +21,9 @@ class App extends Component {
         ],
         lang: 'en',
         maxTweets: 5
+      },
+      google: {
+
       },
       displaySettings: false
     }
@@ -69,7 +72,7 @@ class App extends Component {
     })
   }
 
-  onUpdateFiter() {
+  onUpdateFilter() {
     const {
       settings: {
         twitter: {
@@ -96,21 +99,19 @@ class App extends Component {
     const { classes } = this.props
     return (
       <div className={classes.root}>
-        <TopBar/>
+        {/* <TopBar/> */}
         <Grid container spacing={24}>
           <Grid item xs={3}>
             <Stream 
               maxTweets={this.state.twitter.maxTweets}
               />
           </Grid>
+          <Grid item xs={6}>
+            <NewsFeed
+              pollInterval={50000}
+            />
+          </Grid>
         </Grid>
-        <SettingsDrawer displaySettings={this.props.displaySettings}/>
-        {/* <SettingsModal 
-          open={this.state.displayModal} 
-          filters={this.state.twitter.filters}
-          handleFiltersDelete={this.handleFiltersDelete}
-          handleAddFilters={this.handleAddFilters}
-          /> */}
       </div>
     );
   }

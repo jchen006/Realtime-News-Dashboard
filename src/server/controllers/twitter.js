@@ -1,6 +1,6 @@
 const socket = require('socket.io');
 const Twitter = require('twitter');
-const config = require('../config')
+// const config = require('../config')
 
 module.exports = {
     stream: function(server) {

@@ -5,6 +5,7 @@ const url = require('../../config/url')
 /** General batch of all the top headlines  */
 let queryTopHeadlines = (req, res) => {
     let qs = req.query
+    console.log(qs)
     var options = {
         url: url.google.topHeadlines,
         headers: {
@@ -12,8 +13,8 @@ let queryTopHeadlines = (req, res) => {
         },
         qs
     }
-    request(options, (error, response, body) => {
-        if(!err) {
+    request(options, (err, response, body) => {
+        if(!err && response.statusCode === 200) {
             res.status(200).send(body)
         } else {
             res.status(500).send(err)
@@ -36,7 +37,7 @@ let getAllSources = (req, res) => {
         qs
     }
     request(options, (err, response, body) => {
-        if(!err) {
+        if(!err && response.statusCode === 200) {
             res.status(200).send(body)
         } else {
             res.status(500).send(err)
@@ -59,7 +60,7 @@ let queryEverything = (req, res) => {
         qs
     }
     request(options, (err, response, body) => {
-        if(!err) {
+        if(!err && response.statusCode === 200) {
             res.status(200).send(body)
         } else {
             res.status(500).send(err)

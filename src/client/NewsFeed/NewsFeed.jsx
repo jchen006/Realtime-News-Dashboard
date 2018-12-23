@@ -1,5 +1,8 @@
 import React from 'react'
-import NewsFeedCard from './NewsFeedCard';
+import NewsFeedCard from './NewsFeedCard.jsx';
+import GridList from '@material-ui/core/GridList';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles.js'
 
 class NewsFeed extends React.Component { 
     constructor(props) {
@@ -10,17 +13,20 @@ class NewsFeed extends React.Component {
     }
 
     componentWillMount() {
+        this.getTopHeadlines()
         this.pollingIntervalId = setInterval(this.getTopHeadlines, this.props.pollInterval)
     }
 
-    /**
-     * When an update is triggered with pollInterval, an update will be triggered
-     * @param {*} nextProps 
-     */
-    getDerivedStateFromProps(nextProps) {
-        this.removePolling()
-        this.pollingIntervalId = setInterval(this.getTopHeadlines, nextProps.pollInterval)
-    }
+    // /**
+    //  * When an update is triggered with pollInterval, an update will be triggered
+    //  * @param {*} nextProps 
+    //  */
+    // static getDerivedStateFromProps(nextProps) {
+    //     if(this.pollingIntervalId) {
+    //         this.removePolling()
+    //     }
+    //     this.pollingIntervalId = setInterval(this.getTopHeadlines, nextProps.pollInterval)
+    // }
  
     removePolling() {
         clearInterval(this.pollingIntervalId)
@@ -29,11 +35,12 @@ class NewsFeed extends React.Component {
     /** Update to graphQL, 
      * also need to specify by what the queries*/
     getTopHeadlines() {
-        fetch('/google/topHeadlines')
+        fetch('/google/topHeadlines?country=us')
             .then(response => response.json())
-            .then(this.setState({
-                news
-            }))
+            .then((news) => {
+                this.setState({
+                    news})
+                })
     }
 
     /** Update to graphQL */
@@ -41,9 +48,10 @@ class NewsFeed extends React.Component {
         this.removePolling() 
         fetch('/google/everything')
             .then(response => response.json())
-            .then(this.setState({
-                news
-            }))
+            .then((news) => {
+                this.setState({
+                    news})
+                })
     }
 
     // {
@@ -60,32 +68,26 @@ class NewsFeed extends React.Component {
     //     "content": "LONDON British police say two people were arrested early Saturday morning for suspected criminal use of drones in the Gatwick Airport case that has created nightmarish holiday travel delays for tens of thousands of passengers. Sussex police did not release th… [+4266 chars]"
     //     },
     renderNewsFeed() {
+        //Change to render top 20
+        const { classes } = this.props
+        console.log(this.state.news)
         return (
             <div>
-                { this.props.news.map((article) => {
-                    const {
-                        source: {
-                            name
-                        },
-                        author,
-                        title,
-                        description,
-                        url,
-                        urlToImage,
-                        publishedAt,
-                        content
-                    }
-                    return (
-                        <NewsFeedCard
-                            source={name}
-                            author={author}
-                            publishedAt={publishedAt}
-                            url={url}
-                            description={description}
-                            urlToImage={article.urlToImage}
-                        />
-                    )
-                })}
+                <GridList cellHeight={180} className={classes.gridList}>
+                    { this.state.news.map((article) => {
+                        return (
+                            <NewsFeedCard
+                                source={article.source.name}
+                                author={article.author}
+                                publishedAt={article.publishedAt}
+                                url={article.url}
+                                description={article.description}
+                                urlToImage={article.urlToImage}
+                                content={article.content}
+                            />
+                        )
+                    })}
+                </GridList>
             </div>
         )
     }
@@ -100,6 +102,6 @@ class NewsFeed extends React.Component {
             </div>
         )
     }
-
-
 }
+
+export default withStyles(styles)(NewsFeed);
