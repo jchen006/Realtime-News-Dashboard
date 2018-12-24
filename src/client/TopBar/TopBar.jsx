@@ -17,12 +17,11 @@ class TopBar extends React.Component {
 
     render() {
         const { classes } = this.props
-        console.log(classes)
         return (
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                        <IconButton onClick={this.props.onClick} className={classes.menuButton} color="inherit" aria-label="Menu">
                             <MenuIcon />
                         </IconButton>
                     </Toolbar>

@@ -29,15 +29,14 @@ class App extends Component {
     }
     this.handleFiltersDelete = this.handleFiltersDelete.bind(this)
     this.handleAddFilters = this.handleAddFilters.bind(this)
+    this.handleOnDrawerOpen = this.handleOnDrawerOpen.bind(this)
     // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
     // this.onUpdateFilter = this.onUpdateFilter.bind(this)
     // this.onShowModal = this.onShowModal.bind(this)
     // this.onHideModal = this.onHideModal.bind(this)
   }
 
-  @keydown('shift+up')
-  openModal() {
-    console.log("works");
+  handleOnDrawerOpen() {
     this.setState({
       displaySettings: !this.state.displaySettings
     })
@@ -97,9 +96,10 @@ class App extends Component {
 
   render() {
     const { classes } = this.props
+    const { displaySettings } = this.state
     return (
       <div className={classes.root}>
-        {/* <TopBar/> */}
+        <TopBar onClick={this.handleOnDrawerOpen}/>
         <Grid container spacing={24}>
           <Grid item xs={3}>
             <Stream 
@@ -112,6 +112,7 @@ class App extends Component {
             />
           </Grid>
         </Grid>
+        <SettingsDrawer displaySettings={displaySettings}/>
       </div>
     );
   }
