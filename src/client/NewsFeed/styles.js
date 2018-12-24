@@ -7,8 +7,8 @@ const styles = theme => ({
       backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-      width: 500,
-      height: 450,
+      width: 1400,
+      height: 800,
       // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
       transform: 'translateZ(0)',
     },

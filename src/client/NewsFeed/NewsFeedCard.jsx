@@ -2,6 +2,7 @@ import React from 'react'
 import Flipcard from '@kennethormandy/react-flipcard'
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
+import Typography from '@material-ui/core/Typography'
 
 /**
  * This card will be flippable on the hover state showing brief description and source
@@ -20,9 +21,6 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
         "content": "LONDON British police say two people were arrested early Saturday morning for suspected criminal use of drones in the Gatwick Airport case that has created nightmarish holiday travel delays for tens of thousands of passengers. Sussex police did not release th… [+4266 chars]"
         }
  */
-
-
-     
 class NewsFeedCard extends React.Component {
     constructor(props) {
       super(props)
@@ -30,6 +28,7 @@ class NewsFeedCard extends React.Component {
       this.state = {
         flipped: false,
       }
+      this.handleOnClick = this.handleOnClick.bind(this)
     }
 
     handleOnClick() {
@@ -42,6 +41,7 @@ class NewsFeedCard extends React.Component {
         //Add timeline with moment.js
         return (
             <GridListTile key={this.props.url}>
+                //scale down image size
                 <img src={this.props.urlToImage} alt={this.props.title} />
                 <GridListTileBar
                     title={this.props.title}
@@ -66,9 +66,9 @@ class NewsFeedCard extends React.Component {
         <div>
             <Flipcard 
                 flipped={this.state.flipped}
-                onClick={this.onClick}>
-                <Card>{ this.renderFacingUp() }</Card>
-                <Card>{ this.renderFlipSide() }</Card>
+                onClick={this.handleOnClick}>
+                { this.renderFacingUp() }
+                { this.renderFlipSide() }
             </Flipcard>
         </div>
       )
