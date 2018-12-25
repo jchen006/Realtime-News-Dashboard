@@ -18,9 +18,7 @@ class SettingsTab extends React.Component {
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography className={classes.heading}>Google News</Typography>
                 </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                    
-                </ExpansionPanelDetails>
+                
             </ExpansionPanel>
         )
     }
@@ -81,8 +79,8 @@ class SettingsTab extends React.Component {
 //     </ExpansionPanel>
 //   </div>
 
-SimpleExpansionPanel.propTypes = {
+SettingsTab.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(settingsTab)(SimpleExpansionPanel);
+export default withStyles(settingsTab)(SettingsTab);

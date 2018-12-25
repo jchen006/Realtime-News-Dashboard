@@ -1,5 +1,5 @@
 import React from 'react'
-import { formStyles } from './styles.js'
+import { formStyles } from '../SettingsDrawer/styles.js'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography';

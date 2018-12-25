@@ -42,9 +42,15 @@ class AddChipField extends React.Component {
 
                 />
                 <ChipList
-                    
+
                 />
             </div>
         )
     }
 }
+
+AddChipField.propTypes = {
+    
+}
+
+export default AddChipField;

@@ -8,6 +8,17 @@ import { withStyles } from '@material-ui/core/styles'
 import keydown from 'react-keydown'
 import TopBar from './TopBar/TopBar.jsx'
 import NewsFeed from './NewsFeed/NewsFeed.jsx'
+import { connect } from 'react-redux';
+import { simpleAction } from './actions/SimpleAction'
+import Button from '@material-ui/core/Button';
+
+const mapStateToProps = state => ({
+  ...state
+})
+
+const mapDispatchToProps = dispatch => ({
+  simpleAction: () => dispatch(simpleAction())
+})
 
 class App extends Component {
 
@@ -30,6 +41,7 @@ class App extends Component {
     this.handleFiltersDelete = this.handleFiltersDelete.bind(this)
     this.handleAddFilters = this.handleAddFilters.bind(this)
     this.handleOnDrawerOpen = this.handleOnDrawerOpen.bind(this)
+    this.simpleAction = this.simpleAction.bind(this)
     // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
     // this.onUpdateFilter = this.onUpdateFilter.bind(this)
     // this.onShowModal = this.onShowModal.bind(this)
@@ -94,12 +106,19 @@ class App extends Component {
     })
   }
 
+  simpleAction = (event) => {
+    this.props.simpleAction();
+  }
+
   render() {
     const { classes } = this.props
     const { displaySettings } = this.state
     return (
       <div className={classes.root}>
         <TopBar onClick={this.handleOnDrawerOpen}/>
+        <Button variant="contained" onClick={this.simpleAction}>
+          Default
+        </Button>
         <Grid container spacing={24}>
           <Grid item xs={3}>
             <Stream 
@@ -128,4 +147,4 @@ App.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(App))
