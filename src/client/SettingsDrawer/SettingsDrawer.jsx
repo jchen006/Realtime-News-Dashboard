@@ -15,7 +15,7 @@ class SettingsDrawer extends React.Component {
         const { classes } = this.props
         return (
             <div className={classes.list}>
-                <SettingsTab />
+                <SettingsTab classes/>
             </div>
         )
     }

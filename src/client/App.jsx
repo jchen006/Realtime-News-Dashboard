@@ -28,8 +28,6 @@ class App extends Component {
     {
       displaySettings: false
     }
-    this.handleFiltersDelete = this.handleFiltersDelete.bind(this)
-    this.handleAddFilters = this.handleAddFilters.bind(this)
     this.handleOnDrawerOpen = this.handleOnDrawerOpen.bind(this)
     this.simpleAction = this.simpleAction.bind(this)
   }
