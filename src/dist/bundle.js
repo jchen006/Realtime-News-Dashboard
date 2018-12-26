@@ -58800,6 +58800,17 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    queries: state.google.queries,
+    countries: state.google.countries,
+    languages: state.google.languages,
+    categories: state.google.categories,
+    sources: state.google.sources,
+    pollingInterval: state.google.pollingInterval
+  };
+};
+
 var NewsFeed =
 /*#__PURE__*/
 function (_React$Component) {
@@ -58828,6 +58839,9 @@ function (_React$Component) {
     value: function removePolling() {
       clearInterval(this.pollingIntervalId);
     }
+  }, {
+    key: "constructQuery",
+    value: function constructQuery() {}
     /** Update to graphQL, 
      * also need to specify by what the queries*/
 
@@ -59774,11 +59788,26 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _simpleReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./simpleReducer */ "./src/client/reducers/simpleReducer.js");
+/* harmony import */ var _googleReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./googleReducer */ "./src/client/reducers/googleReducer.js");
+/* harmony import */ var _googleReducer__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_googleReducer__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  simpleReducer: _simpleReducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  simpleReducer: _simpleReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  googleReducer: _googleReducer__WEBPACK_IMPORTED_MODULE_2___default.a
 }));
+
+/***/ }),
+
+/***/ "./src/client/reducers/googleReducer.js":
+/*!**********************************************!*\
+  !*** ./src/client/reducers/googleReducer.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nTypeError: /Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/src/client/reducers/googleReducer.js: Duplicate declaration \"google\"\n\u001b[0m \u001b[90m  7 | \u001b[39m            }\u001b[0m\n\u001b[0m \u001b[90m  8 | \u001b[39m        \u001b[36mcase\u001b[39m \u001b[32m'UPDATE_COUNTRIES'\u001b[39m\u001b[33m:\u001b[39m \u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 | \u001b[39m            let google \u001b[33m=\u001b[39m \u001b[33mObject\u001b[39m\u001b[33m.\u001b[39massign({}\u001b[33m,\u001b[39m state\u001b[33m,\u001b[39m { countries\u001b[33m:\u001b[39m action\u001b[33m.\u001b[39mqueries })\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m            \u001b[36mreturn\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 11 | \u001b[39m                google\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m            }\u001b[0m\n    at File.buildCodeFrameError (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/core/lib/transformation/file/file.js:260:12)\n    at Scope.checkBlockScopedCollisions (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/scope/index.js:347:22)\n    at Scope.registerBinding (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/scope/index.js:504:16)\n    at Scope.registerDeclaration (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/scope/index.js:444:14)\n    at Object.BlockScoped (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/scope/index.js:189:28)\n    at Object.newFn (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/visitors.js:230:17)\n    at NodePath._call (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/path/context.js:53:20)\n    at NodePath.call (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/path/context.js:36:14)\n    at NodePath.visit (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/path/context.js:88:12)\n    at TraversalContext.visitQueue (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:118:16)\n    at TraversalContext.visitMultiple (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:85:17)\n    at TraversalContext.visit (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:144:19)\n    at Function.traverse.node (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/index.js:94:17)\n    at NodePath.visit (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/path/context.js:95:18)\n    at TraversalContext.visitQueue (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:118:16)\n    at TraversalContext.visitMultiple (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:85:17)\n    at TraversalContext.visit (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:144:19)\n    at Function.traverse.node (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/index.js:94:17)\n    at NodePath.visit (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/path/context.js:95:18)\n    at TraversalContext.visitQueue (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:118:16)\n    at TraversalContext.visitMultiple (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:85:17)\n    at TraversalContext.visit (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:144:19)\n    at Function.traverse.node (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/index.js:94:17)\n    at NodePath.visit (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/path/context.js:95:18)\n    at TraversalContext.visitQueue (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:118:16)\n    at TraversalContext.visitSingle (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:90:19)\n    at TraversalContext.visit (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:146:19)\n    at Function.traverse.node (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/index.js:94:17)\n    at NodePath.visit (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/path/context.js:95:18)\n    at TraversalContext.visitQueue (/Users/jeffchen/Documents/PersonalWorkspace/twitter-realtime-node/node_modules/@babel/traverse/lib/context.js:118:16)");
 
 /***/ }),
 
@@ -59830,7 +59859,8 @@ __webpack_require__.r(__webpack_exports__);
 var composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || redux__WEBPACK_IMPORTED_MODULE_0__["compose"];
 function configureStore() {
   var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_RootReducer__WEBPACK_IMPORTED_MODULE_2__["default"], composeEnhancer(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_3___default.a)));
+  var middlewares = [redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_3___default.a];
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_RootReducer__WEBPACK_IMPORTED_MODULE_2__["default"], composeEnhancer(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"].apply(void 0, middlewares)));
 }
 
 /***/ }),

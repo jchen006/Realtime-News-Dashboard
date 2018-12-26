@@ -5,6 +5,15 @@ import { withStyles } from '@material-ui/core/styles';
 import ReactLoading from 'react-loading'
 import styles from './styles.js'
 
+const mapStateToProps = state => ({
+    queries: state.google.queries,
+    countries: state.google.countries,
+    languages: state.google.languages,
+    categories: state.google.categories,
+    sources: state.google.sources,
+    pollingInterval: state.google.pollingInterval
+})
+
 class NewsFeed extends React.Component { 
     constructor(props) {
         super(props)
@@ -20,6 +29,10 @@ class NewsFeed extends React.Component {
  
     removePolling() {
         clearInterval(this.pollingIntervalId)
+    }
+
+    constructQuery() {
+        
     }
 
     /** Update to graphQL, 

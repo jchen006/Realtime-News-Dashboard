@@ -19,7 +19,7 @@ class ChipList extends React.Component {
                         <Chip
                             key={value.key}
                             label={value.label}
-                            onDelete={this.props.handleValueDelete(filter)}
+                            onDelete={this.props.onDelete(filter)}
                             className={classes.chip}
                         />
                     );
@@ -32,7 +32,7 @@ class ChipList extends React.Component {
 ChipList.propTypes = {
     classes: PropTypes.object.isRequired,
     value: PropTypes.array.isRequired,
-    handleValueDelete: PropTypes.func.isRequired
+    onDelete: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(ChipList);

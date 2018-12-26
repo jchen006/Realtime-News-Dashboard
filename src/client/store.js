@@ -6,8 +6,9 @@ import logger from 'redux-logger'
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default function configureStore(initialState={}) {
+    const middlewares = [thunk, logger]
     return createStore(
         rootReducer,
-        composeEnhancer(applyMiddleware(thunk, logger)),
+        composeEnhancer(applyMiddleware(...middlewares)),
     );
 }

@@ -6,12 +6,10 @@
   "scripts": {
     "start": "node src/server/index.js",
     "build": "webpack --mode production",
-    "client11": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "client": "webpack --watch",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Sandeep Raveesh",
   "license": "ISC",
   "dependencies": {
     "@kennethormandy/react-flipcard": "^0.4.3",
@@ -21,6 +19,7 @@
     "cors": "^2.8.4",
     "d3-geo": "^1.11.1",
     "express": "^4.16.3",
+    "iso-3166-1": "^1.1.0",
     "live-server": "^1.2.0",
     "morgan": "^1.9.1",
     "newsapi": "^2.4.0",
