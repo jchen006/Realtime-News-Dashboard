@@ -88568,14 +88568,14 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  console.log(state);
-}; // ({
-//     filters: state && state.twitter && state.twitter.filters ? state.twitter.filters : [],
-//     language: state && state.twitter && state.twitter.language ? state.twitter.language : '',
-//     max: state && state.max ? state.max : 10,
-//     throttle: state && state.twitter && state.twitter.throttle ? state.twitter.throttle : 5000
-// })
-
+  var twitter = state.twitterReducer;
+  return {
+    filters: twitter.filters,
+    language: twitter.language,
+    max: twitter.max,
+    throttle: twitter.throttle
+  };
+};
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {

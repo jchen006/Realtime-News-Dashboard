@@ -10,17 +10,14 @@ import { TextField } from '@material-ui/core'
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
-    console.log(state)
+    const twitter = state.twitterReducer
+    return {
+        filters:  twitter.filters,
+        language:  twitter.language,
+        max:  twitter.max,
+        throttle: twitter.throttle
+    }
 }
-
-
-
-// ({
-//     filters: state && state.twitter && state.twitter.filters ? state.twitter.filters : [],
-//     language: state && state.twitter && state.twitter.language ? state.twitter.language : '',
-//     max: state && state.max ? state.max : 10,
-//     throttle: state && state.twitter && state.twitter.throttle ? state.twitter.throttle : 5000
-// })
 
 const mapDispatchToProps = dispatch => ({
     updateFilters: (filters) => dispatch(updateQueries(filters)),
