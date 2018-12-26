@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    updateFilters: (filters) => dispatch(updateQueries(filters)),
+    updateFilters: (filters) => dispatch(updateFilters(filters)),
     updateLanguage: (language) => dispatch(updateLanguage(language)),
     updateMaxDisplay: (max) => dispatch(updateMaxDisplay(max)),
     updateThrottle: (throttle) => dispatch(updateThrottle(throttle))
@@ -55,7 +55,6 @@ class TwitterForm extends React.Component {
     }
 
     onChangeFiltersField(e) {
-        e.preventDefault()
         console.log("triggered")
         this.setState({
             filter: e.target.value
@@ -63,8 +62,6 @@ class TwitterForm extends React.Component {
     }
 
     onFilterKeyPress(e) {
-        console.log("here: ", e.target.value)
-        e.preventDefault()
         if(e.charCode === 13) {
             let value = this.state.filter
             let newValue = {
@@ -77,17 +74,13 @@ class TwitterForm extends React.Component {
             this.setState({
                 filter: ''
             })
-        } else {
-            this.setState({
-                filter: e.target.value
-            })
         }
     }
 
     onDeleteFilter = data => () => {
         let updatedFilters = [...this.props.filters]
         const tokenToDelete = updatedFilters.indexOf(data)
-        updateFilters.splace(tokenToDelete, 1)
+        updatedFilters.splice(tokenToDelete, 1)
         this.props.updateFilters(updatedFilters)
     }
 
@@ -145,7 +138,7 @@ class TwitterForm extends React.Component {
                 label="Filters"
                 value={this.state.filter}
                 onChange={this.onChangeFiltersField}
-                // onKeyPress={this.onFilterKeyPress}
+                onKeyPress={this.onFilterKeyPress}
                 margin="normal"
                 variant="outlined"
             />

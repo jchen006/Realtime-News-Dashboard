@@ -20,7 +20,7 @@ class ChipList extends React.Component {
                             <Chip
                                 key={value.key}
                                 label={value.label}
-                                onDelete={this.props.onDelete(filter)}
+                                onDelete={this.props.onDelete(value)}
                                 className={classes.chip}
                             />
                         );
