@@ -58553,14 +58553,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_11__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -58619,46 +58611,17 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
 
-    _this.handleFiltersDelete = function (data) {
-      return function () {
-        _this.setState(function (state) {
-          var tokens = _toConsumableArray(state.twitter.filters);
-
-          var tokenToDelete = tokens.indexOf(data);
-          tokens.splice(tokenToDelete, 1);
-          return {
-            twitter: {
-              filters: tokens
-            }
-          };
-        });
-      };
-    };
-
     _this.simpleAction = function (event) {
       _this.props.simpleAction();
     };
 
     _this.state = {
-      twitter: {
-        filters: [{
-          key: 0,
-          label: 'Javascript'
-        }],
-        lang: 'en',
-        maxTweets: 5
-      },
-      google: {},
       displaySettings: false
     };
     _this.handleFiltersDelete = _this.handleFiltersDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleAddFilters = _this.handleAddFilters.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleOnDrawerOpen = _this.handleOnDrawerOpen.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.simpleAction = _this.simpleAction.bind(_assertThisInitialized(_assertThisInitialized(_this))); // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
-    // this.onUpdateFilter = this.onUpdateFilter.bind(this)
-    // this.onShowModal = this.onShowModal.bind(this)
-    // this.onHideModal = this.onHideModal.bind(this)
-
+    _this.simpleAction = _this.simpleAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -58667,44 +58630,6 @@ function (_Component) {
     value: function handleOnDrawerOpen() {
       this.setState({
         displaySettings: !this.state.displaySettings
-      });
-    }
-  }, {
-    key: "handleAddFilters",
-    value: function handleAddFilters(data) {
-      var tokens = this.state.twitter.filters;
-      tokens.push(data);
-      this.setState({
-        twitter: {
-          filters: tokens
-        }
-      });
-    }
-  }, {
-    key: "onHideModal",
-    value: function onHideModal() {
-      this.setState({
-        displayModal: false
-      });
-    }
-  }, {
-    key: "onUpdateFilter",
-    value: function onUpdateFilter() {
-      var _this$state$settings$ = this.state.settings.twitter,
-          filters = _this$state$settings$.filters,
-          lang = _this$state$settings$.lang;
-      this.socket.emit('update', {
-        filters: filters,
-        lang: lang
-      });
-    }
-  }, {
-    key: "onUpdateMaxTweets",
-    value: function onUpdateMaxTweets(num) {
-      this.setState({
-        twitter: {
-          maxTweets: num
-        }
       });
     }
   }, {
@@ -58719,20 +58644,7 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_11___default.a, {
         variant: "contained",
         onClick: this.simpleAction
-      }, "Default"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
-        container: true,
-        spacing: 24
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
-        item: true,
-        xs: 3
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TwitterFeed_Stream_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        maxTweets: this.state.twitter.maxTweets
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
-        item: true,
-        xs: 6
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NewsFeed_NewsFeed_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        pollInterval: 50000
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SettingsDrawer_SettingsDrawer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, "Default"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SettingsDrawer_SettingsDrawer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
         displaySettings: displaySettings
       }));
     }
@@ -59764,14 +59676,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _App_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.jsx */ "./src/client/App.jsx");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store */ "./src/client/store.js");
 
 
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__["Provider"], {
   store: Object(_store__WEBPACK_IMPORTED_MODULE_4__["default"])()
 }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)), document.getElementById('root'));
 

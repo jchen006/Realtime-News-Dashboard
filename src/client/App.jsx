@@ -26,83 +26,17 @@ class App extends Component {
     super(props)
     this.state = 
     {
-      twitter: {
-        filters: [
-          { key: 0, label: 'Javascript' },
-        ],
-        lang: 'en',
-        maxTweets: 5
-      },
-      google: {
-
-      },
       displaySettings: false
     }
     this.handleFiltersDelete = this.handleFiltersDelete.bind(this)
     this.handleAddFilters = this.handleAddFilters.bind(this)
     this.handleOnDrawerOpen = this.handleOnDrawerOpen.bind(this)
     this.simpleAction = this.simpleAction.bind(this)
-    // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
-    // this.onUpdateFilter = this.onUpdateFilter.bind(this)
-    // this.onShowModal = this.onShowModal.bind(this)
-    // this.onHideModal = this.onHideModal.bind(this)
   }
 
   handleOnDrawerOpen() {
     this.setState({
       displaySettings: !this.state.displaySettings
-    })
-  }
-
-  handleFiltersDelete = data => () => {
-    this.setState(state => {
-        const tokens = [...state.twitter.filters];
-        const tokenToDelete = tokens.indexOf(data);
-        tokens.splice(tokenToDelete, 1);
-        return { 
-          twitter: {
-            filters: tokens
-          } 
-        };
-    });
-  };
-
-  handleAddFilters(data) {
-    const tokens = this.state.twitter.filters
-    tokens.push(data)
-    this.setState({
-      twitter: {
-        filters: tokens
-      }
-    })
-  }
-
-  onHideModal() {
-    this.setState({
-      displayModal: false
-    })
-  }
-
-  onUpdateFilter() {
-    const {
-      settings: {
-        twitter: {
-          filters,
-          lang
-        }
-      }
-    } = this.state
-    this.socket.emit('update', {
-      filters,
-      lang
-    })
-  }
-
-  onUpdateMaxTweets(num) {
-    this.setState({
-        twitter: {
-          maxTweets: num
-        }
     })
   }
 
@@ -119,18 +53,14 @@ class App extends Component {
         <Button variant="contained" onClick={this.simpleAction}>
           Default
         </Button>
-        <Grid container spacing={24}>
+        {/* <Grid container spacing={24}>
           <Grid item xs={3}>
-            <Stream 
-              maxTweets={this.state.twitter.maxTweets}
-              />
+            <Stream/>
           </Grid>
           <Grid item xs={6}>
-            <NewsFeed
-              pollInterval={50000}
-            />
+            <NewsFeed/>
           </Grid>
-        </Grid>
+        </Grid> */}
         <SettingsDrawer displaySettings={displaySettings}/>
       </div>
     );
