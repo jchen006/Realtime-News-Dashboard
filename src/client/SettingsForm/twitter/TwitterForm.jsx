@@ -30,39 +30,76 @@ const mapDispatchToProps = dispatch => ({
 class TwitterForm extends React.Component {
     constructor(props) {
         super(props)
-        this.onChangeMaxTweetField = this.onChangeMaxTweetField.bind(this)
+        this.onChangeMaxDisplayField = this.onChangeMaxDisplayField.bind(this)
+        this.onChangeThrottleField = this.onChangeThrottleField.bind(this)
+        this.onChangeLanguageField = this.onChangeLanguageField.bind(this)
     }
 
-    onChangeMaxTweetField(e) {
+    onChangeMaxDisplayField(e) {
         e.preventDefault()
-        this.props.updateMaxDisplay(e.target.value)
+        let value = e.target.value
+        this.props.updateMaxDisplay(value)
     }
 
-    renderMaxTweetsField() {
+    onChangeThrottleField(e) {
+        e.preventDefault()
+        let value = e.target.value
+        this.props.updateThrottle(value)
+    }
+
+    // onChangeFiltersField(e) {
+    //     e.preventDefault()
+    //     let value = e.target.value
+    //     this.props.updateFilters(value)
+    // }
+
+    onChangeLanguageField(e) {
+        e.preventDefault()
+        let value = e.target.value
+        this.props.updateLanguage(value)
+    }
+
+    renderMaxDisplayField() {
         return (
             <TextField
                 id="outlined-name"
                 label="Max"
                 // className={classes.textField}
                 value={this.props.max}
-                onChange={this.onChangeMaxTweetField}
+                onChange={this.onChangeMaxDisplayField}
                 margin="normal"
                 variant="outlined"
             />
         )
     }
 
-    // renderThrottleField() {
-    //     return (
+    renderThrottleField() {
+        return (
+            <TextField
+                id="outlined-name"
+                label="Throttle"
+                // className={classes.textField}
+                value={this.props.throttle}
+                onChange={this.onChangeThrottleField}
+                margin="normal"
+                variant="outlined"
+            />
+        )
+    }
 
-    //     )
-    // }
-
-    // renderLanguageField() {
-    //     return (
-
-    //     )
-    // }
+    renderLanguageField() {
+        return (
+            <TextField
+                id="outlined-name"
+                label="Language"
+                // className={classes.textField}
+                value={this.props.language}
+                onChange={this.onChangeLanguageField}
+                margin="normal"
+                variant="outlined"
+            />
+        )
+    }
 
     // renderFiltersField() {
     //     return (
@@ -73,10 +110,10 @@ class TwitterForm extends React.Component {
     render() {
         return (
             <div>
-                { this.renderMaxTweetsField() }
-                {/* { this.renderThrottleField() }
-                { this.renderFiltersField() }
-                { this.renderLanguageField() } */}
+                { this.renderMaxDisplayField() }
+                { this.renderThrottleField() }
+                {/* { this.renderFiltersField() } */}
+                { this.renderLanguageField() }
             </div>
         )
     }
