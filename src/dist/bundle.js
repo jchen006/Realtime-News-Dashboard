@@ -85735,6 +85735,105 @@ App.propTypes = {
 
 /***/ }),
 
+/***/ "./src/client/ChipList/ChipList.jsx":
+/*!******************************************!*\
+  !*** ./src/client/ChipList/ChipList.jsx ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/styles/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Chip */ "./node_modules/@material-ui/core/Chip/index.js");
+/* harmony import */ var _material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles.js */ "./src/client/ChipList/styles.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_styles_js__WEBPACK_IMPORTED_MODULE_4__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var ChipList =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ChipList, _React$Component);
+
+  function ChipList(props) {
+    _classCallCheck(this, ChipList);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ChipList).call(this, props));
+  }
+
+  _createClass(ChipList, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var classes = this.props.classes;
+
+      if (this.props.values) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.values.map(function (value) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_3___default.a, {
+            key: value.key,
+            label: value.label,
+            onDelete: _this.props.onDelete(filter),
+            className: classes.chip
+          });
+        }));
+      } else {
+        return null;
+      }
+    }
+  }]);
+
+  return ChipList;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+ChipList.propTypes = {
+  classes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  values: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  onDelete: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired
+};
+/* harmony default export */ __webpack_exports__["default"] = (Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["withStyles"])(_styles_js__WEBPACK_IMPORTED_MODULE_4___default.a)(ChipList));
+
+/***/ }),
+
+/***/ "./src/client/ChipList/styles.js":
+/*!***************************************!*\
+  !*** ./src/client/ChipList/styles.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "./src/client/NewsFeed/NewsFeed.jsx":
 /*!******************************************!*\
   !*** ./src/client/NewsFeed/NewsFeed.jsx ***!
@@ -86303,7 +86402,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/index.es.js");
 /* harmony import */ var _actions_twitterAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/twitterAction */ "./src/client/actions/twitterAction.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _ChipList_ChipList_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../ChipList/ChipList.jsx */ "./src/client/ChipList/ChipList.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -86327,10 +86435,11 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+
 var mapStateToProps = function mapStateToProps(state) {
   var twitter = state.twitterReducer;
   return {
-    filters: twitter.filters,
+    filters: twitter.filters ? twitter.filters : [],
     language: twitter.language,
     max: twitter.max,
     throttle: twitter.throttle
@@ -86365,9 +86474,27 @@ function (_React$Component) {
     _classCallCheck(this, TwitterForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TwitterForm).call(this, props));
+
+    _this.onDeleteFilter = function (data) {
+      return function () {
+        var updatedFilters = _toConsumableArray(_this.props.filters);
+
+        var tokenToDelete = updatedFilters.indexOf(data);
+        _actions_twitterAction__WEBPACK_IMPORTED_MODULE_2__["updateFilters"].splace(tokenToDelete, 1);
+
+        _this.props.updateFilters(updatedFilters);
+      };
+    };
+
     _this.onChangeMaxDisplayField = _this.onChangeMaxDisplayField.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.onChangeThrottleField = _this.onChangeThrottleField.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.onChangeLanguageField = _this.onChangeLanguageField.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onFilterKeyPress = _this.onFilterKeyPress.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onDeleteFilter = _this.onDeleteFilter.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onChangeFiltersField = _this.onChangeFiltersField.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.state = {
+      filter: ''
+    };
     return _this;
   }
 
@@ -86384,12 +86511,42 @@ function (_React$Component) {
       e.preventDefault();
       var value = e.target.value;
       this.props.updateThrottle(value);
-    } // onChangeFiltersField(e) {
-    //     e.preventDefault()
-    //     let value = e.target.value
-    //     this.props.updateFilters(value)
-    // }
+    }
+  }, {
+    key: "onChangeFiltersField",
+    value: function onChangeFiltersField(e) {
+      e.preventDefault();
+      console.log("triggered");
+      this.setState({
+        filter: e.target.value
+      });
+    }
+  }, {
+    key: "onFilterKeyPress",
+    value: function onFilterKeyPress(e) {
+      console.log("here: ", e.target.value);
+      e.preventDefault();
 
+      if (e.charCode === 13) {
+        var value = this.state.filter;
+        var newValue = {
+          key: this.props.filters.length,
+          label: value
+        };
+
+        var updatedFilters = _toConsumableArray(this.props.filters);
+
+        updatedFilters.push(newValue);
+        this.props.updateFilters(updatedFilters);
+        this.setState({
+          filter: ''
+        });
+      } else {
+        this.setState({
+          filter: e.target.value
+        });
+      }
+    }
   }, {
     key: "onChangeLanguageField",
     value: function onChangeLanguageField(e) {
@@ -86402,8 +86559,7 @@ function (_React$Component) {
     value: function renderMaxDisplayField() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["TextField"], {
         id: "outlined-name",
-        label: "Max" // className={classes.textField}
-        ,
+        label: "Max",
         value: this.props.max,
         onChange: this.onChangeMaxDisplayField,
         margin: "normal",
@@ -86428,22 +86584,39 @@ function (_React$Component) {
     value: function renderLanguageField() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["TextField"], {
         id: "outlined-name",
-        label: "Language" // className={classes.textField}
-        ,
+        label: "Language",
         value: this.props.language,
         onChange: this.onChangeLanguageField,
         margin: "normal",
         variant: "outlined"
       });
-    } // renderFiltersField() {
-    //     return (
-    //     )
-    // }
-
+    }
+  }, {
+    key: "renderFiltersField",
+    value: function renderFiltersField() {
+      console.log(this.state.filter);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["TextField"], {
+        id: "outlined-name",
+        label: "Filters",
+        value: this.state.filter,
+        onChange: this.onChangeFiltersField // onKeyPress={this.onFilterKeyPress}
+        ,
+        margin: "normal",
+        variant: "outlined"
+      });
+    }
+  }, {
+    key: "renderFilterChips",
+    value: function renderFilterChips() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChipList_ChipList_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        values: this.props.filters,
+        onDelete: this.onDeleteFilter
+      });
+    }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderMaxDisplayField(), this.renderThrottleField(), this.renderLanguageField());
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderMaxDisplayField(), this.renderThrottleField(), this.renderLanguageField(), this.renderFiltersField(), this.renderFilterChips());
     }
   }]);
 

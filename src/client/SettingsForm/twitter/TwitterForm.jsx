@@ -8,11 +8,12 @@ import {
 } from '../../actions/twitterAction'
 import { TextField } from '@material-ui/core'
 import { connect } from 'react-redux';
+import ChipList from '../../ChipList/ChipList.jsx'
 
 const mapStateToProps = state => {
     const twitter = state.twitterReducer
     return {
-        filters:  twitter.filters,
+        filters:  twitter.filters ? twitter.filters : [],
         language:  twitter.language,
         max:  twitter.max,
         throttle: twitter.throttle
@@ -33,6 +34,12 @@ class TwitterForm extends React.Component {
         this.onChangeMaxDisplayField = this.onChangeMaxDisplayField.bind(this)
         this.onChangeThrottleField = this.onChangeThrottleField.bind(this)
         this.onChangeLanguageField = this.onChangeLanguageField.bind(this)
+        this.onFilterKeyPress = this.onFilterKeyPress.bind(this)
+        this.onDeleteFilter = this.onDeleteFilter.bind(this)
+        this.onChangeFiltersField = this.onChangeFiltersField.bind(this)
+        this.state = {
+            filter: ''
+        }
     }
 
     onChangeMaxDisplayField(e) {
@@ -47,11 +54,42 @@ class TwitterForm extends React.Component {
         this.props.updateThrottle(value)
     }
 
-    // onChangeFiltersField(e) {
-    //     e.preventDefault()
-    //     let value = e.target.value
-    //     this.props.updateFilters(value)
-    // }
+    onChangeFiltersField(e) {
+        e.preventDefault()
+        console.log("triggered")
+        this.setState({
+            filter: e.target.value
+        })
+    }
+
+    onFilterKeyPress(e) {
+        console.log("here: ", e.target.value)
+        e.preventDefault()
+        if(e.charCode === 13) {
+            let value = this.state.filter
+            let newValue = {
+                key: this.props.filters.length,
+                label: value
+            }
+            let updatedFilters = [...this.props.filters]
+            updatedFilters.push(newValue)
+            this.props.updateFilters(updatedFilters)
+            this.setState({
+                filter: ''
+            })
+        } else {
+            this.setState({
+                filter: e.target.value
+            })
+        }
+    }
+
+    onDeleteFilter = data => () => {
+        let updatedFilters = [...this.props.filters]
+        const tokenToDelete = updatedFilters.indexOf(data)
+        updateFilters.splace(tokenToDelete, 1)
+        this.props.updateFilters(updatedFilters)
+    }
 
     onChangeLanguageField(e) {
         e.preventDefault()
@@ -64,7 +102,6 @@ class TwitterForm extends React.Component {
             <TextField
                 id="outlined-name"
                 label="Max"
-                // className={classes.textField}
                 value={this.props.max}
                 onChange={this.onChangeMaxDisplayField}
                 margin="normal"
@@ -92,7 +129,6 @@ class TwitterForm extends React.Component {
             <TextField
                 id="outlined-name"
                 label="Language"
-                // className={classes.textField}
                 value={this.props.language}
                 onChange={this.onChangeLanguageField}
                 margin="normal"
@@ -101,19 +137,38 @@ class TwitterForm extends React.Component {
         )
     }
 
-    // renderFiltersField() {
-    //     return (
+    renderFiltersField() {
+        console.log(this.state.filter)
+        return (
+            <TextField
+                id="outlined-name"
+                label="Filters"
+                value={this.state.filter}
+                onChange={this.onChangeFiltersField}
+                // onKeyPress={this.onFilterKeyPress}
+                margin="normal"
+                variant="outlined"
+            />
+        )
+    }
 
-    //     )
-    // }
+    renderFilterChips() {
+        return (
+            <ChipList
+                values={this.props.filters}
+                onDelete={this.onDeleteFilter}
+                />
+        )
+    }
 
     render() {
         return (
             <div>
                 { this.renderMaxDisplayField() }
                 { this.renderThrottleField() }
-                {/* { this.renderFiltersField() } */}
                 { this.renderLanguageField() }
+                { this.renderFiltersField() }
+                { this.renderFilterChips() }
             </div>
         )
     }

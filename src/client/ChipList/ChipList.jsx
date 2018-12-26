@@ -12,26 +12,30 @@ class ChipList extends React.Component {
 
     render() {
         const { classes } = this.props
-        return (
-            <div>
-                { this.props.values.map((value) => {
-                    return (
-                        <Chip
-                            key={value.key}
-                            label={value.label}
-                            onDelete={this.props.onDelete(filter)}
-                            className={classes.chip}
-                        />
-                    );
-                })}
-            </div>
-        )
+        if(this.props.values) {
+            return (
+                <div>
+                    { this.props.values.map((value) => {
+                        return (
+                            <Chip
+                                key={value.key}
+                                label={value.label}
+                                onDelete={this.props.onDelete(filter)}
+                                className={classes.chip}
+                            />
+                        );
+                    })}
+                </div>
+            )
+        } else {
+            return null
+        }
     }
 }
 
 ChipList.propTypes = {
     classes: PropTypes.object.isRequired,
-    value: PropTypes.array.isRequired,
+    values: PropTypes.array,
     onDelete: PropTypes.func.isRequired
 };
 
