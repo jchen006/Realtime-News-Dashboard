@@ -3,6 +3,14 @@ import PropTypes from 'prop-types'
 import TweetCard from './TweetCard.jsx'
 import ReactLoading from 'react-loading'
 import io from 'socket.io-client'
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => {
+    const twitter = state.twitterReducer
+    return {
+        max: twitter.max
+    }
+}
 
 class Stream extends Component {
     constructor(props) {
@@ -22,12 +30,12 @@ class Stream extends Component {
     
         this.socket.on('tweet', (data) => {
             console.log(this.state.tweets);
-            if(this.state.tweets.length == this.props.maxTweets) {
+            if(this.state.tweets.length == this.props.max) {
                 var newTweetsArray = this.state.tweets.slice()
                 newTweetsArray.shift()
                 newTweetsArray.push(data)
                 this.setState( { tweets: newTweetsArray } )
-            } else if(this.state.tweets.length < this.props.maxTweets) {
+            } else if(this.state.tweets.length < this.props.max) {
                 var newTweetsArray = this.state.tweets.concat(data)
                 this.setState( { tweets: newTweetsArray } )
             }
@@ -65,11 +73,12 @@ class Stream extends Component {
     render() {
         return (
             <div>
-                { !this.state.isConnecting && this.state.tweets.length > 0 ? this.renderTweetDisplay() : this.renderLoading() }
+                { !this.state.isConnecting && this.state.tweets.length > 0 ? 
+                    this.renderTweetDisplay() : this.renderLoading() }
             </div>
         )
     }
 }
 
 
-export default Stream
+export default connect(mapStateToProps)(Stream)

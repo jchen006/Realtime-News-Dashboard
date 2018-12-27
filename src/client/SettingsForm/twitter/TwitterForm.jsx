@@ -55,7 +55,6 @@ class TwitterForm extends React.Component {
     }
 
     onChangeFiltersField(e) {
-        console.log("triggered")
         this.setState({
             filter: e.target.value
         })
@@ -108,7 +107,6 @@ class TwitterForm extends React.Component {
             <TextField
                 id="outlined-name"
                 label="Throttle"
-                // className={classes.textField}
                 value={this.props.throttle}
                 onChange={this.onChangeThrottleField}
                 margin="normal"
