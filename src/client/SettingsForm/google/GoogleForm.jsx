@@ -7,15 +7,19 @@ import {
     updateSources,
     updatePollingInterval
 } from '../../actions/googleAction'
+import { TextField } from '@material-ui/core'
 
-const mapStateToProps = state => ({
-    queries: state.google.queries,
-    countries: state.google.countries,
-    languages: state.google.languages,
-    categories: state.google.categories,
-    sources: state.google.sources,
-    pollingInterval: state.google.pollingInterval
-})
+const mapStateToProps = state => {
+    const google = state.googleReducer
+    return {
+        queries: google.queries,
+        countries: google.countries,
+        languages: google.languages,
+        categories: google.categories,
+        sources: google.sources,
+        pollingInterval: google.pollingInterval
+    }
+}
 
 const mapDispatchToProp = dispatch => ({
     updateQueries: (queries) => dispatch(updateQueries(queries)),
@@ -40,22 +44,48 @@ class GoogleNewsFormSettings extends React.Component {
                 })
             })
     }
+    
+    onChangePollingIntervalField(e) {
+        e.preventDefault()
+        let value = e.target.value
+        this.props.updateThrottle(value)
+    }
+
+    renderPollingIntervalField() {
+        return (
+            <TextField
+                id="outlined-name"
+                label="polling-interval"
+                value={this.props.pollingInterval}
+                onChange={this.onChangePollingIntervalField}
+                margin="normal"
+                variant="outlined"
+            />
+        )
+    }
+
+    renderQueriesField() {
+
+    }
+
+    renderCategoriesField() {
+
+    }
+
+    renderLanguagesField() {
+        
+    }
+
+    renderSourcesField() {
+
+    }
+
 
     render() {
         return (
-            <ExpansionPanelDetails>
-                <div>
-                    <div>
-
-                    </div>
-                    <div>
-
-                    </div>
-                </div>
-                <div>
-                    
-                </div>
-            </ExpansionPanelDetails>
+            <div>
+                { this.renderPollingIntervalField() }
+            </div>
         )
     }
 }

@@ -9,6 +9,7 @@ import {
 import { TextField } from '@material-ui/core'
 import { connect } from 'react-redux';
 import ChipList from '../../ChipList/ChipList.jsx'
+import * as _ from 'underscore'
 
 const mapStateToProps = state => {
     const twitter = state.twitterReducer

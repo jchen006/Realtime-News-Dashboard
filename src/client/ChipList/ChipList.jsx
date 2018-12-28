@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { withStyles } from '@material-ui/core/styles'
 import Chip from '@material-ui/core/Chip'
+
 import styles from './styles.js'
 
 class ChipList extends React.Component {
@@ -12,24 +14,20 @@ class ChipList extends React.Component {
 
     render() {
         const { classes } = this.props
-        if(this.props.values) {
-            return (
-                <div>
-                    { this.props.values.map((value) => {
-                        return (
-                            <Chip
-                                key={value.key}
-                                label={value.label}
-                                onDelete={this.props.onDelete(value)}
-                                className={classes.chip}
-                            />
-                        );
-                    })}
-                </div>
-            )
-        } else {
-            return null
-        }
+        return (
+            <div>
+                { this.props.values.map((value) => {
+                    return (
+                        <Chip
+                            key={value.key}
+                            label={value.label}
+                            onDelete={this.props.onDelete(value)}
+                            className={classes.chip}
+                        />
+                    );
+                })}
+            </div>
+        )
     }
 }
 

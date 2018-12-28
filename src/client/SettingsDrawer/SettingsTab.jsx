@@ -14,16 +14,18 @@ class SettingsTab extends React.Component {
         super(props)
     }
 
-    // renderGoogleSettingsPanel() {
-    //     return (
-    //         <ExpansionPanel>
-    //             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-    //                 <Typography className={classes.heading}>Google News</Typography>
-    //             </ExpansionPanelSummary>
-                
-    //         </ExpansionPanel>
-    //     )
-    // }
+    renderGoogleSettingsPanel() {
+        return (
+            <ExpansionPanel>
+                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography className={classes.heading}>Google News</Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                    
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
+        )
+    }
 
     renderTwitterSettingsPanel() {
         const { classes } = this.props

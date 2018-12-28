@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import Stream from './TwitterFeed/Stream.jsx'
-// import GeoStreamComponent from './GeoStreamComponent.jsx'
+import PropTypes from 'prop-types'
+
 import SettingsDrawer from './SettingsDrawer/SettingsDrawer.jsx'
 import Grid from '@material-ui/core/Grid'
-import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
-import keydown from 'react-keydown'
+import Button from '@material-ui/core/Button';
 import TopBar from './TopBar/TopBar.jsx'
+import { withStyles } from '@material-ui/core/styles'
+
 import NewsFeed from './NewsFeed/NewsFeed.jsx'
+import Stream from './TwitterFeed/Stream.jsx'
+
+import keydown from 'react-keydown'
+
 import { connect } from 'react-redux';
 import { simpleAction } from './actions/SimpleAction'
-import Button from '@material-ui/core/Button';
 
 const mapStateToProps = state => ({
   ...state
@@ -51,14 +54,14 @@ class App extends Component {
         <Button variant="contained" onClick={this.simpleAction}>
           Default
         </Button>
-        {/* <Grid container spacing={24}>
+        <Grid container spacing={24}>
           <Grid item xs={3}>
             <Stream/>
           </Grid>
-          <Grid item xs={6}>
+          {/* <Grid item xs={6}>
             <NewsFeed/>
-          </Grid>
-        </Grid> */}
+          </Grid> */}
+        </Grid>
         <SettingsDrawer displaySettings={displaySettings}/>
       </div>
     );

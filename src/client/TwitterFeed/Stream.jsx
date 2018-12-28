@@ -4,11 +4,15 @@ import TweetCard from './TweetCard.jsx'
 import ReactLoading from 'react-loading'
 import io from 'socket.io-client'
 import { connect } from 'react-redux';
+import * as _ from 'underscore'
 
 const mapStateToProps = state => {
     const twitter = state.twitterReducer
     return {
-        max: twitter.max
+        max: twitter.max,
+        language: twitter.language,
+        throttle: twitter.throttle,
+        filters: twitter.filters
     }
 }
 
@@ -29,7 +33,6 @@ class Stream extends Component {
         })
     
         this.socket.on('tweet', (data) => {
-            console.log(this.state.tweets);
             if(this.state.tweets.length == this.props.max) {
                 var newTweetsArray = this.state.tweets.slice()
                 newTweetsArray.shift()
@@ -40,10 +43,20 @@ class Stream extends Component {
                 this.setState( { tweets: newTweetsArray } )
             }
         })
-      }
+    }
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.language !== this.props.language ||
+            _.isEqual(prevProps.filters, this.props.filters)) {
+                console.log("HERE")
+                this.socket.emit('settingsUpdates', {
+                    filters:  this.props.filters,
+                    language: this.props.language
+            })
+        }
+    }
 
     renderTweets() {
-        console.log(this.state.tweets.length)
         return this.state.tweets.slice().reverse().map((tweet) => {
             return (
                 <TweetCard
@@ -68,7 +81,8 @@ class Stream extends Component {
         return (
             <ReactLoading type={"spin"} color="#000000"/>
         )
-      }
+    }
+
 
     render() {
         return (
