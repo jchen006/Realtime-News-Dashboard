@@ -31,7 +31,7 @@ const mapStateToProps = state => {
         queries: google.queries,
         countries: google.countries,
         languages: google.languages,
-        categories: google.categories,
+        categories: google.categories ? google.categories : '',
         sources: google.sources,
         pollingInterval: google.pollingInterval
     }
@@ -54,7 +54,8 @@ class GoogleNewsFormSettings extends React.Component {
         }
         this.onQueriesFieldChange = this.onQueriesFieldChange.bind(this)
         this.onQueriesFieldKeyPress = this.onQueriesFieldKeyPress.bind(this)
-        this.handleCategoriesSelect = this.handleCategoriesSelect.bind(this)
+        // this.handleOnSelect = this.handleOnSelect.bind(this)
+        this.handleOnCategories = this.handleOnCategories.bind(this)
     }
 
     componentDidMount() {
@@ -129,13 +130,18 @@ class GoogleNewsFormSettings extends React.Component {
             )
     }
 
-    handleCategoriesSelect= name => value => {
-        console.log(name)
-        this.props.updateCategories(name)
+    // handleOnSelect = (name) => (value) => {
+    //     this.setState({
+    //         [name]: value
+    //     })
+    // }
+
+    handleOnCategories = (value) => {
+        console.log(value)
+        this.props.updateCategories(value)
     }
 
-    renderCategoriesField() {
-        console.log(this.props)
+    renderCategoriesField(name) {
         const { classes, theme } = this.props
         const suggestions = categories.map((c) => {
             return {
@@ -163,7 +169,6 @@ class GoogleNewsFormSettings extends React.Component {
             Placeholder,
             ValueContainer
         }
-
         return (
             <Select
                 classes={classes}
@@ -174,10 +179,9 @@ class GoogleNewsFormSettings extends React.Component {
                         shrink: true
                     }
                 }}
+                onChange={this.handleOnCategories}
                 options={suggestions}
                 components={components}
-                value={this.props.categories}
-                onChange={this.handleCategoriesSelect}
                 placeholder={"Categories"}
                 isMulti
             />

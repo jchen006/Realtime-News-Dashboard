@@ -98320,7 +98320,7 @@ var mapStateToProps = function mapStateToProps(state) {
     queries: google.queries,
     countries: google.countries,
     languages: google.languages,
-    categories: google.categories,
+    categories: google.categories ? google.categories : '',
     sources: google.sources,
     pollingInterval: google.pollingInterval
   };
@@ -98372,20 +98372,19 @@ function (_React$Component) {
       };
     };
 
-    _this.handleCategoriesSelect = function (name) {
-      return function (value) {
-        console.log(name);
+    _this.handleOnCategories = function (value) {
+      console.log(value);
 
-        _this.props.updateCategories(name);
-      };
+      _this.props.updateCategories(value);
     };
 
     _this.state = {
       queries: ''
     };
     _this.onQueriesFieldChange = _this.onQueriesFieldChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onQueriesFieldKeyPress = _this.onQueriesFieldKeyPress.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleCategoriesSelect = _this.handleCategoriesSelect.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onQueriesFieldKeyPress = _this.onQueriesFieldKeyPress.bind(_assertThisInitialized(_assertThisInitialized(_this))); // this.handleOnSelect = this.handleOnSelect.bind(this)
+
+    _this.handleOnCategories = _this.handleOnCategories.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -98459,11 +98458,15 @@ function (_React$Component) {
         margin: "normal",
         variant: "outlined"
       });
-    }
+    } // handleOnSelect = (name) => (value) => {
+    //     this.setState({
+    //         [name]: value
+    //     })
+    // }
+
   }, {
     key: "renderCategoriesField",
-    value: function renderCategoriesField() {
-      console.log(this.props);
+    value: function renderCategoriesField(name) {
       var _this$props = this.props,
           classes = _this$props.classes,
           theme = _this$props.theme;
@@ -98501,10 +98504,9 @@ function (_React$Component) {
             shrink: true
           }
         },
+        onChange: this.handleOnCategories,
         options: suggestions,
         components: components,
-        value: this.props.categories,
-        onChange: this.handleCategoriesSelect,
         placeholder: "Categories",
         isMulti: true
       });
@@ -99335,51 +99337,39 @@ __webpack_require__.r(__webpack_exports__);
   switch (action.type) {
     case 'UPDATE_QUERIES':
       google = Object.assign({}, state, {
-        queries: action.queries
+        queries: action.payload.queries
       });
-      return {
-        google: google
-      };
+      return google;
 
     case 'UPDATE_COUNTRIES':
       google = Object.assign({}, state, {
-        countries: action.queries
+        countries: action.payload.queries
       });
-      return {
-        google: google
-      };
+      return google;
 
     case 'UPDATE_LANGUAGE':
       google = Object.assign({}, state, {
-        languages: action.languages
+        languages: action.payload.languages
       });
-      return {
-        google: google
-      };
+      return google;
 
-    case 'UPDATE_CATEGORY':
+    case 'UPDATE_CATEGORIES':
       google = Object.assign({}, state, {
-        categories: action.categories
+        categories: action.payload.categories
       });
-      return {
-        google: google
-      };
+      return google;
 
     case 'UPDATE_SOURCES':
       google = Object.assign({}, state, {
-        sources: action.sources
+        sources: action.payload.sources
       });
-      return {
-        google: google
-      };
+      return google;
 
     case 'UPDATE_POLLING_INTERVAL':
       google = Object.assign({}, state, {
-        polling_interval: action.polling_interval
+        polling_interval: action.payload.polling_interval
       });
-      return {
-        google: google
-      };
+      return google;
 
     default:
       return state;
