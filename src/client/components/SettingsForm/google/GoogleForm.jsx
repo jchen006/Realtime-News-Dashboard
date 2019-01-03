@@ -130,20 +130,20 @@ class GoogleNewsFormSettings extends React.Component {
             )
     }
 
-    // handleOnSelect = (name) => (value) => {
-    //     this.setState({
-    //         [name]: value
-    //     })
-    // }
-
-    handleOnCategories = (value) => {
-        console.log(value)
-        this.props.updateCategories(value)
+    handleOnCategories = (type) => (value) => {
+        console.log(type, value)
+        if(type === 'Categories') {
+            this.props.updateCategories(value)
+        } else if(type === 'Languages') {
+            this.props.updateLanguages(value)
+        } else if(type === 'Countries') {
+            this.props.updateCountries(value)
+        } 
     }
 
-    renderCategoriesField(name) {
+    renderMultiSelectField(options, type) {
         const { classes, theme } = this.props
-        const suggestions = categories.map((c) => {
+        const suggestions = options.map((c) => {
             return {
                 label: c,
                 value: c
@@ -174,37 +174,36 @@ class GoogleNewsFormSettings extends React.Component {
                 classes={classes}
                 styles={selectStyles}
                 textFieldProps={{
-                    label: 'Label',
+                    label: type,
                     InputLabelProps: {
                         shrink: true
                     }
                 }}
-                onChange={this.handleOnCategories}
+                onChange={this.handleOnCategories(type)}
                 options={suggestions}
                 components={components}
-                placeholder={"Categories"}
+                placeholder={`Select ${type}`}
                 isMulti
             />
         )
     }
 
-    renderLanguagesField() {
-
-    }
-
-    renderSourcesField() {
-
-    }
-
-
     render() {
-        const { classes } = this.props
+        const { 
+            classes: {
+                divider
+            } 
+        } = this.props
         return (
             <div>
                 { this.renderPollingIntervalField() }
-                <div className={classes.divider} />
-                { this.renderCategoriesField() }
-                <div className={classes.divider} />
+                <div className={divider} />
+                { this.renderMultiSelectField(categories, 'Categories') }
+                <div className={divider} />
+                { this.renderMultiSelectField(languages, 'Languages') }
+                <div className={divider} />
+                { this.renderMultiSelectField(country, 'Countries') }
+                <div className={divider} />
             </div>
         )
     }

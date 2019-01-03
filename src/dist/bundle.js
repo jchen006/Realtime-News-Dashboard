@@ -98372,10 +98372,18 @@ function (_React$Component) {
       };
     };
 
-    _this.handleOnCategories = function (value) {
-      console.log(value);
+    _this.handleOnCategories = function (type) {
+      return function (value) {
+        console.log(type, value);
 
-      _this.props.updateCategories(value);
+        if (type === 'Categories') {
+          _this.props.updateCategories(value);
+        } else if (type === 'Languages') {
+          _this.props.updateLanguages(value);
+        } else if (type === 'Countries') {
+          _this.props.updateCountries(value);
+        }
+      };
     };
 
     _this.state = {
@@ -98458,19 +98466,14 @@ function (_React$Component) {
         margin: "normal",
         variant: "outlined"
       });
-    } // handleOnSelect = (name) => (value) => {
-    //     this.setState({
-    //         [name]: value
-    //     })
-    // }
-
+    }
   }, {
-    key: "renderCategoriesField",
-    value: function renderCategoriesField(name) {
+    key: "renderMultiSelectField",
+    value: function renderMultiSelectField(options, type) {
       var _this$props = this.props,
           classes = _this$props.classes,
           theme = _this$props.theme;
-      var suggestions = _constants_google__WEBPACK_IMPORTED_MODULE_4__["categories"].map(function (c) {
+      var suggestions = options.map(function (c) {
         return {
           label: c,
           value: c
@@ -98499,32 +98502,30 @@ function (_React$Component) {
         classes: classes,
         styles: selectStyles,
         textFieldProps: {
-          label: 'Label',
+          label: type,
           InputLabelProps: {
             shrink: true
           }
         },
-        onChange: this.handleOnCategories,
+        onChange: this.handleOnCategories(type),
         options: suggestions,
         components: components,
-        placeholder: "Categories",
+        placeholder: "Select ".concat(type),
         isMulti: true
       });
     }
   }, {
-    key: "renderLanguagesField",
-    value: function renderLanguagesField() {}
-  }, {
-    key: "renderSourcesField",
-    value: function renderSourcesField() {}
-  }, {
     key: "render",
     value: function render() {
-      var classes = this.props.classes;
+      var divider = this.props.classes.divider;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderPollingIntervalField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: classes.divider
-      }), this.renderCategoriesField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: classes.divider
+        className: divider
+      }), this.renderMultiSelectField(_constants_google__WEBPACK_IMPORTED_MODULE_4__["categories"], 'Categories'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: divider
+      }), this.renderMultiSelectField(_constants_google__WEBPACK_IMPORTED_MODULE_4__["languages"], 'Languages'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: divider
+      }), this.renderMultiSelectField(_constants_google__WEBPACK_IMPORTED_MODULE_4__["country"], 'Countries'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: divider
       }));
     }
   }]);
@@ -99343,11 +99344,11 @@ __webpack_require__.r(__webpack_exports__);
 
     case 'UPDATE_COUNTRIES':
       google = Object.assign({}, state, {
-        countries: action.payload.queries
+        countries: action.payload.countries
       });
       return google;
 
-    case 'UPDATE_LANGUAGE':
+    case 'UPDATE_LANGUAGES':
       google = Object.assign({}, state, {
         languages: action.payload.languages
       });

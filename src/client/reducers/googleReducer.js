@@ -5,9 +5,9 @@ export default (state = {}, action) => {
             google = Object.assign({}, state, { queries: action.payload.queries })
             return google
         case 'UPDATE_COUNTRIES': 
-            google = Object.assign({}, state, { countries: action.payload.queries })
+            google = Object.assign({}, state, { countries: action.payload.countries })
             return google
-        case 'UPDATE_LANGUAGE':
+        case 'UPDATE_LANGUAGES':
             google = Object.assign({}, state, { languages: action.payload.languages })
             return google
         case 'UPDATE_CATEGORIES':
