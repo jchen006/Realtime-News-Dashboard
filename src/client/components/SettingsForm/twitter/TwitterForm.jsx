@@ -5,7 +5,7 @@ import {
     updateLanguage,
     updateMaxDisplay,
     updateThrottle
-} from '../../actions/twitterAction'
+} from '../../../actions/twitterAction'
 import { TextField } from '@material-ui/core'
 import { connect } from 'react-redux';
 import ChipList from '../../ChipList/ChipList.jsx'

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
-import SettingsDrawer from './SettingsDrawer/SettingsDrawer.jsx'
+import SettingsDrawer from './components/SettingsDrawer/SettingsDrawer.jsx'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button';
-import TopBar from './TopBar/TopBar.jsx'
+import TopBar from './components/TopBar/TopBar.jsx'
 import { withStyles } from '@material-ui/core/styles'
 
-import NewsFeed from './NewsFeed/NewsFeed.jsx'
-import Stream from './TwitterFeed/Stream.jsx'
+import NewsFeed from './components/NewsFeed/NewsFeed.jsx'
+import Stream from './components/TwitterFeed/Stream.jsx'
 
 import keydown from 'react-keydown'
 
@@ -51,13 +51,14 @@ class App extends Component {
     return (
       <div className={classes.root}>
         <TopBar onClick={this.handleOnDrawerOpen}/>
-        <Button variant="contained" onClick={this.simpleAction}>
-          Default
-        </Button>
+        {/* <Button 
+          variant="contained" onClick={this.simpleAction}>
+          Test
+        </Button> */}
         <Grid container spacing={24}>
-          <Grid item xs={3}>
+          {/* <Grid item xs={3}>
             <Stream/>
-          </Grid>
+          </Grid> */}
           {/* <Grid item xs={6}>
             <NewsFeed/>
           </Grid> */}

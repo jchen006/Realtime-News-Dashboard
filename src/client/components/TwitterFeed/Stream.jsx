@@ -46,9 +46,7 @@ class Stream extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(prevProps.language !== this.props.language ||
-            _.isEqual(prevProps.filters, this.props.filters)) {
-                console.log("HERE")
+        if(prevProps.language !== this.props.language || _.isEqual(prevProps.filters, this.props.filters)) {
                 this.socket.emit('settingsUpdates', {
                     filters:  this.props.filters,
                     language: this.props.language
@@ -93,6 +91,5 @@ class Stream extends Component {
         )
     }
 }
-
 
 export default connect(mapStateToProps)(Stream)

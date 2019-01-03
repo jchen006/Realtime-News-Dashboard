@@ -7,6 +7,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { settingsTab } from './styles.js'
 import TwitterForm from '../SettingsForm/twitter/TwitterForm.jsx'
+import GoogleForm from '../SettingsForm/google/GoogleForm.jsx'
 import Typography from '@material-ui/core/Typography';
 
 class SettingsTab extends React.Component {
@@ -15,13 +16,14 @@ class SettingsTab extends React.Component {
     }
 
     renderGoogleSettingsPanel() {
+        const { classes } = this.props
         return (
             <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography className={classes.heading}>Google News</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                    
+                    <GoogleForm/>
                 </ExpansionPanelDetails>
             </ExpansionPanel>
         )
@@ -45,7 +47,7 @@ class SettingsTab extends React.Component {
         const { classes } = this.props
         return (
             <div className={classes.root}>
-                {/* {this.renderGoogleSettingsPanel()} */}
+                { this.renderGoogleSettingsPanel()}
                 { this.renderTwitterSettingsPanel() }
             </div>
         )

@@ -18,7 +18,7 @@ export const updateQueries = (queries) => dispatch => {
 }
 
 export const UPDATE_COUNTRIES = "UPDATE_COUNTRIES"
-export const updateCountries = (countries) => dispatch = {
+export const updateCountries = (countries) => dispatch => {
     dispatch({
         type: UPDATE_COUNTRIES,
         payload: {

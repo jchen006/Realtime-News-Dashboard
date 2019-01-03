@@ -29,6 +29,7 @@
     "react-keydown": "^1.9.7",
     "react-loading": "^2.0.3",
     "react-redux": "^6.0.0",
+    "react-select": "^2.2.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
