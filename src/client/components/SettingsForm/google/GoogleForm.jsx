@@ -23,6 +23,7 @@ import {
     ValueContainer
 } from './FormComponents.js'
 import { connect } from 'react-redux';
+import iso from 'iso-3166-1'
 
 
 const mapStateToProps = state => {
@@ -142,16 +143,25 @@ class GoogleNewsFormSettings extends React.Component {
         }
     }
 
-    renderMultiSelectField(options, type) {
+    renderMultiSelectField(options, type, defaultValue) {
         const { classes, theme } = this.props
         if(type !== 'Sources') {
             options = options.map((c) => {
-                return {
-                    label: c,
-                    value: c
+                if(type === 'Countries') {
+                    let isoSearch = iso.whereAlpha2(c)
+                    let country = isoSearch && isoSearch.country ? isoSearch.country : ''
+                    return {
+                        label: country ? country : c,
+                        value: c
+                    }
+                } else {
+                    return {
+                        label: c,
+                        value: c
+                    }
                 }
             })
-        }
+        } 
 
         const selectStyles = {
             input: base => ({
@@ -186,6 +196,7 @@ class GoogleNewsFormSettings extends React.Component {
                 components={components}
                 placeholder={`Select ${type}`}
                 isMulti
+                defaultValue={defaultValue ? defaultValue : null}
             />
         )
     }
@@ -209,13 +220,13 @@ class GoogleNewsFormSettings extends React.Component {
             <div>
                 { this.renderPollingIntervalField() }
                 <div className={divider} />
-                { this.renderMultiSelectField(categories, 'Categories') }
+                { this.renderMultiSelectField(categories, 'Categories', this.props.categories) }
                 <div className={divider} />
-                { this.renderMultiSelectField(languages, 'Languages') }
+                { this.renderMultiSelectField(languages, 'Languages', this.props.languages) }
                 <div className={divider} />
-                { this.renderMultiSelectField(country, 'Countries') }
+                { this.renderMultiSelectField(country, 'Countries', this.props.countries) }
                 <div className={divider} />
-                { this.renderMultiSelectField(modifiedSources, 'Sources') }
+                { this.renderMultiSelectField(modifiedSources, 'Sources', this.props.sources) }
                 <div className={divider} />
             </div>
         )
