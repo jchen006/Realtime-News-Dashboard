@@ -22,6 +22,7 @@ const NoOptionsMessage = (props) => {
 }
 
 const Placeholder = (props) => {
+    console.log(props.children)
     return (
       <Typography
         color="textSecondary"
@@ -57,24 +58,8 @@ const Control = (props) => {
     )
 }
 
-const Options = (props) => {
-    return (
-        <MenuItem
-            buttonRef={props.innerRef}
-            selected={props.isFocused}
-            component="div"
-            style={{
-                fontWeight: props.isSelected ? 500 : 400
-            }}
-            {...props.innerProps}
-        >
-            {props.children}
-        </MenuItem>
-    )
-}
-
-
 const ValueContainer = (props) => {
+    console.log(props.children)
     return <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
 }
 
@@ -105,7 +90,6 @@ export {
     Menu,
     MultiValue,
     NoOptionsMessage,
-    Options,
     Placeholder,
     ValueContainer
 }

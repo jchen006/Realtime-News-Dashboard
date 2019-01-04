@@ -97382,7 +97382,7 @@ var UPDATE_SOURCES = "UPDATE_SOURCES";
 var updateSources = function updateSources(sources) {
   return function (dispatch) {
     dispatch({
-      type: UPDATE_CATEGORY,
+      type: UPDATE_SOURCES,
       payload: {
         sources: sources
       }
@@ -98128,7 +98128,7 @@ var settingsTab = function settingsTab(theme) {
 /*!*********************************************************************!*\
   !*** ./src/client/components/SettingsForm/google/FormComponents.js ***!
   \*********************************************************************/
-/*! exports provided: Control, Menu, MultiValue, NoOptionsMessage, Options, Placeholder, ValueContainer */
+/*! exports provided: Control, Menu, MultiValue, NoOptionsMessage, Placeholder, ValueContainer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98137,7 +98137,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Menu", function() { return Menu; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MultiValue", function() { return MultiValue; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NoOptionsMessage", function() { return NoOptionsMessage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Options", function() { return Options; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Placeholder", function() { return Placeholder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ValueContainer", function() { return ValueContainer; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -98186,6 +98185,7 @@ var NoOptionsMessage = function NoOptionsMessage(props) {
 };
 
 var Placeholder = function Placeholder(props) {
+  console.log(props.children);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({
     color: "textSecondary",
     className: props.selectProps.classes.placeholder
@@ -98215,18 +98215,8 @@ var Control = function Control(props) {
   }, props.selectProps.textFieldProps));
 };
 
-var Options = function Options(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_5___default.a, _extends({
-    buttonRef: props.innerRef,
-    selected: props.isFocused,
-    component: "div",
-    style: {
-      fontWeight: props.isSelected ? 500 : 400
-    }
-  }, props.innerProps), props.children);
-};
-
 var ValueContainer = function ValueContainer(props) {
+  console.log(props.children);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: props.selectProps.classes.valueContainer
   }, props.children);
@@ -98382,6 +98372,8 @@ function (_React$Component) {
           _this.props.updateLanguages(value);
         } else if (type === 'Countries') {
           _this.props.updateCountries(value);
+        } else if (type === 'Sources') {
+          _this.props.updateSources(value);
         }
       };
     };
@@ -98390,8 +98382,7 @@ function (_React$Component) {
       queries: ''
     };
     _this.onQueriesFieldChange = _this.onQueriesFieldChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onQueriesFieldKeyPress = _this.onQueriesFieldKeyPress.bind(_assertThisInitialized(_assertThisInitialized(_this))); // this.handleOnSelect = this.handleOnSelect.bind(this)
-
+    _this.onQueriesFieldKeyPress = _this.onQueriesFieldKeyPress.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleOnCategories = _this.handleOnCategories.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
@@ -98473,12 +98464,16 @@ function (_React$Component) {
       var _this$props = this.props,
           classes = _this$props.classes,
           theme = _this$props.theme;
-      var suggestions = options.map(function (c) {
-        return {
-          label: c,
-          value: c
-        };
-      });
+
+      if (type !== 'Sources') {
+        options = options.map(function (c) {
+          return {
+            label: c,
+            value: c
+          };
+        });
+      }
+
       var selectStyles = {
         input: function input(base) {
           return _objectSpread({}, base, {
@@ -98494,7 +98489,6 @@ function (_React$Component) {
         Menu: _FormComponents_js__WEBPACK_IMPORTED_MODULE_7__["Menu"],
         MultiValue: _FormComponents_js__WEBPACK_IMPORTED_MODULE_7__["MultiValue"],
         NoOptionsMessage: _FormComponents_js__WEBPACK_IMPORTED_MODULE_7__["NoOptionsMessage"],
-        Options: _FormComponents_js__WEBPACK_IMPORTED_MODULE_7__["Options"],
         Placeholder: _FormComponents_js__WEBPACK_IMPORTED_MODULE_7__["Placeholder"],
         ValueContainer: _FormComponents_js__WEBPACK_IMPORTED_MODULE_7__["ValueContainer"]
       };
@@ -98508,7 +98502,7 @@ function (_React$Component) {
           }
         },
         onChange: this.handleOnCategories(type),
-        options: suggestions,
+        options: options,
         components: components,
         placeholder: "Select ".concat(type),
         isMulti: true
@@ -98517,7 +98511,16 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var sources = this.state.sources;
       var divider = this.props.classes.divider;
+      var modifiedSources = this.state.sources ? sources.map(function (s) {
+        return {
+          label: s.name,
+          value: s.id,
+          description: s.description,
+          url: s.url
+        };
+      }) : [];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderPollingIntervalField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: divider
       }), this.renderMultiSelectField(_constants_google__WEBPACK_IMPORTED_MODULE_4__["categories"], 'Categories'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -98525,6 +98528,8 @@ function (_React$Component) {
       }), this.renderMultiSelectField(_constants_google__WEBPACK_IMPORTED_MODULE_4__["languages"], 'Languages'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: divider
       }), this.renderMultiSelectField(_constants_google__WEBPACK_IMPORTED_MODULE_4__["country"], 'Countries'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: divider
+      }), this.renderMultiSelectField(modifiedSources, 'Sources'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: divider
       }));
     }
@@ -99433,7 +99438,6 @@ __webpack_require__.r(__webpack_exports__);
       return twitter;
 
     case 'UPDATE_MAX_DISPLAYED':
-      console.log(action.max);
       twitter = Object.assign({}, state, {
         max: action.payload.max
       });

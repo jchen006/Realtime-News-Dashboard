@@ -50,7 +50,7 @@ export const updateCategories = (categories) => dispatch => {
 export const UPDATE_SOURCES = "UPDATE_SOURCES"
 export const updateSources = (sources) => dispatch => {
     dispatch({
-        type: UPDATE_CATEGORY,
+        type: UPDATE_SOURCES,
         payload: {
             sources
         }

@@ -8,7 +8,6 @@ export default(state = {}, action) => {
             twitter = Object.assign({}, state, { language: action.payload.language })
             return twitter
         case 'UPDATE_MAX_DISPLAYED':
-            console.log(action.max)
             twitter = Object.assign({}, state, { max: action.payload.max })
             return twitter
         case 'UPDATE_THROTTLE':

@@ -54,7 +54,6 @@ class GoogleNewsFormSettings extends React.Component {
         }
         this.onQueriesFieldChange = this.onQueriesFieldChange.bind(this)
         this.onQueriesFieldKeyPress = this.onQueriesFieldKeyPress.bind(this)
-        // this.handleOnSelect = this.handleOnSelect.bind(this)
         this.handleOnCategories = this.handleOnCategories.bind(this)
     }
 
@@ -138,17 +137,21 @@ class GoogleNewsFormSettings extends React.Component {
             this.props.updateLanguages(value)
         } else if(type === 'Countries') {
             this.props.updateCountries(value)
-        } 
+        } else if(type === 'Sources') {
+            this.props.updateSources(value)
+        }
     }
 
     renderMultiSelectField(options, type) {
         const { classes, theme } = this.props
-        const suggestions = options.map((c) => {
-            return {
-                label: c,
-                value: c
-            }
-        })
+        if(type !== 'Sources') {
+            options = options.map((c) => {
+                return {
+                    label: c,
+                    value: c
+                }
+            })
+        }
 
         const selectStyles = {
             input: base => ({
@@ -165,7 +168,6 @@ class GoogleNewsFormSettings extends React.Component {
             Menu,
             MultiValue,
             NoOptionsMessage,
-            Options,
             Placeholder,
             ValueContainer
         }
@@ -180,7 +182,7 @@ class GoogleNewsFormSettings extends React.Component {
                     }
                 }}
                 onChange={this.handleOnCategories(type)}
-                options={suggestions}
+                options={options}
                 components={components}
                 placeholder={`Select ${type}`}
                 isMulti
@@ -189,11 +191,20 @@ class GoogleNewsFormSettings extends React.Component {
     }
 
     render() {
+        const { sources } = this.state
         const { 
             classes: {
                 divider
             } 
         } = this.props
+        let modifiedSources = this.state.sources ? sources.map((s) => {
+            return {
+                label: s.name,
+                value: s.id,
+                description: s.description,
+                url: s.url
+            }
+        }) : []
         return (
             <div>
                 { this.renderPollingIntervalField() }
@@ -203,6 +214,8 @@ class GoogleNewsFormSettings extends React.Component {
                 { this.renderMultiSelectField(languages, 'Languages') }
                 <div className={divider} />
                 { this.renderMultiSelectField(country, 'Countries') }
+                <div className={divider} />
+                { this.renderMultiSelectField(modifiedSources, 'Sources') }
                 <div className={divider} />
             </div>
         )
