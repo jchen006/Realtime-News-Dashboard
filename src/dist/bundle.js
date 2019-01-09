@@ -99766,7 +99766,6 @@ var Control = function Control(props) {
 };
 
 var ValueContainer = function ValueContainer(props) {
-  console.log(props.children);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: props.selectProps.classes.valueContainer
   }, props.children);
@@ -99851,7 +99850,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
- // import { Placeholder } from 'react-select/lib/animated';
 
 
 
@@ -99891,6 +99889,17 @@ var mapDispatchToProp = function mapDispatchToProp(dispatch) {
     }
   };
 };
+/**
+ * These settings will be solely focused on leveraging that of the News API top headlines. 
+ * There are 7 request parameters 
+ * country - can only take in 1 
+ * category - can only take in 1 
+ * sources - can take in multiple 
+ * q - can only take in on phrase (needs to be URL encoded)
+ * pageSize - 20 default to 100 
+ * page - page size if greater than
+ */
+
 
 var GoogleNewsFormSettings =
 /*#__PURE__*/
@@ -100102,6 +100111,10 @@ function (_React$Component) {
 
   return GoogleNewsFormSettings;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+/**
+ * Category, Language, Sources are single for topHeadlines
+ */
+
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["withStyles"])(_styles_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
   withTheme: true

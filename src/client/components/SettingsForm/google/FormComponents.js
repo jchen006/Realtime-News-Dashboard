@@ -59,7 +59,6 @@ const Control = (props) => {
 }
 
 const ValueContainer = (props) => {
-    console.log(props.children)
     return <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
 }
 

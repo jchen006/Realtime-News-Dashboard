@@ -12,7 +12,6 @@ import Select from 'react-select'
 import { categories, languages, country } from '../../../constants/google'
 import styles from './styles.js'
 import { withStyles } from '@material-ui/core/styles';
-// import { Placeholder } from 'react-select/lib/animated';
 import {
     Control,
     Menu,
@@ -47,6 +46,16 @@ const mapDispatchToProp = dispatch => ({
     updatePollingInterval: (pollingInterval) => dispatch(updatePollingInterval(pollingInterval))
 })
 
+/**
+ * These settings will be solely focused on leveraging that of the News API top headlines. 
+ * There are 7 request parameters 
+ * country - can only take in 1 
+ * category - can only take in 1 
+ * sources - can take in multiple 
+ * q - can only take in on phrase (needs to be URL encoded)
+ * pageSize - 20 default to 100 
+ * page - page size if greater than
+ */
 class GoogleNewsFormSettings extends React.Component {
     constructor(props) {
         super(props)
@@ -233,4 +242,7 @@ class GoogleNewsFormSettings extends React.Component {
     }
 }
 
+/**
+ * Category, Language, Sources are single for topHeadlines
+ */
 export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProp)(GoogleNewsFormSettings))
