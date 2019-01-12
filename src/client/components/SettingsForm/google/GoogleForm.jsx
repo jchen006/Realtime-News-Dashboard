@@ -8,21 +8,12 @@ import {
     updatePollingInterval
 } from '../../../actions/googleAction'
 import { TextField } from '@material-ui/core'
-import Select from 'react-select'
 import { categories, languages, country } from '../../../constants/google'
-import styles from './styles.js'
+import styles from './styles'
 import { withStyles } from '@material-ui/core/styles';
-import {
-    Control,
-    Menu,
-    MultiValue,
-    NoOptionsMessage,
-    Options,
-    Placeholder,
-    ValueContainer
-} from './FormComponents.js'
 import { connect } from 'react-redux';
 import iso from 'iso-3166-1'
+import MultiSelectField from '../../MultiSelectField/MultiSelectField.jsx'
 
 
 const mapStateToProps = state => {
@@ -139,85 +130,13 @@ class GoogleNewsFormSettings extends React.Component {
             )
     }
 
-    handleOnCategories = (type) => (value) => {
-        console.log(type, value)
-        if(type === 'Categories') {
-            this.props.updateCategories(value)
-        } else if(type === 'Languages') {
-            this.props.updateLanguages(value)
-        } else if(type === 'Countries') {
-            this.props.updateCountries(value)
-        } else if(type === 'Sources') {
-            this.props.updateSources(value)
-        }
+    handleOnCategories = (value) => {
+        this.props.updateSources(value)
     }
 
-    renderMultiSelectField(options, type, defaultValue) {
-        const { classes, theme } = this.props
-        if(type !== 'Sources') {
-            options = options.map((c) => {
-                if(type === 'Countries') {
-                    let isoSearch = iso.whereAlpha2(c)
-                    let country = isoSearch && isoSearch.country ? isoSearch.country : ''
-                    return {
-                        label: country ? country : c,
-                        value: c
-                    }
-                } else {
-                    return {
-                        label: c,
-                        value: c
-                    }
-                }
-            })
-        } 
-
-        const selectStyles = {
-            input: base => ({
-              ...base,
-              color: theme.palette.text.primary,
-              '& input': {
-                font: 'inherit',
-              },
-            }),
-        };
-
-        const components = {
-            Control,
-            Menu,
-            MultiValue,
-            NoOptionsMessage,
-            Placeholder,
-            ValueContainer
-        }
-        return (
-            <Select
-                classes={classes}
-                styles={selectStyles}
-                textFieldProps={{
-                    label: type,
-                    InputLabelProps: {
-                        shrink: true
-                    }
-                }}
-                onChange={this.handleOnCategories(type)}
-                options={options}
-                components={components}
-                placeholder={`Select ${type}`}
-                isMulti
-                defaultValue={defaultValue ? defaultValue : null}
-            />
-        )
-    }
-
-    render() {
+    renderMultiSelectField() {
         const { sources } = this.state
-        const { 
-            classes: {
-                divider
-            } 
-        } = this.props
-        let modifiedSources = this.state.sources ? sources.map((s) => {
+        let modifiedSources = this.state.sources ? this.state.sources.map((s) => {
             return {
                 label: s.name,
                 value: s.id,
@@ -226,16 +145,26 @@ class GoogleNewsFormSettings extends React.Component {
             }
         }) : []
         return (
+            <MultiSelectField
+                options={modifiedSources}
+                placeholder={'Select sources'}
+                onChange={this.handleOnCategories}
+                defaultValue={this.props.sources}
+            />
+        )
+    }
+
+    render() {
+        const { 
+            classes: {
+                divider
+            } 
+        } = this.props
+        return (
             <div>
                 { this.renderPollingIntervalField() }
                 <div className={divider} />
-                { this.renderMultiSelectField(categories, 'Categories', this.props.categories) }
-                <div className={divider} />
-                { this.renderMultiSelectField(languages, 'Languages', this.props.languages) }
-                <div className={divider} />
-                { this.renderMultiSelectField(country, 'Countries', this.props.countries) }
-                <div className={divider} />
-                { this.renderMultiSelectField(modifiedSources, 'Sources', this.props.sources) }
+                { this.renderMultiSelectField() }
                 <div className={divider} />
             </div>
         )
@@ -245,4 +174,4 @@ class GoogleNewsFormSettings extends React.Component {
 /**
  * Category, Language, Sources are single for topHeadlines
  */
-export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProp)(GoogleNewsFormSettings))
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProp)(GoogleNewsFormSettings))
