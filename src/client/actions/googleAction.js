@@ -37,12 +37,12 @@ export const updateLanguages = (languages) => dispatch => {
     })
 }
 
-export const UPDATE_CATEGORIES = "UPDATE_CATEGORIES"
-export const updateCategories = (categories) => dispatch => {
+export const UPDATE_CATEGORY = "UPDATE_CATEGORY"
+export const updateCategory = (category) => dispatch => {
     dispatch({
-        type: UPDATE_CATEGORIES,
+        type: UPDATE_CATEGORY,
         payload: {
-            categories
+            category
         }
     })
 }

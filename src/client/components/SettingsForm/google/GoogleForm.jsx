@@ -3,7 +3,7 @@ import {
     updateQueries,
     updateCountries,
     updateLanguages,
-    updateCategories,
+    updateCategory,
     updateSources,
     updatePollingInterval
 } from '../../../actions/googleAction'
@@ -14,25 +14,26 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import iso from 'iso-3166-1'
 import MultiSelectField from '../../MultiSelectField/MultiSelectField.jsx'
+import SingleSelectField from '../../SingleSelectField/SingleSelectField.jsx'
 
 
 const mapStateToProps = state => {
     const google = state.googleReducer
     return {
         queries: google.queries,
-        countries: google.countries,
-        languages: google.languages,
-        categories: google.categories ? google.categories : '',
-        sources: google.sources,
+        country: google.country ? google.country : '',
+        language: google.languages ? google.languages : '',
+        category: google.category ? google.category : '',
+        sources: google.sources ? google.sources : [],
         pollingInterval: google.pollingInterval
     }
 }
 
 const mapDispatchToProp = dispatch => ({
     updateQueries: (queries) => dispatch(updateQueries(queries)),
-    updateCountries: (countries) => dispatch(updateCountries(countries)),
-    updateLanguages: (languages) => dispatch(updateLanguages(languages)),
-    updateCategories: (categories) => dispatch(updateCategories(categories)),
+    updateCountry: (countries) => dispatch(updateCountries(countries)),
+    updateLanguage: (languages) => dispatch(updateLanguages(languages)),
+    updateCategory: (categories) => dispatch(updateCategory(categories)),
     updateSources: (sources) => dispatch(updateSources(sources)),
     updatePollingInterval: (pollingInterval) => dispatch(updatePollingInterval(pollingInterval))
 })
@@ -55,7 +56,10 @@ class GoogleNewsFormSettings extends React.Component {
         }
         this.onQueriesFieldChange = this.onQueriesFieldChange.bind(this)
         this.onQueriesFieldKeyPress = this.onQueriesFieldKeyPress.bind(this)
-        this.handleOnCategories = this.handleOnCategories.bind(this)
+        this.onSourcesChange = this.onSourcesChange.bind(this)
+        this.onCategoryChange = this.onCategoryChange.bind(this)
+        this.onCountryChange = this.onCountryChange.bind(this)
+        this.onLanguageChange = this.onLanguageChange.bind(this)
     }
 
     componentDidMount() {
@@ -130,13 +134,44 @@ class GoogleNewsFormSettings extends React.Component {
             )
     }
 
-    handleOnCategories = (value) => {
+    onSourcesChange(value) {
         this.props.updateSources(value)
+    }
+
+    onCategoryChange(value) {
+        this.props.updateCategory(value)
+    }
+
+    onCountryChange(value) {
+        this.props.updateCountry(value)
+    }
+
+    onLanguageChange(value) {
+        this.props.updateLanguage(value)
+    }
+
+    renderCategoryChange() {
+        const { category } = this.props
+        let modifiedCategories = categories ? categories.map((c) => {
+            return {
+                label: c,
+                value: c
+            }
+        }) : []
+        console.log(category)
+        return (
+            <SingleSelectField
+                options={modifiedCategories}
+                placeholder={'Select Category'}
+                onChange={this.onCategoryChange}
+                value={category}
+            />
+        )
     }
 
     renderMultiSelectField() {
         const { sources } = this.state
-        let modifiedSources = this.state.sources ? this.state.sources.map((s) => {
+        let modifiedSources = sources ? sources.map((s) => {
             return {
                 label: s.name,
                 value: s.id,
@@ -148,7 +183,7 @@ class GoogleNewsFormSettings extends React.Component {
             <MultiSelectField
                 options={modifiedSources}
                 placeholder={'Select sources'}
-                onChange={this.handleOnCategories}
+                onChange={this.onSourcesChange}
                 defaultValue={this.props.sources}
             />
         )
@@ -166,6 +201,7 @@ class GoogleNewsFormSettings extends React.Component {
                 <div className={divider} />
                 { this.renderMultiSelectField() }
                 <div className={divider} />
+                { this.renderCategoryChange() }
             </div>
         )
     }

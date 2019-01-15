@@ -8,7 +8,6 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames';
 
-
 const NoOptionsMessage = (props) => {
     return (
         <Typography
@@ -22,7 +21,6 @@ const NoOptionsMessage = (props) => {
 }
 
 const Placeholder = (props) => {
-    console.log(props.children)
     return (
       <Typography
         color="textSecondary"
@@ -62,18 +60,12 @@ const ValueContainer = (props) => {
     return <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
 }
 
-const MultiValue = (props) => {
+function SingleValue(props) {
     return (
-        <Chip
-            tabIndex={-1}
-            label={props.children}
-            className={classNames(props.selectProps.classes.chip, {
-                [props.selectProps.classes.chipFocused]: props.isFocused
-            })}
-            onDelete={props.removeProps.onClick}
-            deleteIcon={<CancelIcon {...props.removeProps} />}
-        />
-    )
+      <Typography className={props.selectProps.classes.singleValue} {...props.innerProps}>
+        {props.children}
+      </Typography>
+    );
 }
 
 const Menu = (props) => {
@@ -84,10 +76,27 @@ const Menu = (props) => {
     )
 }
 
+const Option = (props) => {
+    return (
+      <MenuItem
+        buttonRef={props.innerRef}
+        selected={props.isFocused}
+        component="div"
+        style={{
+          fontWeight: props.isSelected ? 500 : 400,
+        }}
+        {...props.innerProps}
+      >
+        {props.children}
+      </MenuItem>
+    );
+  }
+
 export {
     Control,
     Menu,
-    MultiValue,
+    Option,
+    SingleValue,
     NoOptionsMessage,
     Placeholder,
     ValueContainer

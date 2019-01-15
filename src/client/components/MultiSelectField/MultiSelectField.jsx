@@ -4,42 +4,32 @@ import * as Components from './MultiSelectComponents'
 import Select from 'react-select'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles'
+import { selectStyles } from '../../utils/styles'
 
 class MultiSelectField extends React.Component {
     constructor(props) {
         super(props)
-        this.handleOnCategories = this.handleOnCategories.bind(this)
+        this.handleOnChange = this.handleOnChange.bind(this)
     }
 
-    handleOnCategories(value) {
+    handleOnChange(value) {
         this.props.onChange(value)
     }
 
     render() {
         const { classes, theme, options } = this.props
-        const selectStyles = {
-            input: (base) => {
-                return {
-                    ...base,
-                    color: theme.palette.text.primary,
-                    '& input': {
-                        font: 'inherit'
-                    }
-                }
-            }
-        }
 
         return (
             <Select
                 classes={classes}
-                styles={selectStyles}
+                styles={selectStyles(theme)}
                 textFieldProps={{
-                    label: true,
+                    label: 'Label',
                     InputLabelProps: {
-                        shrink: true
-                    }
-                }}
-                onChange={this.handleOnCategories}
+                        shrink: true,
+                    },
+                  }}
+                onChange={this.handleOnChange}
                 options={options}
                 components={Components}
                 placeholder={this.props.placeholder}
@@ -47,17 +37,6 @@ class MultiSelectField extends React.Component {
                 defaultValue={this.props.defaultValue}
             />
         )
-
-        // const selectStyles = {
-        //     input: base => ({
-        //       ...base,
-        //       color: theme.palette.text.primary,
-        //       '& input': {
-        //         font: 'inherit',
-        //       },
-        //     }),
-        // };
-
     }
 }
 

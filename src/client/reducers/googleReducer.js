@@ -10,8 +10,8 @@ export default (state = {}, action) => {
         case 'UPDATE_LANGUAGES':
             google = Object.assign({}, state, { languages: action.payload.languages })
             return google
-        case 'UPDATE_CATEGORIES':
-            google = Object.assign({}, state, { categories: action.payload.categories })
+        case 'UPDATE_CATEGORY':
+            google = Object.assign({}, state, { category: action.payload.category })
             return google
         case 'UPDATE_SOURCES':
             google = Object.assign({}, state, { sources: action.payload.sources })
