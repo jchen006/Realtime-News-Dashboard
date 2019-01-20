@@ -22,13 +22,20 @@ class SingleSelectField extends React.Component {
             theme, 
             options,
             value,
-            placeholder
+            placeholder,
+            label
         } = this.props
 
         return (
             <Select
                 classes={classes}
                 styles={selectStyles(theme)}
+                textFieldProps={{
+                    label,
+                    InputLabelProps: {
+                        shrink: true
+                    }
+                }}
                 options={options}
                 components={Components}
                 value={value}

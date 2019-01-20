@@ -15,12 +15,13 @@ import { connect } from 'react-redux';
 import iso from 'iso-3166-1'
 import MultiSelectField from '../../MultiSelectField/MultiSelectField.jsx'
 import SingleSelectField from '../../SingleSelectField/SingleSelectField.jsx'
+import MultiEntryField from '../../MultiEntryField/MultiEntryField.jsx'
 
 
 const mapStateToProps = state => {
     const google = state.googleReducer
     return {
-        queries: google.queries,
+        queries: google.queries ? google.queries : [],
         country: google.country ? google.country : '',
         language: google.languages ? google.languages : '',
         category: google.category ? google.category : '',
@@ -54,8 +55,7 @@ class GoogleNewsFormSettings extends React.Component {
         this.state = {
             queries: ''
         }
-        this.onQueriesFieldChange = this.onQueriesFieldChange.bind(this)
-        this.onQueriesFieldKeyPress = this.onQueriesFieldKeyPress.bind(this)
+        this.onQueriesChange = this.onQueriesChange.bind(this)
         this.onSourcesChange = this.onSourcesChange.bind(this)
         this.onCategoryChange = this.onCategoryChange.bind(this)
         this.onCountryChange = this.onCountryChange.bind(this)
@@ -91,47 +91,8 @@ class GoogleNewsFormSettings extends React.Component {
         )
     }
 
-    onQueriesFieldKeyPress(e) {
-        if(e.charCode === 13) {
-            let value = this.state.query
-            let newValue = {
-                key: this.props.queries.length,
-                label: value
-            }
-            let updatedQueries = [...this.props.queries]
-            updatedQueries.push(newValue)
-            this.props.updateQueries(updatedQueries)
-            this.setState({
-                query: ''
-            })
-        }
-    }
-
-    onQueriesFieldChange(e) {
-        this.setState({
-            query: e.target.value
-        })
-    }
-
-    onQueriesFieldDelete = data => () => {
-        let updatedQueries = [...this.props.queries]
-        const tokenToDelete = updatedQueries.indexOf(data)
-        updatedQueries.splice(tokenToDelete, 1)
-        this.props.updateQueries(updatedQueries)
-    }
-
-    renderQueriesField() {
-        return (
-            <TextField
-                id="outlined-name"
-                label="queries"
-                value={this.props.queries}
-                onChange={this.onQueriesFieldChange}
-                onKeyPress={this.onQueriesFieldKeyPress}
-                margin="normal"
-                variant="outlined"
-                />
-            )
+    onQueriesChange(value) {
+        this.props.updateQueries(value)
     }
 
     onSourcesChange(value) {
@@ -150,7 +111,19 @@ class GoogleNewsFormSettings extends React.Component {
         this.props.updateLanguage(value)
     }
 
-    renderCategoryChange() {
+    renderQueriesField() {
+        return (
+            <MultiEntryField
+                onChange={this.onQueriesChange}
+                onEnter={this.onQueriesChange}
+                placeholder={'Enter queries'}
+                values={this.props.queries}
+                label={'Queries'}
+            />
+        )
+    }
+
+    renderCategoryField() {
         const { category } = this.props
         let modifiedCategories = categories ? categories.map((c) => {
             return {
@@ -162,9 +135,10 @@ class GoogleNewsFormSettings extends React.Component {
         return (
             <SingleSelectField
                 options={modifiedCategories}
-                placeholder={'Select Category'}
+                placeholder={'Select category'}
                 onChange={this.onCategoryChange}
                 value={category}
+                label={'Category'}
             />
         )
     }
@@ -185,6 +159,7 @@ class GoogleNewsFormSettings extends React.Component {
                 placeholder={'Select sources'}
                 onChange={this.onSourcesChange}
                 defaultValue={this.props.sources}
+                label={'Sources'}
             />
         )
     }
@@ -199,9 +174,11 @@ class GoogleNewsFormSettings extends React.Component {
             <div>
                 { this.renderPollingIntervalField() }
                 <div className={divider} />
+                { this.renderQueriesField()}
+                <div className={divider}/>
                 { this.renderMultiSelectField() }
                 <div className={divider} />
-                { this.renderCategoryChange() }
+                { this.renderCategoryField() }
             </div>
         )
     }

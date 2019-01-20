@@ -17,14 +17,14 @@ class MultiSelectField extends React.Component {
     }
 
     render() {
-        const { classes, theme, options } = this.props
+        const { classes, theme, options, label } = this.props
 
         return (
             <Select
                 classes={classes}
                 styles={selectStyles(theme)}
                 textFieldProps={{
-                    label: 'Label',
+                    label,
                     InputLabelProps: {
                         shrink: true,
                     },
