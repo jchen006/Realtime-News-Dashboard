@@ -16,6 +16,7 @@ import iso from 'iso-3166-1'
 import MultiSelectField from '../../MultiSelectField/MultiSelectField.jsx'
 import SingleSelectField from '../../SingleSelectField/SingleSelectField.jsx'
 import MultiEntryField from '../../MultiEntryField/MultiEntryField.jsx'
+import SingleEntryField from '../../SingleEntryField/SingleEntryField.jsx'
 
 
 const mapStateToProps = state => {
@@ -26,7 +27,7 @@ const mapStateToProps = state => {
         language: google.languages ? google.languages : '',
         category: google.category ? google.category : '',
         sources: google.sources ? google.sources : [],
-        pollingInterval: google.pollingInterval
+        polling_interval: google.polling_interval ? google.polling_interval : 60000
     }
 }
 
@@ -52,14 +53,12 @@ const mapDispatchToProp = dispatch => ({
 class GoogleNewsFormSettings extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            queries: ''
-        }
         this.onQueriesChange = this.onQueriesChange.bind(this)
         this.onSourcesChange = this.onSourcesChange.bind(this)
         this.onCategoryChange = this.onCategoryChange.bind(this)
         this.onCountryChange = this.onCountryChange.bind(this)
         this.onLanguageChange = this.onLanguageChange.bind(this)
+        this.onPollingIntervalChange = this.onPollingIntervalChange.bind(this)
     }
 
     componentDidMount() {
@@ -72,23 +71,8 @@ class GoogleNewsFormSettings extends React.Component {
             })
     }
     
-    onChangePollingIntervalField(e) {
-        e.preventDefault()
-        let value = e.target.value
-        this.props.updateThrottle(value)
-    }
-
-    renderPollingIntervalField() {
-        return (
-            <TextField
-                id="outlined-name"
-                label="polling-interval"
-                value={this.props.pollingInterval}
-                onChange={this.onChangePollingIntervalField}
-                margin="normal"
-                variant="outlined"
-            />
-        )
+    onPollingIntervalChange(value) {
+        this.props.updatePollingInterval(value)
     }
 
     onQueriesChange(value) {
@@ -111,11 +95,21 @@ class GoogleNewsFormSettings extends React.Component {
         this.props.updateLanguage(value)
     }
 
+    renderPollingIntervalField() {
+        return (
+            <SingleEntryField
+                id={'polling-interval'}
+                label={'Polling Interval'}
+                value={this.props.polling_interval}
+                onEnter={this.onPollingIntervalChange}
+            />
+        )
+    }
+
     renderQueriesField() {
         return (
             <MultiEntryField
                 onChange={this.onQueriesChange}
-                onEnter={this.onQueriesChange}
                 placeholder={'Enter queries'}
                 values={this.props.queries}
                 label={'Queries'}
@@ -131,7 +125,6 @@ class GoogleNewsFormSettings extends React.Component {
                 value: c
             }
         }) : []
-        console.log(category)
         return (
             <SingleSelectField
                 options={modifiedCategories}
@@ -143,7 +136,7 @@ class GoogleNewsFormSettings extends React.Component {
         )
     }
 
-    renderMultiSelectField() {
+    renderSoucesField() {
         const { sources } = this.state
         let modifiedSources = sources ? sources.map((s) => {
             return {
@@ -176,7 +169,7 @@ class GoogleNewsFormSettings extends React.Component {
                 <div className={divider} />
                 { this.renderQueriesField()}
                 <div className={divider}/>
-                { this.renderMultiSelectField() }
+                { this.renderSoucesField() }
                 <div className={divider} />
                 { this.renderCategoryField() }
             </div>

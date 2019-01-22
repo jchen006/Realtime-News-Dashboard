@@ -130,7 +130,6 @@ class TwitterForm extends React.Component {
     }
 
     renderFiltersField() {
-        console.log(this.state.filter)
         return (
             <TextField
                 id="outlined-name"

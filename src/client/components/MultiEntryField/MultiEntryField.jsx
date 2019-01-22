@@ -33,7 +33,6 @@ class MultiEntryField extends React.Component {
      * @param {*} inputValue
      */
     handleInputChange(inputValue) {
-        console.log(inputValue)
         this.setState({
             inputValue
         })
@@ -45,11 +44,9 @@ class MultiEntryField extends React.Component {
         if(!inputValue) return
         switch(key) {
             case 'Enter':
-                console.log(this.state.inputValue)
                 var newOptionObj = this.createOption(inputValue)
                 var updatedQueries = [...this.props.values, newOptionObj]  
-                console.log(updatedQueries)
-                this.props.onEnter(updatedQueries)
+                this.props.onChange(updatedQueries)
                 this.setState({
                     inputValue: ''
                 })
@@ -93,7 +90,6 @@ class MultiEntryField extends React.Component {
 }
 
 MultiEntryField.propTypes = {
-    onEnter: PropTypes.func,
     onChange: PropTypes.func,
     values: PropTypes.array
 }

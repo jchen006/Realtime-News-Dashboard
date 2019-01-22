@@ -8,20 +8,7 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames';
 
-// const NoOptionsMessage = (props) => {
-//     return (
-//         <Typography
-//             color="textSecondary"
-//             className={props.selectProps.classes.NoOptionsMessage}
-//             {...props.innerProps}
-//         >
-//             { props.children }
-//         </Typography>
-//     )
-// }
-
 const Placeholder = (props) => {
-    console.log(props.children)
     return (
       <Typography
         color="textSecondary"
@@ -75,19 +62,9 @@ const MultiValue = (props) => {
     )
 }
 
-// const Menu = (props) => {
-//     return (
-//         <Paper square className={props.selectProps.classes.paper} {...props.innerProps}>
-//             { props.children }
-//         </Paper>
-//     )
-// }
-
 export {
     Control,
-    // Menu,
     MultiValue,
-    // NoOptionsMessage,
     Placeholder,
     ValueContainer
 }

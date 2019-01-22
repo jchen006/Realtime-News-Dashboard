@@ -99166,20 +99166,9 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
- // const NoOptionsMessage = (props) => {
-//     return (
-//         <Typography
-//             color="textSecondary"
-//             className={props.selectProps.classes.NoOptionsMessage}
-//             {...props.innerProps}
-//         >
-//             { props.children }
-//         </Typography>
-//     )
-// }
+
 
 var Placeholder = function Placeholder(props) {
-  console.log(props.children);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({
     color: "textSecondary",
     className: props.selectProps.classes.placeholder
@@ -99223,14 +99212,7 @@ var MultiValue = function MultiValue(props) {
     onDelete: props.removeProps.onClick,
     deleteIcon: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Cancel__WEBPACK_IMPORTED_MODULE_6___default.a, props.removeProps)
   });
-}; // const Menu = (props) => {
-//     return (
-//         <Paper square className={props.selectProps.classes.paper} {...props.innerProps}>
-//             { props.children }
-//         </Paper>
-//     )
-// }
-
+};
 
 
 
@@ -99330,7 +99312,6 @@ function (_React$Component) {
   }, {
     key: "handleInputChange",
     value: function handleInputChange(inputValue) {
-      console.log(inputValue);
       this.setState({
         inputValue: inputValue
       });
@@ -99344,11 +99325,9 @@ function (_React$Component) {
 
       switch (key) {
         case 'Enter':
-          console.log(this.state.inputValue);
           var newOptionObj = this.createOption(inputValue);
           var updatedQueries = [].concat(_toConsumableArray(this.props.values), [newOptionObj]);
-          console.log(updatedQueries);
-          this.props.onEnter(updatedQueries);
+          this.props.onChange(updatedQueries);
           this.setState({
             inputValue: ''
           });
@@ -99400,7 +99379,6 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 MultiEntryField.propTypes = {
-  onEnter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
   values: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array
 };
@@ -99535,7 +99513,6 @@ var NoOptionsMessage = function NoOptionsMessage(props) {
 };
 
 var Placeholder = function Placeholder(props) {
-  console.log(props.children);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({
     color: "textSecondary",
     className: props.selectProps.classes.placeholder
@@ -100350,6 +100327,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MultiSelectField_MultiSelectField_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../MultiSelectField/MultiSelectField.jsx */ "./src/client/components/MultiSelectField/MultiSelectField.jsx");
 /* harmony import */ var _SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../SingleSelectField/SingleSelectField.jsx */ "./src/client/components/SingleSelectField/SingleSelectField.jsx");
 /* harmony import */ var _MultiEntryField_MultiEntryField_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../MultiEntryField/MultiEntryField.jsx */ "./src/client/components/MultiEntryField/MultiEntryField.jsx");
+/* harmony import */ var _SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../SingleEntryField/SingleEntryField.jsx */ "./src/client/components/SingleEntryField/SingleEntryField.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -100380,6 +100358,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+
 var mapStateToProps = function mapStateToProps(state) {
   var google = state.googleReducer;
   return {
@@ -100388,7 +100367,7 @@ var mapStateToProps = function mapStateToProps(state) {
     language: google.languages ? google.languages : '',
     category: google.category ? google.category : '',
     sources: google.sources ? google.sources : [],
-    pollingInterval: google.pollingInterval
+    polling_interval: google.polling_interval ? google.polling_interval : 60000
   };
 };
 
@@ -100437,14 +100416,12 @@ function (_React$Component) {
     _classCallCheck(this, GoogleNewsFormSettings);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(GoogleNewsFormSettings).call(this, props));
-    _this.state = {
-      queries: ''
-    };
     _this.onQueriesChange = _this.onQueriesChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.onSourcesChange = _this.onSourcesChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.onCategoryChange = _this.onCategoryChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.onCountryChange = _this.onCountryChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.onLanguageChange = _this.onLanguageChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onPollingIntervalChange = _this.onPollingIntervalChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -100462,23 +100439,9 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "onChangePollingIntervalField",
-    value: function onChangePollingIntervalField(e) {
-      e.preventDefault();
-      var value = e.target.value;
-      this.props.updateThrottle(value);
-    }
-  }, {
-    key: "renderPollingIntervalField",
-    value: function renderPollingIntervalField() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["TextField"], {
-        id: "outlined-name",
-        label: "polling-interval",
-        value: this.props.pollingInterval,
-        onChange: this.onChangePollingIntervalField,
-        margin: "normal",
-        variant: "outlined"
-      });
+    key: "onPollingIntervalChange",
+    value: function onPollingIntervalChange(value) {
+      this.props.updatePollingInterval(value);
     }
   }, {
     key: "onQueriesChange",
@@ -100506,11 +100469,20 @@ function (_React$Component) {
       this.props.updateLanguage(value);
     }
   }, {
+    key: "renderPollingIntervalField",
+    value: function renderPollingIntervalField() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        id: 'polling-interval',
+        label: 'Polling Interval',
+        value: this.props.polling_interval,
+        onEnter: this.onPollingIntervalChange
+      });
+    }
+  }, {
     key: "renderQueriesField",
     value: function renderQueriesField() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MultiEntryField_MultiEntryField_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
         onChange: this.onQueriesChange,
-        onEnter: this.onQueriesChange,
         placeholder: 'Enter queries',
         values: this.props.queries,
         label: 'Queries'
@@ -100526,7 +100498,6 @@ function (_React$Component) {
           value: c
         };
       }) : [];
-      console.log(category);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
         options: modifiedCategories,
         placeholder: 'Select category',
@@ -100536,8 +100507,8 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "renderMultiSelectField",
-    value: function renderMultiSelectField() {
+    key: "renderSoucesField",
+    value: function renderSoucesField() {
       var sources = this.state.sources;
       var modifiedSources = sources ? sources.map(function (s) {
         return {
@@ -100563,7 +100534,7 @@ function (_React$Component) {
         className: divider
       }), this.renderQueriesField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: divider
-      }), this.renderMultiSelectField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), this.renderSoucesField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: divider
       }), this.renderCategoryField());
     }
@@ -100843,7 +100814,6 @@ function (_React$Component) {
   }, {
     key: "renderFiltersField",
     value: function renderFiltersField() {
-      console.log(this.state.filter);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["TextField"], {
         id: "outlined-name",
         label: "Filters",
@@ -100873,6 +100843,17 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(TwitterForm));
+
+/***/ }),
+
+/***/ "./src/client/components/SingleEntryField/SingleEntryField.jsx":
+/*!*********************************************************************!*\
+  !*** ./src/client/components/SingleEntryField/SingleEntryField.jsx ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/jchen/Documents/Projects/twitter-realtime-node/src/client/components/SingleEntryField/SingleEntryField.jsx: Unexpected token, expected \";\" (35:13)\n\n\u001b[0m \u001b[90m 33 | \u001b[39m    \u001b[90m//     }\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 34 | \u001b[39m    }\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 | \u001b[39m    render() {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 36 | \u001b[39m        \u001b[36mconst\u001b[39m { id\u001b[33m,\u001b[39m label\u001b[33m,\u001b[39m value} \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[0m\n\u001b[0m \u001b[90m 37 | \u001b[39m        \u001b[36mconst\u001b[39m { inputValue\u001b[33m,\u001b[39m isEntering } \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mstate\u001b[0m\n\u001b[0m \u001b[90m 38 | \u001b[39m\u001b[0m\n    at _class.raise (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:4051:15)\n    at _class.unexpected (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:5382:16)\n    at _class.semicolon (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:5366:40)\n    at _class.parseExpressionStatement (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:8042:10)\n    at _class.parseStatementContent (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:7624:19)\n    at _class.parseStatement (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:7505:17)\n    at _class.parseBlockOrModuleBlockBody (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:8073:23)\n    at _class.parseBlockBody (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:8060:10)\n    at _class.parseTopLevel (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:7470:10)\n    at _class.parse (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:8915:17)\n    at parse (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:10946:38)\n    at parser (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/core/lib/transformation/normalize-file.js:170:34)\n    at normalizeFile (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/core/lib/transformation/normalize-file.js:138:11)\n    at runSync (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/core/lib/transformation/index.js:44:43)\n    at runAsync (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/core/lib/transformation/index.js:35:14)\n    at process.nextTick (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/core/lib/transform.js:34:34)\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 
@@ -101705,7 +101686,7 @@ __webpack_require__.r(__webpack_exports__);
 
     case 'UPDATE_POLLING_INTERVAL':
       google = Object.assign({}, state, {
-        polling_interval: action.payload.polling_interval
+        polling_interval: action.payload.interval
       });
       return google;
 

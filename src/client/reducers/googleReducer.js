@@ -17,7 +17,7 @@ export default (state = {}, action) => {
             google = Object.assign({}, state, { sources: action.payload.sources })
             return google
         case 'UPDATE_POLLING_INTERVAL':
-            google = Object.assign({}, state, { polling_interval: action.payload.polling_interval})
+            google = Object.assign({}, state, { polling_interval: action.payload.interval})
             return google
         default:
             return state
