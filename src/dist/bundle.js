@@ -101180,7 +101180,7 @@ var mapStateToProps = function mapStateToProps(state) {
   var google = state.googleReducer;
   return {
     queries: google.queries ? google.queries : [],
-    country: google.country ? google.country : '',
+    countries: google.countries ? google.countries : '',
     language: google.languages ? google.languages : '',
     category: google.category ? google.category : '',
     sources: google.sources ? google.sources : [],
@@ -101218,7 +101218,7 @@ var mapDispatchToProp = function mapDispatchToProp(dispatch) {
  * sources - can take in multiple 
  * q - can only take in on phrase (needs to be URL encoded)
  * pageSize - 20 default to 100 
- * page - page size if greater than
+ * page - page size if greater than // implement lazy load?
  */
 
 
@@ -101301,19 +101301,20 @@ function (_React$Component) {
   }, {
     key: "renderCountryField",
     value: function renderCountryField() {
-      var country = this.props.country;
-      var countriesObj = _constants_google__WEBPACK_IMPORTED_MODULE_3__["countries"].map(function (c) {
+      var countries = this.props.countries;
+      var countriesObj = countries.map(function (c) {
         var label = iso_3166_1__WEBPACK_IMPORTED_MODULE_7___default.a.whereAlpha2(c);
+        console.log(label);
         return {
-          label: label ? label : c,
-          c: c
+          label: label ? label.country : c,
+          value: c
         };
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
         options: countriesObj,
         placeholder: 'Select country',
         onChange: this.onCountryChange,
-        value: country,
+        value: countries,
         label: 'Country'
       });
     }

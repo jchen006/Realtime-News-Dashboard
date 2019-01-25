@@ -24,7 +24,7 @@ const mapStateToProps = state => {
     const google = state.googleReducer
     return {
         queries: google.queries ? google.queries : [],
-        country: google.country ? google.country : '',
+        countries: google.countries ? google.countries : '',
         language: google.languages ? google.languages : '',
         category: google.category ? google.category : '',
         sources: google.sources ? google.sources : [],
@@ -49,7 +49,7 @@ const mapDispatchToProp = dispatch => ({
  * sources - can take in multiple 
  * q - can only take in on phrase (needs to be URL encoded)
  * pageSize - 20 default to 100 
- * page - page size if greater than
+ * page - page size if greater than // implement lazy load?
  */
 class GoogleNewsFormSettings extends React.Component {
     constructor(props) {
@@ -111,12 +111,13 @@ class GoogleNewsFormSettings extends React.Component {
     }
 
     renderCountryField() {
-        const { country } = this.props
+        const { countries } = this.props
         const countriesObj = countries.map((c) => {
             let label = iso.whereAlpha2(c)
+            console.log(label)
             return {
-                label: label ? label : c,
-                c
+                label: label ? label.country : c,
+                value: c
             }
         })
         return (
@@ -124,7 +125,7 @@ class GoogleNewsFormSettings extends React.Component {
                 options={countriesObj}
                 placeholder={'Select country'}
                 onChange={this.onCountryChange}
-                value={country}
+                value={countries}
                 label={'Country'}
             />
         )
