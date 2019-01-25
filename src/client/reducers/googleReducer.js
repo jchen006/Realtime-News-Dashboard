@@ -1,4 +1,13 @@
-export default (state = {}, action) => {
+const initialState = {
+    queries: [],
+    countries: '',
+    languages: '',
+    category: '', 
+    sources: [],
+    interval: 5000
+}
+
+export default (state=initialState, action) => {
     let google
     switch(action.type) {
         case 'UPDATE_QUERIES':
@@ -17,7 +26,7 @@ export default (state = {}, action) => {
             google = Object.assign({}, state, { sources: action.payload.sources })
             return google
         case 'UPDATE_POLLING_INTERVAL':
-            google = Object.assign({}, state, { polling_interval: action.payload.interval})
+            google = Object.assign({}, state, { polling_interval: action.payload.polling_interval})
             return google
         default:
             return state

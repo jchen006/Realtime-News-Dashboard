@@ -7,12 +7,13 @@ import {
     updateSources,
     updatePollingInterval
 } from '../../../actions/googleAction'
-import { TextField } from '@material-ui/core'
-import { categories, languages, country } from '../../../constants/google'
+import { TextField, Typography } from '@material-ui/core'
+import { categories, languages, countries } from '../../../constants/google'
 import styles from './styles'
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import iso from 'iso-3166-1'
+import ISO6391 from 'iso-639-1'
 import MultiSelectField from '../../MultiSelectField/MultiSelectField.jsx'
 import SingleSelectField from '../../SingleSelectField/SingleSelectField.jsx'
 import MultiEntryField from '../../MultiEntryField/MultiEntryField.jsx'
@@ -59,6 +60,9 @@ class GoogleNewsFormSettings extends React.Component {
         this.onCountryChange = this.onCountryChange.bind(this)
         this.onLanguageChange = this.onLanguageChange.bind(this)
         this.onPollingIntervalChange = this.onPollingIntervalChange.bind(this)
+        this.state = {
+            sources: []
+        }
     }
 
     componentDidMount() {
@@ -101,7 +105,47 @@ class GoogleNewsFormSettings extends React.Component {
                 id={'polling-interval'}
                 label={'Polling Interval'}
                 value={this.props.polling_interval}
-                onEnter={this.onPollingIntervalChange}
+                onChange={this.onPollingIntervalChange}
+            />
+        )
+    }
+
+    renderCountryField() {
+        const { country } = this.props
+        const countriesObj = countries.map((c) => {
+            let label = iso.whereAlpha2(c)
+            return {
+                label: label ? label : c,
+                c
+            }
+        })
+        return (
+            <SingleSelectField
+                options={countriesObj}
+                placeholder={'Select country'}
+                onChange={this.onCountryChange}
+                value={country}
+                label={'Country'}
+            />
+        )
+    }
+
+    renderLangugeField() {
+        const { language } = this.props
+        const languagesObj = languages.map((lang) => {
+            let name = ISO6391.getName(lang)
+            return {
+                label: name ? name : lang,
+                value: lang
+            }
+        })
+        return (
+            <SingleSelectField
+                options={languagesObj}
+                placeholder={'Select language'}
+                onChange={this.onLanguageChange}
+                value={language}
+                label={'Language'}
             />
         )
     }
@@ -136,9 +180,8 @@ class GoogleNewsFormSettings extends React.Component {
         )
     }
 
-    renderSoucesField() {
-        const { sources } = this.state
-        let modifiedSources = sources ? sources.map((s) => {
+    renderSouresField() {
+        let modifiedSources = this.state.sources.length > 0 ? this.state.sources.map((s) => {
             return {
                 label: s.name,
                 value: s.id,
@@ -157,6 +200,14 @@ class GoogleNewsFormSettings extends React.Component {
         )
     }
 
+    renderExistingQuery() {
+        return (
+            <Typography>
+                
+            </Typography>
+        )
+    }
+
     render() {
         const { 
             classes: {
@@ -168,8 +219,12 @@ class GoogleNewsFormSettings extends React.Component {
                 { this.renderPollingIntervalField() }
                 <div className={divider} />
                 { this.renderQueriesField()}
+                <div className={divider} />
+                { this.renderLangugeField() }
+                <div className={divider} />
+                { this.renderCountryField() }
                 <div className={divider}/>
-                { this.renderSoucesField() }
+                { this.renderSouresField() }
                 <div className={divider} />
                 { this.renderCategoryField() }
             </div>

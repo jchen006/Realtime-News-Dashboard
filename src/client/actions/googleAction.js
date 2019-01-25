@@ -62,7 +62,7 @@ export const updatePollingInterval = (interval) => dispatch => {
     dispatch({
         type: UPDATE_POLLING_INTERVAL,
         payload: {
-            interval
+            polling_interval
         }
     })
 }

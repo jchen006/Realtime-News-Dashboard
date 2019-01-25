@@ -47509,6 +47509,821 @@ module.exports = [
 
 /***/ }),
 
+/***/ "./node_modules/iso-639-1/src/data.js":
+/*!********************************************!*\
+  !*** ./node_modules/iso-639-1/src/data.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const LANGUAGES_LIST = {
+  aa: {
+    name: 'Afar',
+    nativeName: 'Afaraf',
+  },
+  ab: {
+    name: 'Abkhaz',
+    nativeName: 'аҧсуа бызшәа',
+  },
+  ae: {
+    name: 'Avestan',
+    nativeName: 'avesta',
+  },
+  af: {
+    name: 'Afrikaans',
+    nativeName: 'Afrikaans',
+  },
+  ak: {
+    name: 'Akan',
+    nativeName: 'Akan',
+  },
+  am: {
+    name: 'Amharic',
+    nativeName: 'አማርኛ',
+  },
+  an: {
+    name: 'Aragonese',
+    nativeName: 'aragonés',
+  },
+  ar: {
+    name: 'Arabic',
+    nativeName: 'اللغة العربية',
+  },
+  as: {
+    name: 'Assamese',
+    nativeName: 'অসমীয়া',
+  },
+  av: {
+    name: 'Avaric',
+    nativeName: 'авар мацӀ',
+  },
+  ay: {
+    name: 'Aymara',
+    nativeName: 'aymar aru',
+  },
+  az: {
+    name: 'Azerbaijani',
+    nativeName: 'azərbaycan dili',
+  },
+  ba: {
+    name: 'Bashkir',
+    nativeName: 'башҡорт теле',
+  },
+  be: {
+    name: 'Belarusian',
+    nativeName: 'беларуская мова',
+  },
+  bg: {
+    name: 'Bulgarian',
+    nativeName: 'български език',
+  },
+  bh: {
+    name: 'Bihari',
+    nativeName: 'भोजपुरी',
+  },
+  bi: {
+    name: 'Bislama',
+    nativeName: 'Bislama',
+  },
+  bm: {
+    name: 'Bambara',
+    nativeName: 'bamanankan',
+  },
+  bn: {
+    name: 'Bengali',
+    nativeName: 'বাংলা',
+  },
+  bo: {
+    name: 'Tibetan Standard',
+    nativeName: 'བོད་ཡིག',
+  },
+  br: {
+    name: 'Breton',
+    nativeName: 'brezhoneg',
+  },
+  bs: {
+    name: 'Bosnian',
+    nativeName: 'bosanski jezik',
+  },
+  ca: {
+    name: 'Catalan',
+    nativeName: 'català',
+  },
+  ce: {
+    name: 'Chechen',
+    nativeName: 'нохчийн мотт',
+  },
+  ch: {
+    name: 'Chamorro',
+    nativeName: 'Chamoru',
+  },
+  co: {
+    name: 'Corsican',
+    nativeName: 'corsu',
+  },
+  cr: {
+    name: 'Cree',
+    nativeName: 'ᓀᐦᐃᔭᐍᐏᐣ',
+  },
+  cs: {
+    name: 'Czech',
+    nativeName: 'čeština',
+  },
+  cu: {
+    name: 'Old Church Slavonic',
+    nativeName: 'ѩзыкъ словѣньскъ',
+  },
+  cv: {
+    name: 'Chuvash',
+    nativeName: 'чӑваш чӗлхи',
+  },
+  cy: {
+    name: 'Welsh',
+    nativeName: 'Cymraeg',
+  },
+  da: {
+    name: 'Danish',
+    nativeName: 'dansk',
+  },
+  de: {
+    name: 'German',
+    nativeName: 'Deutsch',
+  },
+  dv: {
+    name: 'Divehi',
+    nativeName: 'Dhivehi',
+  },
+  dz: {
+    name: 'Dzongkha',
+    nativeName: 'རྫོང་ཁ',
+  },
+  ee: {
+    name: 'Ewe',
+    nativeName: 'Eʋegbe',
+  },
+  el: {
+    name: 'Greek',
+    nativeName: 'ελληνικά',
+  },
+  en: {
+    name: 'English',
+    nativeName: 'English',
+  },
+  eo: {
+    name: 'Esperanto',
+    nativeName: 'Esperanto',
+  },
+  es: {
+    name: 'Spanish',
+    nativeName: 'Español',
+  },
+  et: {
+    name: 'Estonian',
+    nativeName: 'eesti',
+  },
+  eu: {
+    name: 'Basque',
+    nativeName: 'euskara',
+  },
+  fa: {
+    name: 'Persian',
+    nativeName: 'فارسی',
+  },
+  ff: {
+    name: 'Fula',
+    nativeName: 'Fulfulde',
+  },
+  fi: {
+    name: 'Finnish',
+    nativeName: 'suomi',
+  },
+  fj: {
+    name: 'Fijian',
+    nativeName: 'Vakaviti',
+  },
+  fo: {
+    name: 'Faroese',
+    nativeName: 'føroyskt',
+  },
+  fr: {
+    name: 'French',
+    nativeName: 'Français',
+  },
+  fy: {
+    name: 'Western Frisian',
+    nativeName: 'Frysk',
+  },
+  ga: {
+    name: 'Irish',
+    nativeName: 'Gaeilge',
+  },
+  gd: {
+    name: 'Scottish Gaelic',
+    nativeName: 'Gàidhlig',
+  },
+  gl: {
+    name: 'Galician',
+    nativeName: 'galego',
+  },
+  gn: {
+    name: 'Guaraní',
+    nativeName: "Avañe'ẽ",
+  },
+  gu: {
+    name: 'Gujarati',
+    nativeName: 'ગુજરાતી',
+  },
+  gv: {
+    name: 'Manx',
+    nativeName: 'Gaelg',
+  },
+  ha: {
+    name: 'Hausa',
+    nativeName: 'هَوُسَ',
+  },
+  he: {
+    name: 'Hebrew',
+    nativeName: 'עברית',
+  },
+  hi: {
+    name: 'Hindi',
+    nativeName: 'हिन्दी',
+  },
+  ho: {
+    name: 'Hiri Motu',
+    nativeName: 'Hiri Motu',
+  },
+  hr: {
+    name: 'Croatian',
+    nativeName: 'hrvatski jezik',
+  },
+  ht: {
+    name: 'Haitian',
+    nativeName: 'Kreyòl ayisyen',
+  },
+  hu: {
+    name: 'Hungarian',
+    nativeName: 'magyar',
+  },
+  hy: {
+    name: 'Armenian',
+    nativeName: 'Հայերեն',
+  },
+  hz: {
+    name: 'Herero',
+    nativeName: 'Otjiherero',
+  },
+  ia: {
+    name: 'Interlingua',
+    nativeName: 'Interlingua',
+  },
+  id: {
+    name: 'Indonesian',
+    nativeName: 'Indonesian',
+  },
+  ie: {
+    name: 'Interlingue',
+    nativeName: 'Interlingue',
+  },
+  ig: {
+    name: 'Igbo',
+    nativeName: 'Asụsụ Igbo',
+  },
+  ii: {
+    name: 'Nuosu',
+    nativeName: 'ꆈꌠ꒿ Nuosuhxop',
+  },
+  ik: {
+    name: 'Inupiaq',
+    nativeName: 'Iñupiaq',
+  },
+  io: {
+    name: 'Ido',
+    nativeName: 'Ido',
+  },
+  is: {
+    name: 'Icelandic',
+    nativeName: 'Íslenska',
+  },
+  it: {
+    name: 'Italian',
+    nativeName: 'Italiano',
+  },
+  iu: {
+    name: 'Inuktitut',
+    nativeName: 'ᐃᓄᒃᑎᑐᑦ',
+  },
+  ja: {
+    name: 'Japanese',
+    nativeName: '日本語',
+  },
+  jv: {
+    name: 'Javanese',
+    nativeName: 'basa Jawa',
+  },
+  ka: {
+    name: 'Georgian',
+    nativeName: 'ქართული',
+  },
+  kg: {
+    name: 'Kongo',
+    nativeName: 'Kikongo',
+  },
+  ki: {
+    name: 'Kikuyu',
+    nativeName: 'Gĩkũyũ',
+  },
+  kj: {
+    name: 'Kwanyama',
+    nativeName: 'Kuanyama',
+  },
+  kk: {
+    name: 'Kazakh',
+    nativeName: 'қазақ тілі',
+  },
+  kl: {
+    name: 'Kalaallisut',
+    nativeName: 'kalaallisut',
+  },
+  km: {
+    name: 'Khmer',
+    nativeName: 'ខេមរភាសា',
+  },
+  kn: {
+    name: 'Kannada',
+    nativeName: 'ಕನ್ನಡ',
+  },
+  ko: {
+    name: 'Korean',
+    nativeName: '한국어',
+  },
+  kr: {
+    name: 'Kanuri',
+    nativeName: 'Kanuri',
+  },
+  ks: {
+    name: 'Kashmiri',
+    nativeName: 'कश्मीरी',
+  },
+  ku: {
+    name: 'Kurdish',
+    nativeName: 'Kurdî',
+  },
+  kv: {
+    name: 'Komi',
+    nativeName: 'коми кыв',
+  },
+  kw: {
+    name: 'Cornish',
+    nativeName: 'Kernewek',
+  },
+  ky: {
+    name: 'Kyrgyz',
+    nativeName: 'Кыргызча',
+  },
+  la: {
+    name: 'Latin',
+    nativeName: 'latine',
+  },
+  lb: {
+    name: 'Luxembourgish',
+    nativeName: 'Lëtzebuergesch',
+  },
+  lg: {
+    name: 'Ganda',
+    nativeName: 'Luganda',
+  },
+  li: {
+    name: 'Limburgish',
+    nativeName: 'Limburgs',
+  },
+  ln: {
+    name: 'Lingala',
+    nativeName: 'Lingála',
+  },
+  lo: {
+    name: 'Lao',
+    nativeName: 'ພາສາ',
+  },
+  lt: {
+    name: 'Lithuanian',
+    nativeName: 'lietuvių kalba',
+  },
+  lu: {
+    name: 'Luba-Katanga',
+    nativeName: 'Tshiluba',
+  },
+  lv: {
+    name: 'Latvian',
+    nativeName: 'latviešu valoda',
+  },
+  mg: {
+    name: 'Malagasy',
+    nativeName: 'fiteny malagasy',
+  },
+  mh: {
+    name: 'Marshallese',
+    nativeName: 'Kajin M̧ajeļ',
+  },
+  mi: {
+    name: 'Māori',
+    nativeName: 'te reo Māori',
+  },
+  mk: {
+    name: 'Macedonian',
+    nativeName: 'македонски јазик',
+  },
+  ml: {
+    name: 'Malayalam',
+    nativeName: 'മലയാളം',
+  },
+  mn: {
+    name: 'Mongolian',
+    nativeName: 'Монгол хэл',
+  },
+  mr: {
+    name: 'Marathi',
+    nativeName: 'मराठी',
+  },
+  ms: {
+    name: 'Malay',
+    nativeName: 'هاس ملايو‎',
+  },
+  mt: {
+    name: 'Maltese',
+    nativeName: 'Malti',
+  },
+  my: {
+    name: 'Burmese',
+    nativeName: 'ဗမာစာ',
+  },
+  na: {
+    name: 'Nauru',
+    nativeName: 'Ekakairũ Naoero',
+  },
+  nb: {
+    name: 'Norwegian Bokmål',
+    nativeName: 'Norsk bokmål',
+  },
+  nd: {
+    name: 'Northern Ndebele',
+    nativeName: 'isiNdebele',
+  },
+  ne: {
+    name: 'Nepali',
+    nativeName: 'नेपाली',
+  },
+  ng: {
+    name: 'Ndonga',
+    nativeName: 'Owambo',
+  },
+  nl: {
+    name: 'Dutch',
+    nativeName: 'Nederlands',
+  },
+  nn: {
+    name: 'Norwegian Nynorsk',
+    nativeName: 'Norsk nynorsk',
+  },
+  no: {
+    name: 'Norwegian',
+    nativeName: 'Norsk',
+  },
+  nr: {
+    name: 'Southern Ndebele',
+    nativeName: 'isiNdebele',
+  },
+  nv: {
+    name: 'Navajo',
+    nativeName: 'Diné bizaad',
+  },
+  ny: {
+    name: 'Chichewa',
+    nativeName: 'chiCheŵa',
+  },
+  oc: {
+    name: 'Occitan',
+    nativeName: 'occitan',
+  },
+  oj: {
+    name: 'Ojibwe',
+    nativeName: 'ᐊᓂᔑᓈᐯᒧᐎᓐ',
+  },
+  om: {
+    name: 'Oromo',
+    nativeName: 'Afaan Oromoo',
+  },
+  or: {
+    name: 'Oriya',
+    nativeName: 'ଓଡ଼ିଆ',
+  },
+  os: {
+    name: 'Ossetian',
+    nativeName: 'ирон æвзаг',
+  },
+  pa: {
+    name: 'Panjabi',
+    nativeName: 'ਪੰਜਾਬੀ',
+  },
+  pi: {
+    name: 'Pāli',
+    nativeName: 'पाऴि',
+  },
+  pl: {
+    name: 'Polish',
+    nativeName: 'język polski',
+  },
+  ps: {
+    name: 'Pashto',
+    nativeName: 'پښتو',
+  },
+  pt: {
+    name: 'Portuguese',
+    nativeName: 'Português',
+  },
+  qu: {
+    name: 'Quechua',
+    nativeName: 'Runa Simi',
+  },
+  rm: {
+    name: 'Romansh',
+    nativeName: 'rumantsch grischun',
+  },
+  rn: {
+    name: 'Kirundi',
+    nativeName: 'Ikirundi',
+  },
+  ro: {
+    name: 'Romanian',
+    nativeName: 'limba română',
+  },
+  ru: {
+    name: 'Russian',
+    nativeName: 'Русский',
+  },
+  rw: {
+    name: 'Kinyarwanda',
+    nativeName: 'Ikinyarwanda',
+  },
+  sa: {
+    name: 'Sanskrit',
+    nativeName: 'संस्कृतम्',
+  },
+  sc: {
+    name: 'Sardinian',
+    nativeName: 'sardu',
+  },
+  sd: {
+    name: 'Sindhi',
+    nativeName: 'सिन्धी',
+  },
+  se: {
+    name: 'Northern Sami',
+    nativeName: 'Davvisámegiella',
+  },
+  sg: {
+    name: 'Sango',
+    nativeName: 'yângâ tî sängö',
+  },
+  si: {
+    name: 'Sinhala',
+    nativeName: 'සිංහල',
+  },
+  sk: {
+    name: 'Slovak',
+    nativeName: 'slovenčina',
+  },
+  sl: {
+    name: 'Slovene',
+    nativeName: 'slovenski jezik',
+  },
+  sm: {
+    name: 'Samoan',
+    nativeName: "gagana fa'a Samoa",
+  },
+  sn: {
+    name: 'Shona',
+    nativeName: 'chiShona',
+  },
+  so: {
+    name: 'Somali',
+    nativeName: 'Soomaaliga',
+  },
+  sq: {
+    name: 'Albanian',
+    nativeName: 'Shqip',
+  },
+  sr: {
+    name: 'Serbian',
+    nativeName: 'српски језик',
+  },
+  ss: {
+    name: 'Swati',
+    nativeName: 'SiSwati',
+  },
+  st: {
+    name: 'Southern Sotho',
+    nativeName: 'Sesotho',
+  },
+  su: {
+    name: 'Sundanese',
+    nativeName: 'Basa Sunda',
+  },
+  sv: {
+    name: 'Swedish',
+    nativeName: 'svenska',
+  },
+  sw: {
+    name: 'Swahili',
+    nativeName: 'Kiswahili',
+  },
+  ta: {
+    name: 'Tamil',
+    nativeName: 'தமிழ்',
+  },
+  te: {
+    name: 'Telugu',
+    nativeName: 'తెలుగు',
+  },
+  tg: {
+    name: 'Tajik',
+    nativeName: 'тоҷикӣ',
+  },
+  th: {
+    name: 'Thai',
+    nativeName: 'ไทย',
+  },
+  ti: {
+    name: 'Tigrinya',
+    nativeName: 'ትግርኛ',
+  },
+  tk: {
+    name: 'Turkmen',
+    nativeName: 'Türkmen',
+  },
+  tl: {
+    name: 'Tagalog',
+    nativeName: 'Wikang Tagalog',
+  },
+  tn: {
+    name: 'Tswana',
+    nativeName: 'Setswana',
+  },
+  to: {
+    name: 'Tonga',
+    nativeName: 'faka Tonga',
+  },
+  tr: {
+    name: 'Turkish',
+    nativeName: 'Türkçe',
+  },
+  ts: {
+    name: 'Tsonga',
+    nativeName: 'Xitsonga',
+  },
+  tt: {
+    name: 'Tatar',
+    nativeName: 'татар теле',
+  },
+  tw: {
+    name: 'Twi',
+    nativeName: 'Twi',
+  },
+  ty: {
+    name: 'Tahitian',
+    nativeName: 'Reo Tahiti',
+  },
+  ug: {
+    name: 'Uyghur',
+    nativeName: 'ئۇيغۇرچە‎',
+  },
+  uk: {
+    name: 'Ukrainian',
+    nativeName: 'Українська',
+  },
+  ur: {
+    name: 'Urdu',
+    nativeName: 'اردو',
+  },
+  uz: {
+    name: 'Uzbek',
+    nativeName: 'Ўзбек',
+  },
+  ve: {
+    name: 'Venda',
+    nativeName: 'Tshivenḓa',
+  },
+  vi: {
+    name: 'Vietnamese',
+    nativeName: 'Tiếng Việt',
+  },
+  vo: {
+    name: 'Volapük',
+    nativeName: 'Volapük',
+  },
+  wa: {
+    name: 'Walloon',
+    nativeName: 'walon',
+  },
+  wo: {
+    name: 'Wolof',
+    nativeName: 'Wollof',
+  },
+  xh: {
+    name: 'Xhosa',
+    nativeName: 'isiXhosa',
+  },
+  yi: {
+    name: 'Yiddish',
+    nativeName: 'ייִדיש',
+  },
+  yo: {
+    name: 'Yoruba',
+    nativeName: 'Yorùbá',
+  },
+  za: {
+    name: 'Zhuang',
+    nativeName: 'Saɯ cueŋƅ',
+  },
+  zh: {
+    name: 'Chinese',
+    nativeName: '中文',
+  },
+  zu: {
+    name: 'Zulu',
+    nativeName: 'isiZulu',
+  },
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (LANGUAGES_LIST);
+
+
+/***/ }),
+
+/***/ "./node_modules/iso-639-1/src/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/iso-639-1/src/index.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ISO6391; });
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./node_modules/iso-639-1/src/data.js");
+
+
+class ISO6391 {
+  static getLanguages(codes = []) {
+    return codes.map(code => ({
+      code,
+      name: ISO6391.getName(code),
+      nativeName: ISO6391.getNativeName(code),
+    }));
+  }
+
+  static getName(code) {
+    return ISO6391.validate(code) ? _data__WEBPACK_IMPORTED_MODULE_0__["default"][code].name : '';
+  }
+
+  static getAllNames() {
+    return Object.values(_data__WEBPACK_IMPORTED_MODULE_0__["default"]).map(l => l.name);
+  }
+
+  static getNativeName(code) {
+    return ISO6391.validate(code) ? _data__WEBPACK_IMPORTED_MODULE_0__["default"][code].nativeName : '';
+  }
+
+  static getAllNativeNames() {
+    return Object.values(_data__WEBPACK_IMPORTED_MODULE_0__["default"]).map(l => l.nativeName);
+  }
+
+  static getCode(name) {
+    const code = Object.keys(_data__WEBPACK_IMPORTED_MODULE_0__["default"]).find(code => {
+      const language = _data__WEBPACK_IMPORTED_MODULE_0__["default"][code];
+
+      return (
+        language.name.toLowerCase() === name.toLowerCase() ||
+        language.nativeName.toLowerCase() === name.toLowerCase()
+      );
+    });
+    return code || '';
+  }
+
+  static getAllCodes() {
+    return Object.keys(_data__WEBPACK_IMPORTED_MODULE_0__["default"]);
+  }
+
+  static validate(code) {
+    return _data__WEBPACK_IMPORTED_MODULE_0__["default"][code] !== undefined;
+  }
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/isobject/index.js":
 /*!****************************************!*\
   !*** ./node_modules/isobject/index.js ***!
@@ -98945,7 +99760,7 @@ var updatePollingInterval = function updatePollingInterval(interval) {
     dispatch({
       type: UPDATE_POLLING_INTERVAL,
       payload: {
-        interval: interval
+        polling_interval: polling_interval
       }
     });
   };
@@ -100324,10 +101139,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var iso_3166_1__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! iso-3166-1 */ "./node_modules/iso-3166-1/src/index.js");
 /* harmony import */ var iso_3166_1__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(iso_3166_1__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _MultiSelectField_MultiSelectField_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../MultiSelectField/MultiSelectField.jsx */ "./src/client/components/MultiSelectField/MultiSelectField.jsx");
-/* harmony import */ var _SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../SingleSelectField/SingleSelectField.jsx */ "./src/client/components/SingleSelectField/SingleSelectField.jsx");
-/* harmony import */ var _MultiEntryField_MultiEntryField_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../MultiEntryField/MultiEntryField.jsx */ "./src/client/components/MultiEntryField/MultiEntryField.jsx");
-/* harmony import */ var _SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../SingleEntryField/SingleEntryField.jsx */ "./src/client/components/SingleEntryField/SingleEntryField.jsx");
+/* harmony import */ var iso_639_1__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! iso-639-1 */ "./node_modules/iso-639-1/src/index.js");
+/* harmony import */ var _MultiSelectField_MultiSelectField_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../MultiSelectField/MultiSelectField.jsx */ "./src/client/components/MultiSelectField/MultiSelectField.jsx");
+/* harmony import */ var _SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../SingleSelectField/SingleSelectField.jsx */ "./src/client/components/SingleSelectField/SingleSelectField.jsx");
+/* harmony import */ var _MultiEntryField_MultiEntryField_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../MultiEntryField/MultiEntryField.jsx */ "./src/client/components/MultiEntryField/MultiEntryField.jsx");
+/* harmony import */ var _SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../SingleEntryField/SingleEntryField.jsx */ "./src/client/components/SingleEntryField/SingleEntryField.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -100345,6 +101161,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -100422,6 +101239,9 @@ function (_React$Component) {
     _this.onCountryChange = _this.onCountryChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.onLanguageChange = _this.onLanguageChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.onPollingIntervalChange = _this.onPollingIntervalChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.state = {
+      sources: []
+    };
     return _this;
   }
 
@@ -100471,17 +101291,55 @@ function (_React$Component) {
   }, {
     key: "renderPollingIntervalField",
     value: function renderPollingIntervalField() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
         id: 'polling-interval',
         label: 'Polling Interval',
         value: this.props.polling_interval,
-        onEnter: this.onPollingIntervalChange
+        onChange: this.onPollingIntervalChange
+      });
+    }
+  }, {
+    key: "renderCountryField",
+    value: function renderCountryField() {
+      var country = this.props.country;
+      var countriesObj = _constants_google__WEBPACK_IMPORTED_MODULE_3__["countries"].map(function (c) {
+        var label = iso_3166_1__WEBPACK_IMPORTED_MODULE_7___default.a.whereAlpha2(c);
+        return {
+          label: label ? label : c,
+          c: c
+        };
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        options: countriesObj,
+        placeholder: 'Select country',
+        onChange: this.onCountryChange,
+        value: country,
+        label: 'Country'
+      });
+    }
+  }, {
+    key: "renderLangugeField",
+    value: function renderLangugeField() {
+      var language = this.props.language;
+      var languagesObj = _constants_google__WEBPACK_IMPORTED_MODULE_3__["languages"].map(function (lang) {
+        var name = iso_639_1__WEBPACK_IMPORTED_MODULE_8__["default"].getName(lang);
+        return {
+          label: name ? name : lang,
+          value: lang
+        };
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        options: languagesObj,
+        placeholder: 'Select language',
+        onChange: this.onLanguageChange,
+        value: language,
+        label: 'Language'
       });
     }
   }, {
     key: "renderQueriesField",
     value: function renderQueriesField() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MultiEntryField_MultiEntryField_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MultiEntryField_MultiEntryField_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
         onChange: this.onQueriesChange,
         placeholder: 'Enter queries',
         values: this.props.queries,
@@ -100498,7 +101356,7 @@ function (_React$Component) {
           value: c
         };
       }) : [];
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], {
         options: modifiedCategories,
         placeholder: 'Select category',
         onChange: this.onCategoryChange,
@@ -100507,10 +101365,9 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "renderSoucesField",
-    value: function renderSoucesField() {
-      var sources = this.state.sources;
-      var modifiedSources = sources ? sources.map(function (s) {
+    key: "renderSouresField",
+    value: function renderSouresField() {
+      var modifiedSources = this.state.sources.length > 0 ? this.state.sources.map(function (s) {
         return {
           label: s.name,
           value: s.id,
@@ -100518,13 +101375,18 @@ function (_React$Component) {
           url: s.url
         };
       }) : [];
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MultiSelectField_MultiSelectField_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MultiSelectField_MultiSelectField_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
         options: modifiedSources,
         placeholder: 'Select sources',
         onChange: this.onSourcesChange,
         defaultValue: this.props.sources,
         label: 'Sources'
       });
+    }
+  }, {
+    key: "renderExistingQuery",
+    value: function renderExistingQuery() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Typography"], null);
     }
   }, {
     key: "render",
@@ -100534,7 +101396,11 @@ function (_React$Component) {
         className: divider
       }), this.renderQueriesField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: divider
-      }), this.renderSoucesField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), this.renderLangugeField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: divider
+      }), this.renderCountryField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: divider
+      }), this.renderSouresField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: divider
       }), this.renderCategoryField());
     }
@@ -100851,9 +101717,85 @@ function (_React$Component) {
   !*** ./src/client/components/SingleEntryField/SingleEntryField.jsx ***!
   \*********************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/jchen/Documents/Projects/twitter-realtime-node/src/client/components/SingleEntryField/SingleEntryField.jsx: Unexpected token, expected \";\" (35:13)\n\n\u001b[0m \u001b[90m 33 | \u001b[39m    \u001b[90m//     }\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 34 | \u001b[39m    }\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 | \u001b[39m    render() {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 36 | \u001b[39m        \u001b[36mconst\u001b[39m { id\u001b[33m,\u001b[39m label\u001b[33m,\u001b[39m value} \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[0m\n\u001b[0m \u001b[90m 37 | \u001b[39m        \u001b[36mconst\u001b[39m { inputValue\u001b[33m,\u001b[39m isEntering } \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mstate\u001b[0m\n\u001b[0m \u001b[90m 38 | \u001b[39m\u001b[0m\n    at _class.raise (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:4051:15)\n    at _class.unexpected (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:5382:16)\n    at _class.semicolon (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:5366:40)\n    at _class.parseExpressionStatement (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:8042:10)\n    at _class.parseStatementContent (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:7624:19)\n    at _class.parseStatement (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:7505:17)\n    at _class.parseBlockOrModuleBlockBody (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:8073:23)\n    at _class.parseBlockBody (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:8060:10)\n    at _class.parseTopLevel (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:7470:10)\n    at _class.parse (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:8915:17)\n    at parse (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/parser/lib/index.js:10946:38)\n    at parser (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/core/lib/transformation/normalize-file.js:170:34)\n    at normalizeFile (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/core/lib/transformation/normalize-file.js:138:11)\n    at runSync (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/core/lib/transformation/index.js:44:43)\n    at runAsync (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/core/lib/transformation/index.js:35:14)\n    at process.nextTick (/Users/jchen/Documents/Projects/twitter-realtime-node/node_modules/@babel/core/lib/transform.js:34:34)\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/index.es.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+var SingleEntryField =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(SingleEntryField, _React$Component);
+
+  function SingleEntryField(props) {
+    var _this;
+
+    _classCallCheck(this, SingleEntryField);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SingleEntryField).call(this, props));
+    _this.onChange = _this.onChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(SingleEntryField, [{
+    key: "onChange",
+    value: function onChange(e) {
+      var value = e.target.value;
+      this.props.onChange(value);
+      e.preventDefault();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          id = _this$props.id,
+          label = _this$props.label,
+          value = _this$props.value;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["TextField"], {
+        id: id,
+        label: label,
+        value: value,
+        onChange: this.onChange,
+        margin: "normal"
+      });
+    }
+  }]);
+
+  return SingleEntryField;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+SingleEntryField.propTypes = {
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
+};
+/* harmony default export */ __webpack_exports__["default"] = (SingleEntryField);
 
 /***/ }),
 
@@ -101573,17 +102515,17 @@ TweetCard.propTypes = {
 /*!****************************************!*\
   !*** ./src/client/constants/google.js ***!
   \****************************************/
-/*! exports provided: categories, languages, country */
+/*! exports provided: categories, languages, countries */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "categories", function() { return categories; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "languages", function() { return languages; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "country", function() { return country; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "countries", function() { return countries; });
 var categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
 var languages = ['ar', 'de', 'en', 'es', 'fr', 'he', 'it', 'nl', 'no', 'pt', 'ru', 'se', 'ud', 'zh'];
-var country = ['ae', 'ar', 'at', 'au', 'be', 'bg', 'br', 'ca', 'ch', 'cn', 'co', 'cu', 'cz', 'de', 'eg', 'fr', 'gb', 'gr', 'hk', 'hu', 'id', 'ie', 'il', 'in', 'it', 'jp', 'kr', 'lt', 'lv', 'ma', 'mx', 'my', 'ng', 'nl', 'no', 'nz', 'ph', 'pl', 'pt', 'ro', 'rs', 'ru', 'sa', 'se', 'sg', 'si', 'sk', 'th', 'tr', 'tw', 'ua', 'us', 've', 'za'];
+var countries = ['ae', 'ar', 'at', 'au', 'be', 'bg', 'br', 'ca', 'ch', 'cn', 'co', 'cu', 'cz', 'de', 'eg', 'fr', 'gb', 'gr', 'hk', 'hu', 'id', 'ie', 'il', 'in', 'it', 'jp', 'kr', 'lt', 'lv', 'ma', 'mx', 'my', 'ng', 'nl', 'no', 'nz', 'ph', 'pl', 'pt', 'ro', 'rs', 'ru', 'sa', 'se', 'sg', 'si', 'sk', 'th', 'tr', 'tw', 'ua', 'us', 've', 'za'];
 
 /***/ }),
 
@@ -101648,8 +102590,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var initialState = {
+  queries: [],
+  countries: '',
+  languages: '',
+  category: '',
+  sources: [],
+  interval: 5000
+};
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
   var google;
 
@@ -101686,7 +102636,7 @@ __webpack_require__.r(__webpack_exports__);
 
     case 'UPDATE_POLLING_INTERVAL':
       google = Object.assign({}, state, {
-        polling_interval: action.payload.interval
+        polling_interval: action.payload.polling_interval
       });
       return google;
 
