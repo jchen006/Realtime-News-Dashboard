@@ -3,6 +3,7 @@ const http = require('http');
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const twitter = require('./controllers/twitter')
+const twitterRoute = require('./routes/twitter')
 const google = require('./routes/google')
 const healthCheck = require('./routes/healthCheck')
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json())
 
 //All declared routes will go here
 app.use('/google', google)
+app.use('/twitter', twitterRoute)
 app.use('/healthCheck', healthCheck)
 
 const server = app.listen(port, () => {

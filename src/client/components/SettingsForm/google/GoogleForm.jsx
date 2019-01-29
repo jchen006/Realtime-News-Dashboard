@@ -7,7 +7,7 @@ import {
     updateSources,
     updatePollingInterval
 } from '../../../actions/googleAction'
-import { TextField, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { categories, languages, countries } from '../../../constants/google'
 import styles from './styles'
 import { withStyles } from '@material-ui/core/styles';
@@ -24,7 +24,7 @@ const mapStateToProps = state => {
     const google = state.googleReducer
     return {
         queries: google.queries ? google.queries : [],
-        countries: google.countries ? google.countries : '',
+        country: google.country ? google.country : '',
         language: google.languages ? google.languages : '',
         category: google.category ? google.category : '',
         sources: google.sources ? google.sources : [],
@@ -102,7 +102,7 @@ class GoogleNewsFormSettings extends React.Component {
     renderPollingIntervalField() {
         return (
             <SingleEntryField
-                id={'polling-interval'}
+                id={'google-polling-interval-field'}
                 label={'Polling Interval'}
                 value={this.props.polling_interval}
                 onChange={this.onPollingIntervalChange}
@@ -111,10 +111,9 @@ class GoogleNewsFormSettings extends React.Component {
     }
 
     renderCountryField() {
-        const { countries } = this.props
+        const { country } = this.props
         const countriesObj = countries.map((c) => {
             let label = iso.whereAlpha2(c)
-            console.log(label)
             return {
                 label: label ? label.country : c,
                 value: c
@@ -125,7 +124,7 @@ class GoogleNewsFormSettings extends React.Component {
                 options={countriesObj}
                 placeholder={'Select country'}
                 onChange={this.onCountryChange}
-                value={countries}
+                value={country}
                 label={'Country'}
             />
         )
@@ -181,7 +180,7 @@ class GoogleNewsFormSettings extends React.Component {
         )
     }
 
-    renderSouresField() {
+    renderSourcesField() {
         let modifiedSources = this.state.sources.length > 0 ? this.state.sources.map((s) => {
             return {
                 label: s.name,
@@ -225,7 +224,7 @@ class GoogleNewsFormSettings extends React.Component {
                 <div className={divider} />
                 { this.renderCountryField() }
                 <div className={divider}/>
-                { this.renderSouresField() }
+                { this.renderSourcesField() }
                 <div className={divider} />
                 { this.renderCategoryField() }
             </div>

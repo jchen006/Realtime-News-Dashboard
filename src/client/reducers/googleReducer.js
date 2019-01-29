@@ -4,7 +4,8 @@ const initialState = {
     languages: '',
     category: '', 
     sources: [],
-    interval: 5000
+    //do the math. I only have 1000 requests a day
+    interval: 900000
 }
 
 export default (state=initialState, action) => {
@@ -13,8 +14,8 @@ export default (state=initialState, action) => {
         case 'UPDATE_QUERIES':
             google = Object.assign({}, state, { queries: action.payload.queries })
             return google
-        case 'UPDATE_COUNTRIES': 
-            google = Object.assign({}, state, { countries: action.payload.countries })
+        case 'UPDATE_COUNTRY': 
+            google = Object.assign({}, state, { country: action.payload.country })
             return google
         case 'UPDATE_LANGUAGES':
             google = Object.assign({}, state, { languages: action.payload.languages })

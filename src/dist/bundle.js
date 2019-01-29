@@ -99673,14 +99673,14 @@ var simpleAction = function simpleAction() {
 /*!********************************************!*\
   !*** ./src/client/actions/googleAction.js ***!
   \********************************************/
-/*! exports provided: UPDATE_QUERIES, updateQueries, UPDATE_COUNTRIES, updateCountries, UPDATE_LANGUAGES, updateLanguages, UPDATE_CATEGORY, updateCategory, UPDATE_SOURCES, updateSources, UPDATE_POLLING_INTERVAL, updatePollingInterval */
+/*! exports provided: UPDATE_QUERIES, updateQueries, UPDATE_COUNTRY, updateCountries, UPDATE_LANGUAGES, updateLanguages, UPDATE_CATEGORY, updateCategory, UPDATE_SOURCES, updateSources, UPDATE_POLLING_INTERVAL, updatePollingInterval */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_QUERIES", function() { return UPDATE_QUERIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateQueries", function() { return updateQueries; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_COUNTRIES", function() { return UPDATE_COUNTRIES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_COUNTRY", function() { return UPDATE_COUNTRY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCountries", function() { return updateCountries; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_LANGUAGES", function() { return UPDATE_LANGUAGES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLanguages", function() { return updateLanguages; });
@@ -99710,13 +99710,13 @@ var updateQueries = function updateQueries(queries) {
     });
   };
 };
-var UPDATE_COUNTRIES = "UPDATE_COUNTRIES";
-var updateCountries = function updateCountries(countries) {
+var UPDATE_COUNTRY = "UPDATE_COUNTRY";
+var updateCountries = function updateCountries(country) {
   return function (dispatch) {
     dispatch({
-      type: UPDATE_COUNTRIES,
+      type: UPDATE_COUNTRY,
       payload: {
-        countries: countries
+        country: country
       }
     });
   };
@@ -99835,100 +99835,6 @@ var updateThrottle = function updateThrottle(throttle) {
     });
   };
 };
-
-/***/ }),
-
-/***/ "./src/client/components/ChipList/ChipList.jsx":
-/*!*****************************************************!*\
-  !*** ./src/client/components/ChipList/ChipList.jsx ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/styles/index.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Chip */ "./node_modules/@material-ui/core/Chip/index.js");
-/* harmony import */ var _material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles.js */ "./src/client/components/ChipList/styles.js");
-/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_styles_js__WEBPACK_IMPORTED_MODULE_4__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-
-
-
-var ChipList =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(ChipList, _React$Component);
-
-  function ChipList(props) {
-    _classCallCheck(this, ChipList);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(ChipList).call(this, props));
-  }
-
-  _createClass(ChipList, [{
-    key: "render",
-    value: function render() {
-      var _this = this;
-
-      var classes = this.props.classes;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.values.map(function (value) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_3___default.a, {
-          key: value.key,
-          label: value.label,
-          onDelete: _this.props.onDelete(value),
-          className: classes.chip
-        });
-      }));
-    }
-  }]);
-
-  return ChipList;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-ChipList.propTypes = {
-  classes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
-  values: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
-  onDelete: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired
-};
-/* harmony default export */ __webpack_exports__["default"] = (Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["withStyles"])(_styles_js__WEBPACK_IMPORTED_MODULE_4___default.a)(ChipList));
-
-/***/ }),
-
-/***/ "./src/client/components/ChipList/styles.js":
-/*!**************************************************!*\
-  !*** ./src/client/components/ChipList/styles.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
 
 /***/ }),
 
@@ -101180,7 +101086,7 @@ var mapStateToProps = function mapStateToProps(state) {
   var google = state.googleReducer;
   return {
     queries: google.queries ? google.queries : [],
-    countries: google.countries ? google.countries : '',
+    country: google.country ? google.country : '',
     language: google.languages ? google.languages : '',
     category: google.category ? google.category : '',
     sources: google.sources ? google.sources : [],
@@ -101292,7 +101198,7 @@ function (_React$Component) {
     key: "renderPollingIntervalField",
     value: function renderPollingIntervalField() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], {
-        id: 'polling-interval',
+        id: 'google-polling-interval-field',
         label: 'Polling Interval',
         value: this.props.polling_interval,
         onChange: this.onPollingIntervalChange
@@ -101301,10 +101207,9 @@ function (_React$Component) {
   }, {
     key: "renderCountryField",
     value: function renderCountryField() {
-      var countries = this.props.countries;
-      var countriesObj = countries.map(function (c) {
+      var country = this.props.country;
+      var countriesObj = _constants_google__WEBPACK_IMPORTED_MODULE_3__["countries"].map(function (c) {
         var label = iso_3166_1__WEBPACK_IMPORTED_MODULE_7___default.a.whereAlpha2(c);
-        console.log(label);
         return {
           label: label ? label.country : c,
           value: c
@@ -101314,7 +101219,7 @@ function (_React$Component) {
         options: countriesObj,
         placeholder: 'Select country',
         onChange: this.onCountryChange,
-        value: countries,
+        value: country,
         label: 'Country'
       });
     }
@@ -101366,8 +101271,8 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "renderSouresField",
-    value: function renderSouresField() {
+    key: "renderSourcesField",
+    value: function renderSourcesField() {
       var modifiedSources = this.state.sources.length > 0 ? this.state.sources.map(function (s) {
         return {
           label: s.name,
@@ -101401,7 +101306,7 @@ function (_React$Component) {
         className: divider
       }), this.renderCountryField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: divider
-      }), this.renderSouresField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), this.renderSourcesField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: divider
       }), this.renderCategoryField());
     }
@@ -101493,21 +101398,15 @@ var styles = function styles(theme) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/index.es.js");
-/* harmony import */ var _actions_twitterAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/twitterAction */ "./src/client/actions/twitterAction.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _ChipList_ChipList_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../ChipList/ChipList.jsx */ "./src/client/components/ChipList/ChipList.jsx");
-/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
-/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(underscore__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _actions_twitterAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/twitterAction */ "./src/client/actions/twitterAction.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/styles/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles */ "./src/client/components/SettingsForm/twitter/styles.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../SingleEntryField/SingleEntryField.jsx */ "./src/client/components/SingleEntryField/SingleEntryField.jsx");
+/* harmony import */ var _MultiEntryField_MultiEntryField_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../MultiEntryField/MultiEntryField.jsx */ "./src/client/components/MultiEntryField/MultiEntryField.jsx");
+/* harmony import */ var _SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../SingleSelectField/SingleSelectField.jsx */ "./src/client/components/SingleSelectField/SingleSelectField.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -101533,6 +101432,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+
 var mapStateToProps = function mapStateToProps(state) {
   var twitter = state.twitterReducer;
   return {
@@ -101546,16 +101446,16 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     updateFilters: function updateFilters(filters) {
-      return dispatch(Object(_actions_twitterAction__WEBPACK_IMPORTED_MODULE_2__["updateFilters"])(filters));
+      return dispatch(Object(_actions_twitterAction__WEBPACK_IMPORTED_MODULE_1__["updateFilters"])(filters));
     },
     updateLanguage: function updateLanguage(language) {
-      return dispatch(Object(_actions_twitterAction__WEBPACK_IMPORTED_MODULE_2__["updateLanguage"])(language));
+      return dispatch(Object(_actions_twitterAction__WEBPACK_IMPORTED_MODULE_1__["updateLanguage"])(language));
     },
     updateMaxDisplay: function updateMaxDisplay(max) {
-      return dispatch(Object(_actions_twitterAction__WEBPACK_IMPORTED_MODULE_2__["updateMaxDisplay"])(max));
+      return dispatch(Object(_actions_twitterAction__WEBPACK_IMPORTED_MODULE_1__["updateMaxDisplay"])(max));
     },
     updateThrottle: function updateThrottle(throttle) {
-      return dispatch(Object(_actions_twitterAction__WEBPACK_IMPORTED_MODULE_2__["updateThrottle"])(throttle));
+      return dispatch(Object(_actions_twitterAction__WEBPACK_IMPORTED_MODULE_1__["updateThrottle"])(throttle));
     }
   };
 };
@@ -101571,145 +101471,178 @@ function (_React$Component) {
     _classCallCheck(this, TwitterForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TwitterForm).call(this, props));
-
-    _this.onDeleteFilter = function (data) {
-      return function () {
-        var updatedFilters = _toConsumableArray(_this.props.filters);
-
-        var tokenToDelete = updatedFilters.indexOf(data);
-        updatedFilters.splice(tokenToDelete, 1);
-
-        _this.props.updateFilters(updatedFilters);
-      };
-    };
-
-    _this.onChangeMaxDisplayField = _this.onChangeMaxDisplayField.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onChangeThrottleField = _this.onChangeThrottleField.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onChangeLanguageField = _this.onChangeLanguageField.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onFilterKeyPress = _this.onFilterKeyPress.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onDeleteFilter = _this.onDeleteFilter.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.onChangeFiltersField = _this.onChangeFiltersField.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onFiltersChange = _this.onFiltersChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onLanguageChange = _this.onLanguageChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onMaxTweetsDisplayed = _this.onMaxTweetsDisplayed.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onThrottleChange = _this.onThrottleChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.state = {
-      filter: ''
+      languages: []
     };
     return _this;
   }
 
   _createClass(TwitterForm, [{
-    key: "onChangeMaxDisplayField",
-    value: function onChangeMaxDisplayField(e) {
-      e.preventDefault();
-      var value = e.target.value;
-      this.props.updateMaxDisplay(value);
-    }
-  }, {
-    key: "onChangeThrottleField",
-    value: function onChangeThrottleField(e) {
-      e.preventDefault();
-      var value = e.target.value;
-      this.props.updateThrottle(value);
-    }
-  }, {
-    key: "onChangeFiltersField",
-    value: function onChangeFiltersField(e) {
-      this.setState({
-        filter: e.target.value
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/twitter/languages').then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        _this2.setState({
+          languages: data
+        });
       });
     }
   }, {
-    key: "onFilterKeyPress",
-    value: function onFilterKeyPress(e) {
-      if (e.charCode === 13) {
-        var value = this.state.filter;
-        var newValue = {
-          key: this.props.filters.length,
-          label: value
-        };
-
-        var updatedFilters = _toConsumableArray(this.props.filters);
-
-        updatedFilters.push(newValue);
-        this.props.updateFilters(updatedFilters);
-        this.setState({
-          filter: ''
-        });
-      }
+    key: "onFiltersChange",
+    value: function onFiltersChange(value) {
+      this.props.updateFilters(value);
     }
   }, {
-    key: "onChangeLanguageField",
-    value: function onChangeLanguageField(e) {
-      e.preventDefault();
-      var value = e.target.value;
+    key: "onLanguageChange",
+    value: function onLanguageChange(value) {
       this.props.updateLanguage(value);
     }
   }, {
-    key: "renderMaxDisplayField",
-    value: function renderMaxDisplayField() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["TextField"], {
-        id: "outlined-name",
-        label: "Max",
-        value: this.props.max,
-        onChange: this.onChangeMaxDisplayField,
-        margin: "normal",
-        variant: "outlined"
-      });
+    key: "onMaxTweetsDisplayed",
+    value: function onMaxTweetsDisplayed(value) {
+      this.props.updateMaxDisplay(value);
     }
   }, {
-    key: "renderThrottleField",
-    value: function renderThrottleField() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["TextField"], {
-        id: "outlined-name",
-        label: "Throttle",
-        value: this.props.throttle,
-        onChange: this.onChangeThrottleField,
-        margin: "normal",
-        variant: "outlined"
+    key: "onThrottleChange",
+    value: function onThrottleChange(value) {
+      this.props.updateThrottle(value);
+    }
+  }, {
+    key: "renderMaxTweetsField",
+    value: function renderMaxTweetsField() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        id: 'twitter-max-tweets-field',
+        label: 'Max Tweets to Display',
+        value: this.props.max,
+        onChange: this.onMaxTweetsDisplayed
       });
     }
   }, {
     key: "renderLanguageField",
     value: function renderLanguageField() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["TextField"], {
-        id: "outlined-name",
-        label: "Language",
+      var modifiedLanguages = this.state.languages.length > 0 ? this.state.languages.map(function (l) {
+        return {
+          label: l.name,
+          value: l.code
+        };
+      }) : [];
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        options: modifiedLanguages,
+        placeholder: 'Select languages',
+        onChange: this.onLanguageChange,
         value: this.props.language,
-        onChange: this.onChangeLanguageField,
-        margin: "normal",
-        variant: "outlined"
+        label: 'Languages'
+      });
+    }
+  }, {
+    key: "renderThrottleField",
+    value: function renderThrottleField() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        id: 'twitter-throttle-field',
+        label: 'Throttle',
+        value: this.props.throttle,
+        onChange: this.onThrottleChange
       });
     }
   }, {
     key: "renderFiltersField",
     value: function renderFiltersField() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["TextField"], {
-        id: "outlined-name",
-        label: "Filters",
-        value: this.state.filter,
-        onChange: this.onChangeFiltersField,
-        onKeyPress: this.onFilterKeyPress,
-        margin: "normal",
-        variant: "outlined"
-      });
-    }
-  }, {
-    key: "renderFilterChips",
-    value: function renderFilterChips() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChipList_ChipList_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MultiEntryField_MultiEntryField_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        onChange: this.onFiltersChange,
+        placeholder: 'Enter filters',
         values: this.props.filters,
-        onDelete: this.onDeleteFilter
+        label: 'Filters'
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderMaxDisplayField(), this.renderThrottleField(), this.renderLanguageField(), this.renderFiltersField(), this.renderFilterChips());
+      var divider = this.props.classes.divider;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderMaxTweetsField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: divider
+      }), this.renderLanguageField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: divider
+      }), this.renderThrottleField(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: divider
+      }), this.renderFiltersField());
     }
   }]);
 
   return TwitterForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(TwitterForm));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["withStyles"])(_styles__WEBPACK_IMPORTED_MODULE_3__["default"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps)(TwitterForm)));
+
+/***/ }),
+
+/***/ "./src/client/components/SettingsForm/twitter/styles.js":
+/*!**************************************************************!*\
+  !*** ./src/client/components/SettingsForm/twitter/styles.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _material_ui_core_styles_colorManipulator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material-ui/core/styles/colorManipulator */ "./node_modules/@material-ui/core/styles/colorManipulator.js");
+/* harmony import */ var _material_ui_core_styles_colorManipulator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles_colorManipulator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var styles = function styles(theme) {
+  return {
+    root: {
+      flexGrow: 1,
+      height: 250
+    },
+    input: {
+      display: 'flex',
+      padding: 0
+    },
+    valueContainer: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      flex: 1,
+      alignItems: 'center',
+      overflow: 'hidden'
+    },
+    chip: {
+      margin: "".concat(theme.spacing.unit / 2, "px ").concat(theme.spacing.unit / 4, "px")
+    },
+    chipFocused: {
+      backgroundColor: Object(_material_ui_core_styles_colorManipulator__WEBPACK_IMPORTED_MODULE_0__["emphasize"])(theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700], 0.08)
+    },
+    noOptionsMessage: {
+      padding: "".concat(theme.spacing.unit, "px ").concat(theme.spacing.unit * 2, "px")
+    },
+    singleValue: {
+      fontSize: 16
+    },
+    placeholder: {
+      position: 'absolute',
+      left: 2,
+      fontSize: 16
+    },
+    paper: {
+      position: 'absolute',
+      zIndex: 1,
+      marginTop: theme.spacing.unit,
+      left: 0,
+      right: 0
+    },
+    divider: {
+      height: theme.spacing.unit * 2
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (styles);
 
 /***/ }),
 
@@ -102597,7 +102530,8 @@ var initialState = {
   languages: '',
   category: '',
   sources: [],
-  interval: 5000
+  //do the math. I only have 1000 requests a day
+  interval: 900000
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -102611,9 +102545,9 @@ var initialState = {
       });
       return google;
 
-    case 'UPDATE_COUNTRIES':
+    case 'UPDATE_COUNTRY':
       google = Object.assign({}, state, {
-        countries: action.payload.countries
+        country: action.payload.country
       });
       return google;
 

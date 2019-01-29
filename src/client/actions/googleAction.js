@@ -17,12 +17,12 @@ export const updateQueries = (queries) => dispatch => {
     })
 }
 
-export const UPDATE_COUNTRIES = "UPDATE_COUNTRIES"
-export const updateCountries = (countries) => dispatch => {
+export const UPDATE_COUNTRY = "UPDATE_COUNTRY"
+export const updateCountries = (country) => dispatch => {
     dispatch({
-        type: UPDATE_COUNTRIES,
+        type: UPDATE_COUNTRY,
         payload: {
-            countries
+            country
         }
     })
 }

@@ -1,15 +1,16 @@
 import React from 'react'
-import { ExpansionPanelDetails } from '@material-ui/core';
 import {
     updateFilters,
     updateLanguage,
     updateMaxDisplay,
     updateThrottle
 } from '../../../actions/twitterAction'
-import { TextField } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
+import styles from './styles'
 import { connect } from 'react-redux';
-import ChipList from '../../ChipList/ChipList.jsx'
-import * as _ from 'underscore'
+import SingleEntryField from '../../SingleEntryField/SingleEntryField.jsx'
+import MultiEntryField from '../../MultiEntryField/MultiEntryField.jsx'
+import SingleSelectField from '../../SingleSelectField/SingleSelectField.jsx'
 
 const mapStateToProps = state => {
     const twitter = state.twitterReducer
@@ -32,137 +33,110 @@ const mapDispatchToProps = dispatch => ({
 class TwitterForm extends React.Component {
     constructor(props) {
         super(props)
-        this.onChangeMaxDisplayField = this.onChangeMaxDisplayField.bind(this)
-        this.onChangeThrottleField = this.onChangeThrottleField.bind(this)
-        this.onChangeLanguageField = this.onChangeLanguageField.bind(this)
-        this.onFilterKeyPress = this.onFilterKeyPress.bind(this)
-        this.onDeleteFilter = this.onDeleteFilter.bind(this)
-        this.onChangeFiltersField = this.onChangeFiltersField.bind(this)
+        this.onFiltersChange = this.onFiltersChange.bind(this)
+        this.onLanguageChange = this.onLanguageChange.bind(this)
+        this.onMaxTweetsDisplayed = this.onMaxTweetsDisplayed.bind(this)
+        this.onThrottleChange = this.onThrottleChange.bind(this)
         this.state = {
-            filter: ''
+            languages: []
         }
     }
 
-    onChangeMaxDisplayField(e) {
-        e.preventDefault()
-        let value = e.target.value
-        this.props.updateMaxDisplay(value)
-    }
-
-    onChangeThrottleField(e) {
-        e.preventDefault()
-        let value = e.target.value
-        this.props.updateThrottle(value)
-    }
-
-    onChangeFiltersField(e) {
-        this.setState({
-            filter: e.target.value
-        })
-    }
-
-    onFilterKeyPress(e) {
-        if(e.charCode === 13) {
-            let value = this.state.filter
-            let newValue = {
-                key: this.props.filters.length,
-                label: value
-            }
-            let updatedFilters = [...this.props.filters]
-            updatedFilters.push(newValue)
-            this.props.updateFilters(updatedFilters)
-            this.setState({
-                filter: ''
+    componentDidMount() {
+        fetch('/twitter/languages')
+            .then(response => response.json())
+            .then(data => {
+                this.setState({
+                    languages: data
+                })
             })
-        }
     }
 
-    onDeleteFilter = data => () => {
-        let updatedFilters = [...this.props.filters]
-        const tokenToDelete = updatedFilters.indexOf(data)
-        updatedFilters.splice(tokenToDelete, 1)
-        this.props.updateFilters(updatedFilters)
+    onFiltersChange(value) {
+        this.props.updateFilters(value)
     }
 
-    onChangeLanguageField(e) {
-        e.preventDefault()
-        let value = e.target.value
+    onLanguageChange(value) {
         this.props.updateLanguage(value)
     }
 
-    renderMaxDisplayField() {
+    onMaxTweetsDisplayed(value) {
+        this.props.updateMaxDisplay(value)
+    }
+
+    onThrottleChange(value) {
+        this.props.updateThrottle(value)
+    }
+
+    renderMaxTweetsField() {
         return (
-            <TextField
-                id="outlined-name"
-                label="Max"
+            <SingleEntryField
+                id={'twitter-max-tweets-field'}
+                label={'Max Tweets to Display'}
                 value={this.props.max}
-                onChange={this.onChangeMaxDisplayField}
-                margin="normal"
-                variant="outlined"
+                onChange={this.onMaxTweetsDisplayed}
+            />
+        )
+    }
+
+    renderLanguageField() {
+        let modifiedLanguages = this.state.languages.length > 0 ? this.state.languages.map((l) => {
+            return {
+                label: l.name,
+                value: l.code
+            }
+        }) : []
+        return (
+            <SingleSelectField
+                options={modifiedLanguages}
+                placeholder={'Select languages'}
+                onChange={this.onLanguageChange}
+                value={this.props.language}
+                label={'Languages'}
             />
         )
     }
 
     renderThrottleField() {
         return (
-            <TextField
-                id="outlined-name"
-                label="Throttle"
+            <SingleEntryField
+                id={'twitter-throttle-field'}
+                label={'Throttle'}
                 value={this.props.throttle}
-                onChange={this.onChangeThrottleField}
-                margin="normal"
-                variant="outlined"
-            />
-        )
-    }
-
-    renderLanguageField() {
-        return (
-            <TextField
-                id="outlined-name"
-                label="Language"
-                value={this.props.language}
-                onChange={this.onChangeLanguageField}
-                margin="normal"
-                variant="outlined"
+                onChange={this.onThrottleChange}
             />
         )
     }
 
     renderFiltersField() {
         return (
-            <TextField
-                id="outlined-name"
-                label="Filters"
-                value={this.state.filter}
-                onChange={this.onChangeFiltersField}
-                onKeyPress={this.onFilterKeyPress}
-                margin="normal"
-                variant="outlined"
+            <MultiEntryField
+                onChange={this.onFiltersChange}
+                placeholder={'Enter filters'}
+                values={this.props.filters}
+                label={'Filters'}
             />
         )
     }
 
-    renderFilterChips() {
-        return (
-            <ChipList
-                values={this.props.filters}
-                onDelete={this.onDeleteFilter}
-                />
-        )
-    }
-
     render() {
+        const {
+            classes: {
+                divider
+            }
+        } = this.props
         return (
             <div>
-                { this.renderMaxDisplayField() }
-                { this.renderThrottleField() }
+                { this.renderMaxTweetsField() } 
+                <div className={divider}/>
                 { this.renderLanguageField() }
+                <div className={divider}/>
+                { this.renderThrottleField() }
+                <div className={divider}/>
                 { this.renderFiltersField() }
-                { this.renderFilterChips() }
             </div>
         )
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TwitterForm)
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(TwitterForm))
