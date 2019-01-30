@@ -1,8 +1,8 @@
 import React from 'react'
 import { 
-    updateQueries,
-    updateCountries,
-    updateLanguages,
+    updateQuery,
+    updateCountry,
+    updateLanguage,
     updateCategory,
     updateSources,
     updatePollingInterval
@@ -23,9 +23,9 @@ import SingleEntryField from '../../SingleEntryField/SingleEntryField.jsx'
 const mapStateToProps = state => {
     const google = state.googleReducer
     return {
-        queries: google.queries ? google.queries : [],
+        query: google.query ? google.query : '',
         country: google.country ? google.country : '',
-        language: google.languages ? google.languages : '',
+        language: google.language ? google.language : '',
         category: google.category ? google.category : '',
         sources: google.sources ? google.sources : [],
         polling_interval: google.polling_interval ? google.polling_interval : 60000
@@ -33,9 +33,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProp = dispatch => ({
-    updateQueries: (queries) => dispatch(updateQueries(queries)),
-    updateCountry: (countries) => dispatch(updateCountries(countries)),
-    updateLanguage: (languages) => dispatch(updateLanguages(languages)),
+    updateQuery: (queries) => dispatch(updateQuery(queries)),
+    updateCountry: (countries) => dispatch(updateCountry(countries)),
+    updateLanguage: (languages) => dispatch(updateLanguage(languages)),
     updateCategory: (categories) => dispatch(updateCategory(categories)),
     updateSources: (sources) => dispatch(updateSources(sources)),
     updatePollingInterval: (pollingInterval) => dispatch(updatePollingInterval(pollingInterval))
@@ -47,6 +47,7 @@ const mapDispatchToProp = dispatch => ({
  * country - can only take in 1 
  * category - can only take in 1 
  * sources - can take in multiple 
+ * language - can only take in 1
  * q - can only take in on phrase (needs to be URL encoded)
  * pageSize - 20 default to 100 
  * page - page size if greater than // implement lazy load?
@@ -54,7 +55,7 @@ const mapDispatchToProp = dispatch => ({
 class GoogleNewsFormSettings extends React.Component {
     constructor(props) {
         super(props)
-        this.onQueriesChange = this.onQueriesChange.bind(this)
+        this.onQueryChange = this.onQueryChange.bind(this)
         this.onSourcesChange = this.onSourcesChange.bind(this)
         this.onCategoryChange = this.onCategoryChange.bind(this)
         this.onCountryChange = this.onCountryChange.bind(this)
@@ -79,8 +80,8 @@ class GoogleNewsFormSettings extends React.Component {
         this.props.updatePollingInterval(value)
     }
 
-    onQueriesChange(value) {
-        this.props.updateQueries(value)
+    onQueryChange(value) {
+        this.props.updateQuery(value)
     }
 
     onSourcesChange(value) {

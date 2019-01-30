@@ -7,18 +7,18 @@
  * UPDATE_POLLING_INTERVAL
  * UPDATE_TIME_RANGE
  */
-export const UPDATE_QUERIES = 'UPDATE_QUERIES'
-export const updateQueries = (queries) => dispatch => {
+export const UPDATE_QUERY = 'UPDATE_QUERY'
+export const updateQuery = (query) => dispatch => {
     dispatch({
-        type: UPDATE_QUERIES,
+        type: UPDATE_QUERY,
         payload: {
-            queries
+            query
         }
     })
 }
 
 export const UPDATE_COUNTRY = "UPDATE_COUNTRY"
-export const updateCountries = (country) => dispatch => {
+export const updateCountry = (country) => dispatch => {
     dispatch({
         type: UPDATE_COUNTRY,
         payload: {
@@ -27,12 +27,12 @@ export const updateCountries = (country) => dispatch => {
     })
 }
 
-export const UPDATE_LANGUAGES = "UPDATE_LANGUAGES"
-export const updateLanguages = (languages) => dispatch => {
+export const UPDATE_LANGUAGE = "UPDATE_LANGUAGE"
+export const updateLanguage = (language) => dispatch => {
     dispatch({
-        type: UPDATE_LANGUAGES,
+        type: UPDATE_LANGUAGE,
         payload: {
-            languages
+            language
         }
     })
 }

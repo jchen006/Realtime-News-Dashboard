@@ -6,26 +6,37 @@ import ReactLoading from 'react-loading'
 import styles from './styles.js'
 import topHeadlinesUrl from '../../utils/googleUrlConstructor'
 
-const mapStateToProps = state => ({
-    queries: state.google.queries,
-    countries: state.google.countries,
-    languages: state.google.languages,
-    categories: state.google.categories,
-    sources: state.google.sources,
-    pollingInterval: state.google.pollingInterval
-})
+const mapStateToProps = state => {
+    const google = state.googleReducer
+    return {
+        query: google.query ? google.query : '',
+        country: google.country ? google.country : '',
+        language: google.language ? google.language : '',
+        category: google.category ? google.category : '',
+        sources: google.sources ? google.sources : [],
+        polling_interval: google.polling_interval ? google.polling_interval : ''
+    }
+}
 
 class NewsFeed extends React.Component { 
     constructor(props) {
         super(props)
         this.state = {
-            news: []
+            news: [],
+            queryUrl: '/google/topHeadlines?country=us'
         }
+        this.constructQuery = this.constructQuery.bind(this)
+        this.getTopHeadlines = this.getTopHeadlines.bind(this)
     }
 
     componentWillMount() {
         this.getTopHeadlines()
-        this.pollingIntervalId = setInterval(this.getTopHeadlines, this.props.pollInterval)
+        this.pollingIntervalId = setInterval(this.getTopHeadlines, this.props.polling_interval)
+    }
+
+    componentDidUpdate() {
+        this.removePolling()
+        this.pollingIntervalId = setInterval(this.getTopHeadlines, this.props.polling_interval)
     }
  
     removePolling() {
@@ -33,14 +44,19 @@ class NewsFeed extends React.Component {
     }
 
     constructQuery() {
-        const { country, category, languages, sources, queries }
-        topHeadlinesUrl(country, category, sources, query)
+        const { country, category, language, sources, query } = this.props
+
+        if(country || category || language || sources || query) {
+            const queryUrl = topHeadlinesUrl(country, category, sources, query, language)
+            this.setState({
+                queryUrl
+            })
+        }
     }
 
-    /** Update to graphQL, 
-     * also need to specify by what the queries*/
     getTopHeadlines() {
-        fetch('/google/topHeadlines?country=us')
+       this.constructQuery()
+        fetch(this.state.queryUrl)
             .then(response => response.json())
             .then((data) => {
                 this.setState({

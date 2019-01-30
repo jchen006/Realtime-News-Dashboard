@@ -11,14 +11,14 @@ const initialState = {
 export default (state=initialState, action) => {
     let google
     switch(action.type) {
-        case 'UPDATE_QUERIES':
-            google = Object.assign({}, state, { queries: action.payload.queries })
+        case 'UPDATE_QUERY':
+            google = Object.assign({}, state, { query: action.payload.query })
             return google
         case 'UPDATE_COUNTRY': 
             google = Object.assign({}, state, { country: action.payload.country })
             return google
-        case 'UPDATE_LANGUAGES':
-            google = Object.assign({}, state, { languages: action.payload.languages })
+        case 'UPDATE_LANGUAGE':
+            google = Object.assign({}, state, { language: action.payload.language })
             return google
         case 'UPDATE_CATEGORY':
             google = Object.assign({}, state, { category: action.payload.category })

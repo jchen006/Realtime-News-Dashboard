@@ -59,9 +59,9 @@ class App extends Component {
           {/* <Grid item xs={3}>
             <Stream/>
           </Grid> */}
-          {/* <Grid item xs={6}>
+          <Grid item xs={6}>
             <NewsFeed/>
-          </Grid> */}
+          </Grid>
         </Grid>
         <SettingsDrawer displaySettings={displaySettings}/>
       </div>

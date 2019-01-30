@@ -99624,7 +99624,10 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
         container: true,
         spacing: 24
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SettingsDrawer_SettingsDrawer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        item: true,
+        xs: 6
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewsFeed_NewsFeed_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SettingsDrawer_SettingsDrawer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
         displaySettings: displaySettings
       }));
     }
@@ -99673,17 +99676,17 @@ var simpleAction = function simpleAction() {
 /*!********************************************!*\
   !*** ./src/client/actions/googleAction.js ***!
   \********************************************/
-/*! exports provided: UPDATE_QUERIES, updateQueries, UPDATE_COUNTRY, updateCountries, UPDATE_LANGUAGES, updateLanguages, UPDATE_CATEGORY, updateCategory, UPDATE_SOURCES, updateSources, UPDATE_POLLING_INTERVAL, updatePollingInterval */
+/*! exports provided: UPDATE_QUERY, updateQuery, UPDATE_COUNTRY, updateCountry, UPDATE_LANGUAGE, updateLanguage, UPDATE_CATEGORY, updateCategory, UPDATE_SOURCES, updateSources, UPDATE_POLLING_INTERVAL, updatePollingInterval */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_QUERIES", function() { return UPDATE_QUERIES; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateQueries", function() { return updateQueries; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_QUERY", function() { return UPDATE_QUERY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateQuery", function() { return updateQuery; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_COUNTRY", function() { return UPDATE_COUNTRY; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCountries", function() { return updateCountries; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_LANGUAGES", function() { return UPDATE_LANGUAGES; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLanguages", function() { return updateLanguages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCountry", function() { return updateCountry; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_LANGUAGE", function() { return UPDATE_LANGUAGE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLanguage", function() { return updateLanguage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_CATEGORY", function() { return UPDATE_CATEGORY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCategory", function() { return updateCategory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SOURCES", function() { return UPDATE_SOURCES; });
@@ -99699,19 +99702,19 @@ __webpack_require__.r(__webpack_exports__);
  * UPDATE_POLLING_INTERVAL
  * UPDATE_TIME_RANGE
  */
-var UPDATE_QUERIES = 'UPDATE_QUERIES';
-var updateQueries = function updateQueries(queries) {
+var UPDATE_QUERY = 'UPDATE_QUERY';
+var updateQuery = function updateQuery(query) {
   return function (dispatch) {
     dispatch({
-      type: UPDATE_QUERIES,
+      type: UPDATE_QUERY,
       payload: {
-        queries: queries
+        query: query
       }
     });
   };
 };
 var UPDATE_COUNTRY = "UPDATE_COUNTRY";
-var updateCountries = function updateCountries(country) {
+var updateCountry = function updateCountry(country) {
   return function (dispatch) {
     dispatch({
       type: UPDATE_COUNTRY,
@@ -99721,13 +99724,13 @@ var updateCountries = function updateCountries(country) {
     });
   };
 };
-var UPDATE_LANGUAGES = "UPDATE_LANGUAGES";
-var updateLanguages = function updateLanguages(languages) {
+var UPDATE_LANGUAGE = "UPDATE_LANGUAGE";
+var updateLanguage = function updateLanguage(language) {
   return function (dispatch) {
     dispatch({
-      type: UPDATE_LANGUAGES,
+      type: UPDATE_LANGUAGE,
       payload: {
-        languages: languages
+        language: language
       }
     });
   };
@@ -100487,6 +100490,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-loading */ "./node_modules/react-loading/dist/react-loading.js");
 /* harmony import */ var react_loading__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_loading__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles.js */ "./src/client/components/NewsFeed/styles.js");
+/* harmony import */ var _utils_googleUrlConstructor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/googleUrlConstructor */ "./src/client/utils/googleUrlConstructor.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -100497,13 +100501,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -100513,13 +100518,14 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  var google = state.googleReducer;
   return {
-    queries: state.google.queries,
-    countries: state.google.countries,
-    languages: state.google.languages,
-    categories: state.google.categories,
-    sources: state.google.sources,
-    pollingInterval: state.google.pollingInterval
+    query: google.query ? google.query : '',
+    country: google.country ? google.country : '',
+    language: google.language ? google.language : '',
+    category: google.category ? google.category : '',
+    sources: google.sources ? google.sources : [],
+    polling_interval: google.polling_interval ? google.polling_interval : ''
   };
 };
 
@@ -100535,8 +100541,11 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NewsFeed).call(this, props));
     _this.state = {
-      news: []
+      news: [],
+      queryUrl: '/google/topHeadlines?country=us'
     };
+    _this.constructQuery = _this.constructQuery.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.getTopHeadlines = _this.getTopHeadlines.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -100544,7 +100553,13 @@ function (_React$Component) {
     key: "componentWillMount",
     value: function componentWillMount() {
       this.getTopHeadlines();
-      this.pollingIntervalId = setInterval(this.getTopHeadlines, this.props.pollInterval);
+      this.pollingIntervalId = setInterval(this.getTopHeadlines, this.props.polling_interval);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.removePolling();
+      this.pollingIntervalId = setInterval(this.getTopHeadlines, this.props.polling_interval);
     }
   }, {
     key: "removePolling",
@@ -100553,35 +100568,31 @@ function (_React$Component) {
     }
   }, {
     key: "constructQuery",
-    value: function constructQuery() {}
-    /** Update to graphQL, 
-     * also need to specify by what the queries*/
+    value: function constructQuery() {
+      var _this$props = this.props,
+          country = _this$props.country,
+          category = _this$props.category,
+          language = _this$props.language,
+          sources = _this$props.sources,
+          query = _this$props.query;
 
+      if (country || category || language || sources || query) {
+        var queryUrl = Object(_utils_googleUrlConstructor__WEBPACK_IMPORTED_MODULE_6__["default"])(country, category, sources, query, language);
+        this.setState({
+          queryUrl: queryUrl
+        });
+      }
+    }
   }, {
     key: "getTopHeadlines",
     value: function getTopHeadlines() {
       var _this2 = this;
 
-      fetch('/google/topHeadlines?country=us').then(function (response) {
+      this.constructQuery();
+      fetch(this.state.queryUrl).then(function (response) {
         return response.json();
       }).then(function (data) {
         _this2.setState({
-          news: data.articles
-        });
-      });
-    }
-    /** Update to graphQL */
-
-  }, {
-    key: "getNewsByQuery",
-    value: function getNewsByQuery() {
-      var _this3 = this;
-
-      this.removePolling();
-      fetch('/google/everything').then(function (response) {
-        return response.json();
-      }).then(function (data) {
-        _this3.setState({
           news: data.articles
         });
       });
@@ -101085,9 +101096,9 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 var mapStateToProps = function mapStateToProps(state) {
   var google = state.googleReducer;
   return {
-    queries: google.queries ? google.queries : [],
+    query: google.query ? google.query : '',
     country: google.country ? google.country : '',
-    language: google.languages ? google.languages : '',
+    language: google.language ? google.language : '',
     category: google.category ? google.category : '',
     sources: google.sources ? google.sources : [],
     polling_interval: google.polling_interval ? google.polling_interval : 60000
@@ -101096,14 +101107,14 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProp = function mapDispatchToProp(dispatch) {
   return {
-    updateQueries: function updateQueries(queries) {
-      return dispatch(Object(_actions_googleAction__WEBPACK_IMPORTED_MODULE_1__["updateQueries"])(queries));
+    updateQuery: function updateQuery(queries) {
+      return dispatch(Object(_actions_googleAction__WEBPACK_IMPORTED_MODULE_1__["updateQuery"])(queries));
     },
     updateCountry: function updateCountry(countries) {
-      return dispatch(Object(_actions_googleAction__WEBPACK_IMPORTED_MODULE_1__["updateCountries"])(countries));
+      return dispatch(Object(_actions_googleAction__WEBPACK_IMPORTED_MODULE_1__["updateCountry"])(countries));
     },
     updateLanguage: function updateLanguage(languages) {
-      return dispatch(Object(_actions_googleAction__WEBPACK_IMPORTED_MODULE_1__["updateLanguages"])(languages));
+      return dispatch(Object(_actions_googleAction__WEBPACK_IMPORTED_MODULE_1__["updateLanguage"])(languages));
     },
     updateCategory: function updateCategory(categories) {
       return dispatch(Object(_actions_googleAction__WEBPACK_IMPORTED_MODULE_1__["updateCategory"])(categories));
@@ -101122,6 +101133,7 @@ var mapDispatchToProp = function mapDispatchToProp(dispatch) {
  * country - can only take in 1 
  * category - can only take in 1 
  * sources - can take in multiple 
+ * language - can only take in 1
  * q - can only take in on phrase (needs to be URL encoded)
  * pageSize - 20 default to 100 
  * page - page size if greater than // implement lazy load?
@@ -101139,7 +101151,7 @@ function (_React$Component) {
     _classCallCheck(this, GoogleNewsFormSettings);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(GoogleNewsFormSettings).call(this, props));
-    _this.onQueriesChange = _this.onQueriesChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onQueryChange = _this.onQueryChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.onSourcesChange = _this.onSourcesChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.onCategoryChange = _this.onCategoryChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.onCountryChange = _this.onCountryChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -101170,9 +101182,9 @@ function (_React$Component) {
       this.props.updatePollingInterval(value);
     }
   }, {
-    key: "onQueriesChange",
-    value: function onQueriesChange(value) {
-      this.props.updateQueries(value);
+    key: "onQueryChange",
+    value: function onQueryChange(value) {
+      this.props.updateQuery(value);
     }
   }, {
     key: "onSourcesChange",
@@ -102539,9 +102551,9 @@ var initialState = {
   var google;
 
   switch (action.type) {
-    case 'UPDATE_QUERIES':
+    case 'UPDATE_QUERY':
       google = Object.assign({}, state, {
-        queries: action.payload.queries
+        query: action.payload.query
       });
       return google;
 
@@ -102551,9 +102563,9 @@ var initialState = {
       });
       return google;
 
-    case 'UPDATE_LANGUAGES':
+    case 'UPDATE_LANGUAGE':
       google = Object.assign({}, state, {
-        languages: action.payload.languages
+        language: action.payload.language
       });
       return google;
 
@@ -102682,6 +102694,72 @@ function configureStore() {
 
 /***/ }),
 
+/***/ "./src/client/utils/googleUrlConstructor.js":
+/*!**************************************************!*\
+  !*** ./src/client/utils/googleUrlConstructor.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _config_tokens__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../config/tokens */ "./src/config/tokens.js");
+/* harmony import */ var _config_tokens__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_config_tokens__WEBPACK_IMPORTED_MODULE_0__);
+// https://newsapi.org/v2/top-headlines?country=us&apiKey=API_KEY
+
+
+var encodeQueryData = function encodeQueryData(data) {
+  var ret = [];
+
+  for (var d in data) {
+    ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+  }
+
+  return ret.join('&');
+};
+
+var topHeadlinesUrl = function topHeadlinesUrl(country, category, sources, query, language) {
+  var base = '/google/topHeadlines';
+  var params = {};
+
+  if (country) {
+    params['country'] = country;
+  }
+
+  if (sources) {
+    var sourcesString = '';
+
+    for (var i = 0; i < sources.length; i++) {
+      if (i != sources.length - 1) {
+        sourcesString += "".concat(sources[i], ",");
+      }
+
+      sourcesString += "".concat(sources[i]);
+    }
+
+    params['sources'] = sourcesString;
+  }
+
+  if (category) {
+    params['category'] = category;
+  }
+
+  if (language) {
+    params['language'] = language;
+  }
+
+  if (query) {
+    params['q'] = query;
+  }
+
+  var paramsQuery = encodeQueryData(params);
+  return "".concat(base).concat(paramsQuery);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (topHeadlinesUrl);
+
+/***/ }),
+
 /***/ "./src/client/utils/styles.js":
 /*!************************************!*\
   !*** ./src/client/utils/styles.js ***!
@@ -102710,6 +102788,41 @@ var selectStyles = function selectStyles(theme) {
 };
 
 
+
+/***/ }),
+
+/***/ "./src/config/tokens.js":
+/*!******************************!*\
+  !*** ./src/config/tokens.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var twitter = {
+  consumer_key: "zVBV7FjCLQYH6iroZacnVGVHn",
+  consumer_secret: "Pqq4MkwtUICiSQevVqp0lwAvKFhFgr5jXN8D8N2P588LFb8SXp",
+  access_token_key: "3432027004-N34vZEtwtPefKMBzUJXsgeAIOgOScGJx0yBunNA",
+  access_token_secret: "a7g5uB7UIAvYvxEUMjR2EFN56dg8FBoUouL6cHHcxZxQg"
+};
+var watson = {
+  usenrame: "jeffreyhc@berkeley.edu",
+  password: "Genesis1:1!"
+};
+var app = {
+  secret: "secret!"
+};
+var google = {
+  key: "af89ce0db5d94d5897c5b1b107e60abc",
+  sources: "https://newsapi.org/v2/sources",
+  topHeadlines: "https://newsapi.org/v2/top-headlines",
+  everything: "https://newsapi.org/v2/everything"
+};
+module.exports = {
+  twitter: twitter,
+  watson: watson,
+  app: app,
+  google: google
+};
 
 /***/ }),
 
