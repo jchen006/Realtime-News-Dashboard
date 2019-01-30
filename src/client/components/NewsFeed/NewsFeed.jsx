@@ -4,6 +4,7 @@ import GridList from '@material-ui/core/GridList';
 import { withStyles } from '@material-ui/core/styles';
 import ReactLoading from 'react-loading'
 import styles from './styles.js'
+import topHeadlinesUrl from '../../utils/googleUrlConstructor'
 
 const mapStateToProps = state => ({
     queries: state.google.queries,
@@ -32,7 +33,8 @@ class NewsFeed extends React.Component {
     }
 
     constructQuery() {
-        
+        const { country, category, languages, sources, queries }
+        topHeadlinesUrl(country, category, sources, query)
     }
 
     /** Update to graphQL, 
@@ -46,18 +48,7 @@ class NewsFeed extends React.Component {
                 })
             })
     }
-
-    /** Update to graphQL */
-    getNewsByQuery() {
-        this.removePolling() 
-        fetch('/google/everything')
-            .then(response => response.json())
-            .then((data) => {
-                this.setState({
-                    news: data.articles})
-                })
-    }
-
+    
     renderFeed() {
         return (
             <div>
