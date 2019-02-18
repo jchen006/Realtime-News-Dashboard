@@ -2,9 +2,10 @@ import React from 'react'
 import NewsFeedCard from './NewsFeedCard.jsx';
 import GridList from '@material-ui/core/GridList';
 import { withStyles } from '@material-ui/core/styles';
-import ReactLoading from 'react-loading'
 import styles from './styles.js'
 import topHeadlinesUrl from '../../utils/googleUrlConstructor'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.jsx'
+import { connect } from 'react-redux'
 
 const mapStateToProps = state => {
     const google = state.googleReducer
@@ -55,7 +56,6 @@ class NewsFeed extends React.Component {
     }
 
     getTopHeadlines() {
-       this.constructQuery()
         fetch(this.state.queryUrl)
             .then(response => response.json())
             .then((data) => {
@@ -88,7 +88,7 @@ class NewsFeed extends React.Component {
 
     renderLoading() {
         return (
-            <ReactLoading type={"spin"} color="#000000"/>
+            <LoadingSpinner/>
         )
     }
 
@@ -112,4 +112,4 @@ class NewsFeed extends React.Component {
     }
 }
 
-export default withStyles(styles)(NewsFeed);
+export default withStyles(styles)(connect(mapStateToProps)(NewsFeed));

@@ -17,7 +17,7 @@ class MultiSelectField extends React.Component {
     }
 
     render() {
-        const { classes, theme, options, label } = this.props
+        const { classes, theme, options, label, disabled} = this.props
 
         return (
             <Select
@@ -35,6 +35,7 @@ class MultiSelectField extends React.Component {
                 placeholder={this.props.placeholder}
                 isMulti
                 defaultValue={this.props.defaultValue}
+                isDisabled={disabled}
             />
         )
     }
@@ -50,7 +51,8 @@ class MultiSelectField extends React.Component {
 MultiSelectField.propTypes = {
     options: PropTypes.array.isRequired,
     placeholder: PropTypes.string,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool
 }
 
 export default withStyles(styles, {withTheme: true})(MultiSelectField)

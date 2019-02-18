@@ -5,7 +5,6 @@ const url = require('../../config/url')
 /** General batch of all the top headlines  */
 let queryTopHeadlines = (req, res) => {
     let qs = req.query
-    console.log(qs)
     var options = {
         url: url.google.topHeadlines,
         headers: {
@@ -17,6 +16,7 @@ let queryTopHeadlines = (req, res) => {
         if(!err && response.statusCode === 200) {
             res.status(200).send(body)
         } else {
+            console.log(body)
             res.status(500).send(err)
         }
     });

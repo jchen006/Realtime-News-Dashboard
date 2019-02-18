@@ -63,7 +63,7 @@ class MultiEntryField extends React.Component {
 
     render() {
         const { inputValue } = this.state
-        const { classes, theme, values, placeholder, label} = this.props
+        const { classes, theme, values, placeholder, label, disabled} = this.props
         return (
             <Select
                 components={Components}
@@ -84,6 +84,7 @@ class MultiEntryField extends React.Component {
                 isClearable
                 placeholder={placeholder}
                 menuIsOpen={false}
+                isDisabled={disabled}
             />
         )
     }

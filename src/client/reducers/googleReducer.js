@@ -1,11 +1,11 @@
 const initialState = {
-    queries: [],
-    countries: '',
-    languages: '',
+    queries: '',
+    countries: {label: "United States of America", value: "us"},
+    language: '',
     category: '', 
     sources: [],
     //do the math. I only have 1000 requests a day
-    interval: 900000
+    polling_interval: 900000
 }
 
 export default (state=initialState, action) => {

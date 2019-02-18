@@ -23,7 +23,8 @@ class SingleSelectField extends React.Component {
             options,
             value,
             placeholder,
-            label
+            label,
+            disabled
         } = this.props
 
         return (
@@ -42,6 +43,7 @@ class SingleSelectField extends React.Component {
                 onChange={this.handleOnChange}
                 placeholder={placeholder}
                 isClearable
+                isDisabled={disabled}
             />
         )
     }
@@ -51,7 +53,8 @@ class SingleSelectField extends React.Component {
 SingleSelectField.propTypes = {
     options: PropTypes.array.isRequired,
     placeholder: PropTypes.string,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool
 }
 
 export default withStyles(styles, { withTheme: true })(SingleSelectField)

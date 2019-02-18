@@ -20,3 +20,4 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map'
 };
+//Add an alias for actions, copmonents, reducers, utils, and constants, config

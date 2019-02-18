@@ -1,6 +1,5 @@
 
-// https://newsapi.org/v2/top-headlines?country=us&apiKey=API_KEY
-import google from '../../config/tokens'
+// https://newsapi.org/v2/top-headlines?country=us
 
 const encodeQueryData = (data) => {
     const ret = [];
@@ -10,29 +9,31 @@ const encodeQueryData = (data) => {
 }
 
 const topHeadlinesUrl  = (country, category, sources, query, language) => {
-    var base = '/google/topHeadlines'
+    var base = '/google/topHeadlines?'
     let params = {}
-    if(country) {
-        params['country'] = country
-    }
+    if(country || category) {
+        if(country) {
+            params['country'] = country.value
+        }
 
-    if(sources) {
+        if(category) {
+            params['category'] = category.value
+        }
+
+    } else if(sources.length > 0) {
         let sourcesString = ''
         for(let i = 0; i < sources.length; i++) {
+            const source = sources[i].value
+            sourcesString += `${source}`
             if(i != sources.length -1) {
-                sourcesString += `${sources[i]},`
+                sourcesString += ','
             }
-            sourcesString += `${sources[i]}`
         }
         params['sources'] = sourcesString
     }
 
-    if(category) {
-        params['category'] = category
-    }
-
     if(language) {
-        params['language'] = language
+        params['language'] = language.value
     }
 
     if(query) {

@@ -16,8 +16,9 @@ import iso from 'iso-3166-1'
 import ISO6391 from 'iso-639-1'
 import MultiSelectField from '../../MultiSelectField/MultiSelectField.jsx'
 import SingleSelectField from '../../SingleSelectField/SingleSelectField.jsx'
-import MultiEntryField from '../../MultiEntryField/MultiEntryField.jsx'
 import SingleEntryField from '../../SingleEntryField/SingleEntryField.jsx'
+import FlipSwitch from '../../Switch/FlipSwitch.jsx'
+import topHeadlinesUrl from '../../../utils/googleUrlConstructor'
 
 
 const mapStateToProps = state => {
@@ -33,7 +34,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProp = dispatch => ({
-    updateQuery: (queries) => dispatch(updateQuery(queries)),
+    updateQuery: (query) => dispatch(updateQuery(query)),
     updateCountry: (countries) => dispatch(updateCountry(countries)),
     updateLanguage: (languages) => dispatch(updateLanguage(languages)),
     updateCategory: (categories) => dispatch(updateCategory(categories)),
@@ -61,8 +62,10 @@ class GoogleNewsFormSettings extends React.Component {
         this.onCountryChange = this.onCountryChange.bind(this)
         this.onLanguageChange = this.onLanguageChange.bind(this)
         this.onPollingIntervalChange = this.onPollingIntervalChange.bind(this)
+        this.onSourceSwitchChange = this.onSourceSwitchChange.bind(this)
         this.state = {
-            sources: []
+            sources: [],
+            useSource: true
         }
     }
 
@@ -100,6 +103,23 @@ class GoogleNewsFormSettings extends React.Component {
         this.props.updateLanguage(value)
     }
 
+    onSourceSwitchChange(checked) {
+        this.setState({
+            useSource: checked
+        })
+    }
+
+    renderSourcesSwitch() {
+        return (
+            <FlipSwitch
+                handleChange={this.onSourceSwitchChange}
+                checked={this.state.useSource}
+                value={"use-sources-switch"}
+                label={"Use Sources?"}
+            />
+        )
+    }
+
     renderPollingIntervalField() {
         return (
             <SingleEntryField
@@ -107,6 +127,7 @@ class GoogleNewsFormSettings extends React.Component {
                 label={'Polling Interval'}
                 value={this.props.polling_interval}
                 onChange={this.onPollingIntervalChange}
+                disabled={false}
             />
         )
     }
@@ -127,6 +148,7 @@ class GoogleNewsFormSettings extends React.Component {
                 onChange={this.onCountryChange}
                 value={country}
                 label={'Country'}
+                disabled={this.state.useSource}
             />
         )
     }
@@ -147,17 +169,19 @@ class GoogleNewsFormSettings extends React.Component {
                 onChange={this.onLanguageChange}
                 value={language}
                 label={'Language'}
+                disabled={false}
             />
         )
     }
 
-    renderQueriesField() {
+    renderQueryField() {
         return (
-            <MultiEntryField
-                onChange={this.onQueriesChange}
-                placeholder={'Enter queries'}
-                values={this.props.queries}
-                label={'Queries'}
+            <SingleEntryField
+                id={'google-polling-interval-field'}
+                label={'Query'}
+                value={this.props.query}
+                onChange={this.onQueryChange}
+                disabled={false}
             />
         )
     }
@@ -177,6 +201,7 @@ class GoogleNewsFormSettings extends React.Component {
                 onChange={this.onCategoryChange}
                 value={category}
                 label={'Category'}
+                disabled={this.state.useSource}
             />
         )
     }
@@ -197,14 +222,23 @@ class GoogleNewsFormSettings extends React.Component {
                 onChange={this.onSourcesChange}
                 defaultValue={this.props.sources}
                 label={'Sources'}
+                disabled={!this.state.useSource}
             />
         )
     }
 
-    renderExistingQuery() {
+    renderExistingUrlQuery() {
+        let {country, category, sources, query, language } = this.props
+        let queryUrl = ""
+        if(!this.state.useSource) {
+            queryUrl = topHeadlinesUrl(country, category, sources=[], query, language)
+        } else {
+            queryUrl = topHeadlinesUrl(country="", category="", sources, query, language)
+        }
+        
         return (
-            <Typography>
-                
+            <Typography variant="body1" gutterBottom>
+                {queryUrl}
             </Typography>
         )
     }
@@ -217,9 +251,13 @@ class GoogleNewsFormSettings extends React.Component {
         } = this.props
         return (
             <div>
+                {this.renderExistingUrlQuery()}
+                <div className={divider} />
+                {this.renderSourcesSwitch()}
+                <div className={divider} />
                 { this.renderPollingIntervalField() }
                 <div className={divider} />
-                { this.renderQueriesField()}
+                { this.renderQueryField()}
                 <div className={divider} />
                 { this.renderLangugeField() }
                 <div className={divider} />

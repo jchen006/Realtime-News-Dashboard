@@ -15,7 +15,7 @@ class SingleEntryField extends React.Component {
     }
 
     render() {
-        const { id, label, value} = this.props
+        const { id, label, value, disabled} = this.props
 
         return (
             <TextField
@@ -24,6 +24,7 @@ class SingleEntryField extends React.Component {
                 value={ value }
                 onChange={this.onChange}
                 margin="normal"
+                disabled={disabled}
             />
         )
     }
@@ -32,6 +33,7 @@ class SingleEntryField extends React.Component {
 SingleEntryField.propTypes = {
     id: PropTypes.string,
     label: PropTypes.string,
+    disabled: PropTypes.bool,
     onChange: PropTypes.func
 }
 

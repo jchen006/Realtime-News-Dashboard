@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TweetCard from './TweetCard.jsx'
-import ReactLoading from 'react-loading'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.jsx'
 import io from 'socket.io-client'
 import { connect } from 'react-redux';
 import * as _ from 'underscore'
@@ -77,7 +77,7 @@ class Stream extends Component {
 
     renderLoading() {
         return (
-            <ReactLoading type={"spin"} color="#000000"/>
+            <LoadingSpinner/>
         )
     }
 
