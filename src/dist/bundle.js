@@ -96689,9 +96689,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _components_NewsFeed_NewsFeed_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/NewsFeed/NewsFeed.jsx */ "./src/client/components/NewsFeed/NewsFeed.jsx");
 /* harmony import */ var _components_TwitterFeed_Stream_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/TwitterFeed/Stream.jsx */ "./src/client/components/TwitterFeed/Stream.jsx");
-/* harmony import */ var react_keydown__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-keydown */ "./node_modules/react-keydown/es/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_SimpleAction__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./actions/SimpleAction */ "./src/client/actions/SimpleAction.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_keydown__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-keydown */ "./node_modules/react-keydown/es/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_SimpleAction__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./actions/SimpleAction */ "./src/client/actions/SimpleAction.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -96727,6 +96729,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var mapStateToProps = function mapStateToProps(state) {
   return _objectSpread({}, state);
 };
@@ -96734,7 +96737,7 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     simpleAction: function simpleAction() {
-      return dispatch(Object(_actions_SimpleAction__WEBPACK_IMPORTED_MODULE_11__["simpleAction"])());
+      return dispatch(Object(_actions_SimpleAction__WEBPACK_IMPORTED_MODULE_12__["simpleAction"])());
     }
   };
 };
@@ -96760,6 +96763,11 @@ function (_Component) {
     };
     _this.handleOnDrawerOpen = _this.handleOnDrawerOpen.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.simpleAction = _this.simpleAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.filter = {
+      track: "NBA"
+    };
+    var endpoint = 'localhost:8080';
+    _this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_9___default()(endpoint);
     return _this;
   }
 
@@ -96784,8 +96792,13 @@ function (_Component) {
         spacing: 24
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
         item: true,
+        xs: 3
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TwitterFeed_Stream_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        socket: this.socket
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        item: true,
         xs: 6
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NewsFeed_NewsFeed_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SettingsDrawer_SettingsDrawer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SettingsDrawer_SettingsDrawer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
         displaySettings: displaySettings
       }));
     }
@@ -96805,7 +96818,7 @@ var styles = function styles(theme) {
 App.propTypes = {
   classes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired
 };
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_10__["connect"])(mapStateToProps, mapDispatchToProps)(Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["withStyles"])(styles)(App)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_11__["connect"])(mapStateToProps, mapDispatchToProps)(Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["withStyles"])(styles)(App)));
 
 /***/ }),
 
@@ -99541,11 +99554,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _TweetCard_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TweetCard.jsx */ "./src/client/components/TwitterFeed/TweetCard.jsx");
 /* harmony import */ var _LoadingSpinner_LoadingSpinner_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../LoadingSpinner/LoadingSpinner.jsx */ "./src/client/components/LoadingSpinner/LoadingSpinner.jsx");
-/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
-/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
-/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(underscore__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(underscore__WEBPACK_IMPORTED_MODULE_5__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -99563,7 +99574,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -99605,14 +99615,15 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var endpoint = 'localhost:8080';
-      this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_4___default()(endpoint);
-      this.socket.on('connect', function () {
+      var socket = this.props.socket;
+      socket.on('connect', function () {
         _this2.setState({
           isConnecting: false
         });
       });
-      this.socket.on('tweet', function (data) {
+      socket.on('tweet', function (data) {
+        console.log(data);
+
         if (_this2.state.tweets.length == _this2.props.max) {
           var newTweetsArray = _this2.state.tweets.slice();
 
@@ -99634,8 +99645,10 @@ function (_Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      if (prevProps.language !== this.props.language || underscore__WEBPACK_IMPORTED_MODULE_6__["isEqual"](prevProps.filters, this.props.filters)) {
-        this.socket.emit('settingsUpdates', {
+      var socket = this.props.socket;
+
+      if (prevProps.language !== this.props.language || underscore__WEBPACK_IMPORTED_MODULE_5__["isEqual"](prevProps.filters, this.props.filters)) {
+        socket.emit('settingsUpdates', {
           filters: this.props.filters,
           language: this.props.language
         });
@@ -99673,7 +99686,7 @@ function (_Component) {
   return Stream;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps)(Stream));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps)(Stream));
 
 /***/ }),
 

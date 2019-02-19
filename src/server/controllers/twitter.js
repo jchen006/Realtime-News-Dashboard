@@ -12,7 +12,7 @@ var initiateLiveStream = function(server) {
     client.stream('statuses/filter', filter, function(stream) {
         _stream = stream
         _stream.on('data', function(event) {
-            console.log(event && event.text);
+            console.log(event && event.text)
             io.emit('tweet', event)
         });
     
@@ -21,6 +21,7 @@ var initiateLiveStream = function(server) {
         });
 
         io.on('update', function(data) {
+            console.log(data)
             _stream.destroy()
             if(data.filter) {
                 filter.track = data.filter

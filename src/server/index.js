@@ -24,5 +24,5 @@ const server = app.listen(port, () => {
 });
 
 // Only specific to Twitter since it needs to pass in a server 
-// twitter.stream(server)
+twitter.stream(server)
 

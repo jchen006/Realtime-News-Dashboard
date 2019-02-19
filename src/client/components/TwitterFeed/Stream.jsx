@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TweetCard from './TweetCard.jsx'
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.jsx'
-import io from 'socket.io-client'
+
 import { connect } from 'react-redux';
 import * as _ from 'underscore'
 
@@ -26,13 +26,14 @@ class Stream extends Component {
     }
 
     componentDidMount() {
-        var endpoint = 'localhost:8080'
-        this.socket = io(endpoint)
-        this.socket.on('connect', () => {
+        const { socket } = this.props
+        socket.on('connect', () => {
+            console.log("Connected")
             this.setState( { isConnecting: false } )
         })
     
-        this.socket.on('tweet', (data) => {
+        socket.on('tweet', (data) => {
+            console.log(data)
             if(this.state.tweets.length == this.props.max) {
                 var newTweetsArray = this.state.tweets.slice()
                 newTweetsArray.shift()
@@ -46,8 +47,9 @@ class Stream extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        const { socket } = this.props
         if(prevProps.language !== this.props.language || _.isEqual(prevProps.filters, this.props.filters)) {
-                this.socket.emit('settingsUpdates', {
+                socket.emit('settingsUpdates', {
                     filters:  this.props.filters,
                     language: this.props.language
             })
@@ -76,6 +78,7 @@ class Stream extends Component {
     }
 
     renderLoading() {
+        //Update to the Material-ui one
         return (
             <LoadingSpinner/>
         )
@@ -83,6 +86,8 @@ class Stream extends Component {
 
 
     render() {
+        console.log(this.state.isConnecting)
+        console.log(this.state.tweet.length)
         return (
             <div>
                 { !this.state.isConnecting && this.state.tweets.length > 0 ? 

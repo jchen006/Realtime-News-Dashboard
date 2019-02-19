@@ -12,10 +12,10 @@ class SettingsDrawer extends React.Component {
     }
 
     renderFormTab() {
-        const { classes } = this.props
+        const { classes, socket } = this.props
         return (
             <div className={classes.list}>
-                <SettingsTab classes/>
+                <SettingsTab classes socket={socket}/>
             </div>
         )
     }

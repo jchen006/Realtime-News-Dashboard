@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import NewsFeed from './components/NewsFeed/NewsFeed.jsx'
 import Stream from './components/TwitterFeed/Stream.jsx'
+import io from 'socket.io-client'
 
 import keydown from 'react-keydown'
 
@@ -33,6 +34,9 @@ class App extends Component {
     }
     this.handleOnDrawerOpen = this.handleOnDrawerOpen.bind(this)
     this.simpleAction = this.simpleAction.bind(this)
+    this.filter = {track: "NBA"}
+    var endpoint = 'localhost:8080'
+    this.socket = io(endpoint)
   }
 
   handleOnDrawerOpen() {
@@ -56,14 +60,17 @@ class App extends Component {
           Test
         </Button> */}
         <Grid container spacing={24}>
-          {/* <Grid item xs={3}>
-            <Stream/>
-          </Grid> */}
+          <Grid item xs={3}>
+            <Stream socket={this.socket}/>
+          </Grid>
           <Grid item xs={6}>
-            <NewsFeed/>
+            {/* <NewsFeed/> */}
           </Grid>
         </Grid>
-        <SettingsDrawer displaySettings={displaySettings}/>
+        <SettingsDrawer 
+          displaySettings={displaySettings} 
+          socket={this.socket}
+        />
       </div>
     );
   }
