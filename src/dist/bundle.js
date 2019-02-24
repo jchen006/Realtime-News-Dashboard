@@ -96799,7 +96799,8 @@ function (_Component) {
         item: true,
         xs: 6
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SettingsDrawer_SettingsDrawer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        displaySettings: displaySettings
+        displaySettings: displaySettings,
+        socket: this.socket
       }));
     }
   }]);
@@ -98098,19 +98099,22 @@ function (_React$Component) {
   _createClass(SettingsDrawer, [{
     key: "renderFormTab",
     value: function renderFormTab() {
-      var classes = this.props.classes;
+      var _this$props = this.props,
+          classes = _this$props.classes,
+          socket = _this$props.socket;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: classes.list
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SettingsTab_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        classes: true
+        classes: true,
+        socket: socket
       }));
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          classes = _this$props.classes,
-          displaySettings = _this$props.displaySettings;
+      var _this$props2 = this.props,
+          classes = _this$props2.classes,
+          displaySettings = _this$props2.displaySettings;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Drawer__WEBPACK_IMPORTED_MODULE_3___default.a, {
         open: displaySettings,
         onClose: this.props.onCloseDrawer
@@ -98211,12 +98215,16 @@ function (_React$Component) {
   }, {
     key: "renderTwitterSettingsPanel",
     value: function renderTwitterSettingsPanel() {
-      var classes = this.props.classes;
+      var _this$props = this.props,
+          classes = _this$props.classes,
+          socket = _this$props.socket;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ExpansionPanel__WEBPACK_IMPORTED_MODULE_3___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ExpansionPanelSummary__WEBPACK_IMPORTED_MODULE_4___default.a, {
         expandIcon: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_ExpandMore__WEBPACK_IMPORTED_MODULE_6___default.a, null)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_10___default.a, {
         className: classes.heading
-      }, "Twitter")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ExpansionPanelDetails__WEBPACK_IMPORTED_MODULE_5___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SettingsForm_twitter_TwitterForm_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], null)));
+      }, "Twitter")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ExpansionPanelDetails__WEBPACK_IMPORTED_MODULE_5___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SettingsForm_twitter_TwitterForm_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        socket: socket
+      })));
     }
   }, {
     key: "render",
@@ -98788,13 +98796,27 @@ function (_React$Component) {
     }
   }, {
     key: "onFiltersChange",
-    value: function onFiltersChange(value) {
-      this.props.updateFilters(value);
+    value: function onFiltersChange(filter) {
+      var filterString = '';
+      filter.forEach(function (item, i) {
+        filterString += "".concat(item.value);
+
+        if (i != filter.length - 1) {
+          filterString += ',';
+        }
+      });
+      this.props.socket.emit("updateSettings", {
+        filter: filterString
+      });
+      this.props.updateFilters(filter);
     }
   }, {
     key: "onLanguageChange",
-    value: function onLanguageChange(value) {
-      this.props.updateLanguage(value);
+    value: function onLanguageChange(language) {
+      this.props.socket.emit("updateSettings", {
+        lang: language.value
+      });
+      this.props.updateLanguage(language.value);
     }
   }, {
     key: "onMaxTweetsDisplayed",
@@ -99617,6 +99639,8 @@ function (_Component) {
 
       var socket = this.props.socket;
       socket.on('connect', function () {
+        console.log("Connected");
+
         _this2.setState({
           isConnecting: false
         });
@@ -99674,6 +99698,7 @@ function (_Component) {
   }, {
     key: "renderLoading",
     value: function renderLoading() {
+      //Update to the Material-ui one
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LoadingSpinner_LoadingSpinner_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null);
     }
   }, {

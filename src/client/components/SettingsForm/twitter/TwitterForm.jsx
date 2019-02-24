@@ -15,9 +15,9 @@ import SingleSelectField from '../../SingleSelectField/SingleSelectField.jsx'
 const mapStateToProps = state => {
     const twitter = state.twitterReducer
     return {
-        filters:  twitter.filters ? twitter.filters : [],
-        language:  twitter.language,
-        max:  twitter.max,
+        filters: twitter.filters ? twitter.filters : [],
+        language: twitter.language,
+        max: twitter.max,
         throttle: twitter.throttle
     }
 }
@@ -52,12 +52,25 @@ class TwitterForm extends React.Component {
             })
     }
 
-    onFiltersChange(value) {
-        this.props.updateFilters(value)
+    onFiltersChange(filter) {
+        let filterString = ''
+        filter.forEach((item, i) => {
+            filterString += `${item.value}`
+            if(i != filter.length - 1) {
+                filterString += ','
+            }
+        })
+        this.props.socket.emit("updateSettings", {
+            filter: filterString
+        }) 
+        this.props.updateFilters(filter)
     }
 
-    onLanguageChange(value) {
-        this.props.updateLanguage(value)
+    onLanguageChange(language) {
+        this.props.socket.emit("updateSettings", {
+            lang: language.value
+        })
+        this.props.updateLanguage(language.value)
     }
 
     onMaxTweetsDisplayed(value) {
@@ -139,4 +152,4 @@ class TwitterForm extends React.Component {
     }
 }
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(TwitterForm))
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(TwitterForm)) 

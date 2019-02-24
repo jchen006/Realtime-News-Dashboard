@@ -86,8 +86,6 @@ class Stream extends Component {
 
 
     render() {
-        console.log(this.state.isConnecting)
-        console.log(this.state.tweet.length)
         return (
             <div>
                 { !this.state.isConnecting && this.state.tweets.length > 0 ? 
