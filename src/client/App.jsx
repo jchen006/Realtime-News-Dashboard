@@ -1,99 +1,76 @@
 import React, { Component } from 'react';
-import './app.css';
-import Stream from './TwitterFeed/Stream.jsx'
-// import GeoStreamComponent from './GeoStreamComponent.jsx'
-import io from 'socket.io-client'
-import Grid from '@material-ui/core/Grid'
 import PropTypes from 'prop-types'
+
+import SettingsDrawer from './components/SettingsDrawer/SettingsDrawer.jsx'
+import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button';
+import TopBar from './components/TopBar/TopBar.jsx'
 import { withStyles } from '@material-ui/core/styles'
+
+import NewsFeed from './components/NewsFeed/NewsFeed.jsx'
+import Stream from './components/TwitterFeed/Stream.jsx'
+import io from 'socket.io-client'
+
 import keydown from 'react-keydown'
-import SettingsModal from './SettingsModal/SettingsModal.jsx'
+
+import { connect } from 'react-redux';
+import { simpleAction } from './actions/SimpleAction'
+
+const mapStateToProps = state => ({
+  ...state
+})
+
+const mapDispatchToProps = dispatch => ({
+  simpleAction: () => dispatch(simpleAction())
+})
 
 class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      tweets: [],
-      maxTweets: 5,
-      filters: [],
-      displayModal: false,
-      isConnecting: true
+    this.state = 
+    {
+      displaySettings: false
     }
-    // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
-    // this.onUpdateFilter = this.onUpdateFilter.bind(this)
-    // this.onUpdateMaxTweets = this.onUpdateMaxTweets.bind(this)
-    // this.onShowModal = this.onShowModal.bind(this)
-    // this.onHideModal = this.onHideModal.bind(this)
-  }
-
-  @keydown('shift+up')
-  openModal() {
-    console.log("works");
-    this.setState({
-      displayModal: !this.state.displayModal
-    })
-  }
-
-  onHideModal() {
-    this.setState({
-      displayModal: false
-    })
-  }
-
-
-  onUpdateFiter(filters) {
-    this.socket.emit('filter_update', {
-      filters
-    })
-  }
-
-  onUpdateLanguage(lang) {
-    this.socket.emit('lang_update', {
-      lang
-    })
-  }
-
-  onUpdateMaxTweets(num) {
-    this.setState({
-        maxTweets: num
-    })
-  }
-
-  componentDidMount() {
+    this.handleOnDrawerOpen = this.handleOnDrawerOpen.bind(this)
+    this.simpleAction = this.simpleAction.bind(this)
+    this.filter = {track: "NBA"}
     var endpoint = 'localhost:8080'
     this.socket = io(endpoint)
+  }
 
-    this.socket.on('connect', () => {
-        this.setState( { isConnecting: false } )
+  handleOnDrawerOpen() {
+    this.setState({
+      displaySettings: !this.state.displaySettings
     })
+  }
 
-    this.socket.on('tweet', (data) => {
-        console.log(data);
-        if(this.state.tweets.length == this.state.maxTweets) {
-            var newTweetsArray = this.state.tweets.slice()
-            newTweetsArray.shift()
-            newTweetsArray.push(data)
-            this.setState( { tweets: newTweetsArray } )
-        } else if(this.state.tweets.length < this.state.maxTweets) {
-            var newTweetsArray = this.state.tweets.slice()
-            newTweetsArray.push(data)
-            this.setState( { tweets: newTweetsArray } )
-        }
-    })
+  simpleAction = (event) => {
+    this.props.simpleAction();
   }
 
   render() {
     const { classes } = this.props
-    const { tweets } = this.state
+    const { displaySettings } = this.state
     return (
       <div className={classes.root}>
+        <TopBar onClick={this.handleOnDrawerOpen}/>
+        {/* <Button 
+          variant="contained" onClick={this.simpleAction}>
+          Test
+        </Button> */}
         <Grid container spacing={24}>
           <Grid item xs={3}>
-            <Stream tweets={tweets}/>
+            <Stream socket={this.socket}/>
+          </Grid>
+          <Grid item xs={6}>
+            {/* <NewsFeed/> */}
           </Grid>
         </Grid>
-        <SettingsModal open={this.state.displayModal}/>
+        <SettingsDrawer 
+          displaySettings={displaySettings} 
+          socket={this.socket}
+        />
       </div>
     );
   }
@@ -109,4 +86,4 @@ App.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(App))

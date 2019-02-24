@@ -75,4 +75,4 @@ typings/
 #DS_Store
 .DS_Store
 
-src/server/config.js
+src/config/tokens.js

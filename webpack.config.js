@@ -1,46 +1,23 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-
-const outputDirectory = 'dist';
-console.log(path.join(__dirname, outputDirectory))
 
 module.exports = {
   entry: './src/client/index.js',
   output: {
-    path: path.join(__dirname, outputDirectory),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'src/dist'),
+    filename: 'bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|server)/,
         use: {
           loader: 'babel-loader'
         }
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=100000'
       }
     ]
   },
-  devServer: {
-    port: 3000,
-    open: true,
-    proxy: {
-      '/api': 'http://localhost:8080'
-    }
-  },
-  plugins: [
-    new CleanWebpackPlugin([outputDirectory]),
-    new HtmlWebpackPlugin({
-      template: './public/index.html'
-    })
-  ]
+  mode: 'development',
+  devtool: 'source-map'
 };
+//Add an alias for actions, copmonents, reducers, utils, and constants, config
