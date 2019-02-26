@@ -4,12 +4,13 @@ import { geoMercator, geoPath } from "d3-geo"
 import { feature } from "topojson-client"
 import ReactLoading from 'react-loading'
 
-class GeoStreamComponent {
+// https://medium.com/@zimrick/how-to-create-pure-react-svg-maps-with-topojson-and-d3-geo-e4a6b6848a98
+class GeoStreamComponent extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            worldData = [],
+            worldData: [],
             error: false
         }
     }
@@ -74,7 +75,7 @@ class GeoStreamComponent {
     }
 
     render() {
-        if(error) {
+        if(this.state.error) {
             return (
                 <div>
                     { this.renderLoading() }
