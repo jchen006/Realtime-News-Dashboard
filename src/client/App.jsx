@@ -9,7 +9,6 @@ import { withStyles } from '@material-ui/core/styles'
 
 import NewsFeed from './components/NewsFeed/NewsFeed.jsx'
 import Stream from './components/TwitterFeed/Stream.jsx'
-import GeoStreamComponent from './components/GeoStream/GeoStreamComponent.jsx'
 import io from 'socket.io-client'
 
 import keydown from 'react-keydown'
@@ -62,11 +61,10 @@ class App extends Component {
         </Button> */}
         <Grid container spacing={24}>
           <Grid item xs={3}>
-            {/* <Stream socket={this.socket}/> */}
+            <Stream socket={this.socket}/>
           </Grid>
           <Grid item xs={6}>
             {/* <NewsFeed/> */}
-            <GeoStreamComponent/>
           </Grid>
         </Grid>
         <SettingsDrawer 

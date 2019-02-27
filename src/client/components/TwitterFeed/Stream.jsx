@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TweetCard from './TweetCard.jsx'
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.jsx'
+import GeoStreamComponent from '../GeoStream/GeoStreamComponent.jsx'
 
 import { connect } from 'react-redux';
 import * as _ from 'underscore'
@@ -33,7 +34,9 @@ class Stream extends Component {
         })
     
         socket.on('tweet', (data) => {
-            console.log(data)
+            // console.log(data)
+            // console.log(data.coordinates)
+            // console.log(data.geo)
             if(this.state.tweets.length == this.props.max) {
                 var newTweetsArray = this.state.tweets.slice()
                 newTweetsArray.shift()
@@ -78,9 +81,14 @@ class Stream extends Component {
     }
 
     renderLoading() {
-        //Update to the Material-ui one
         return (
             <LoadingSpinner/>
+        )
+    }
+
+    renderGeostream() {
+        return (
+            <GeoStreamComponent tweets={this.state.tweets}/>
         )
     }
 
@@ -88,8 +96,8 @@ class Stream extends Component {
     render() {
         return (
             <div>
-                { !this.state.isConnecting && this.state.tweets.length > 0 ? 
-                    this.renderTweetDisplay() : this.renderLoading() }
+                { !this.state.isConnecting ? this.renderTweetDisplay() : this.renderLoading() }
+                { this.renderGeostream() }
             </div>
         )
     }

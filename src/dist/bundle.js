@@ -105678,12 +105678,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _components_NewsFeed_NewsFeed_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/NewsFeed/NewsFeed.jsx */ "./src/client/components/NewsFeed/NewsFeed.jsx");
 /* harmony import */ var _components_TwitterFeed_Stream_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/TwitterFeed/Stream.jsx */ "./src/client/components/TwitterFeed/Stream.jsx");
-/* harmony import */ var _components_GeoStream_GeoStreamComponent_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/GeoStream/GeoStreamComponent.jsx */ "./src/client/components/GeoStream/GeoStreamComponent.jsx");
-/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
-/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var react_keydown__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-keydown */ "./node_modules/react-keydown/es/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_SimpleAction__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./actions/SimpleAction */ "./src/client/actions/SimpleAction.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_keydown__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-keydown */ "./node_modules/react-keydown/es/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_SimpleAction__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./actions/SimpleAction */ "./src/client/actions/SimpleAction.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -105720,7 +105719,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 var mapStateToProps = function mapStateToProps(state) {
   return _objectSpread({}, state);
 };
@@ -105728,7 +105726,7 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     simpleAction: function simpleAction() {
-      return dispatch(Object(_actions_SimpleAction__WEBPACK_IMPORTED_MODULE_13__["simpleAction"])());
+      return dispatch(Object(_actions_SimpleAction__WEBPACK_IMPORTED_MODULE_12__["simpleAction"])());
     }
   };
 };
@@ -105758,7 +105756,7 @@ function (_Component) {
       track: "NBA"
     };
     var endpoint = 'localhost:8080';
-    _this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_10___default()(endpoint);
+    _this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_9___default()(endpoint);
     return _this;
   }
 
@@ -105784,10 +105782,12 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
         item: true,
         xs: 3
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TwitterFeed_Stream_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        socket: this.socket
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3___default.a, {
         item: true,
         xs: 6
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_GeoStream_GeoStreamComponent_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SettingsDrawer_SettingsDrawer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SettingsDrawer_SettingsDrawer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
         displaySettings: displaySettings,
         socket: this.socket
       }));
@@ -105808,7 +105808,7 @@ var styles = function styles(theme) {
 App.propTypes = {
   classes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired
 };
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_12__["connect"])(mapStateToProps, mapDispatchToProps)(Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["withStyles"])(styles)(App)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_11__["connect"])(mapStateToProps, mapDispatchToProps)(Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["withStyles"])(styles)(App)));
 
 /***/ }),
 
@@ -106056,7 +106056,128 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(GeoStreamComponent).call(this, props));
     _this.state = {
       worldData: [],
-      error: false
+      error: false,
+      cities: [{
+        name: "Tokyo",
+        coordinates: [139.6917, 35.6895],
+        population: 37843000
+      }, {
+        name: "Jakarta",
+        coordinates: [106.8650, -6.1751],
+        population: 30539000
+      }, {
+        name: "Delhi",
+        coordinates: [77.1025, 28.7041],
+        population: 24998000
+      }, {
+        name: "Manila",
+        coordinates: [120.9842, 14.5995],
+        population: 24123000
+      }, {
+        name: "Seoul",
+        coordinates: [126.9780, 37.5665],
+        population: 23480000
+      }, {
+        name: "Shanghai",
+        coordinates: [121.4737, 31.2304],
+        population: 23416000
+      }, {
+        name: "Karachi",
+        coordinates: [67.0099, 24.8615],
+        population: 22123000
+      }, {
+        name: "Beijing",
+        coordinates: [116.4074, 39.9042],
+        population: 21009000
+      }, {
+        name: "New York",
+        coordinates: [-74.0059, 40.7128],
+        population: 20630000
+      }, {
+        name: "Guangzhou",
+        coordinates: [113.2644, 23.1291],
+        population: 20597000
+      }, {
+        name: "Sao Paulo",
+        coordinates: [-46.6333, -23.5505],
+        population: 20365000
+      }, {
+        name: "Mexico City",
+        coordinates: [-99.1332, 19.4326],
+        population: 20063000
+      }, {
+        name: "Mumbai",
+        coordinates: [72.8777, 19.0760],
+        population: 17712000
+      }, {
+        name: "Osaka",
+        coordinates: [135.5022, 34.6937],
+        population: 17444000
+      }, {
+        name: "Moscow",
+        coordinates: [37.6173, 55.7558],
+        population: 16170000
+      }, {
+        name: "Dhaka",
+        coordinates: [90.4125, 23.8103],
+        population: 15669000
+      }, {
+        name: "Greater Cairo",
+        coordinates: [31.2357, 30.0444],
+        population: 15600000
+      }, {
+        name: "Los Angeles",
+        coordinates: [-118.2437, 34.0522],
+        population: 15058000
+      }, {
+        name: "Bangkok",
+        coordinates: [100.5018, 13.7563],
+        population: 14998000
+      }, {
+        name: "Kolkata",
+        coordinates: [88.3639, 22.5726],
+        population: 14667000
+      }, {
+        name: "Buenos Aires",
+        coordinates: [-58.3816, -34.6037],
+        population: 14122000
+      }, {
+        name: "Tehran",
+        coordinates: [51.3890, 35.6892],
+        population: 13532000
+      }, {
+        name: "Istanbul",
+        coordinates: [28.9784, 41.0082],
+        population: 13287000
+      }, {
+        name: "Lagos",
+        coordinates: [3.3792, 6.5244],
+        population: 13123000
+      }, {
+        name: "Shenzhen",
+        coordinates: [114.0579, 22.5431],
+        population: 12084000
+      }, {
+        name: "Rio de Janeiro",
+        coordinates: [-43.1729, -22.9068],
+        population: 11727000
+      }, {
+        name: "Kinshasa",
+        coordinates: [15.2663, -4.4419],
+        population: 11587000
+      }, {
+        name: "Tianjin",
+        coordinates: [117.3616, 39.3434],
+        population: 10920000
+      }, {
+        name: "Paris",
+        coordinates: [2.3522, 48.8566],
+        population: 10858000
+      }, {
+        name: "Lima",
+        coordinates: [-77.0428, -12.0464],
+        population: 10750000
+      }]
     };
     return _this;
   }
@@ -106096,9 +106217,29 @@ function (_Component) {
       });
     }
   }, {
+    key: "renderMarkers",
+    value: function renderMarkers() {
+      var _this3 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+        className: "markers"
+      }, this.state.cities.map(function (city, i) {
+        console.log(city);
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("circle", {
+          key: "marker-".concat(i),
+          cx: _this3.projection()(city.coordinates)[0],
+          cy: _this3.projection()(city.coordinates)[1],
+          r: city.population / 3000000,
+          fill: "#E91E63",
+          stroke: "#FFFFFF",
+          className: "marker"
+        });
+      }));
+    }
+  }, {
     key: "renderMap",
     value: function renderMap() {
-      var _this3 = this;
+      var _this4 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
         width: 800,
@@ -106109,21 +106250,13 @@ function (_Component) {
       }, this.state.worldData.map(function (d, i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           key: "path-".concat(i),
-          d: Object(d3_geo__WEBPACK_IMPORTED_MODULE_2__["geoPath"])().projection(_this3.projection())(d),
+          d: Object(d3_geo__WEBPACK_IMPORTED_MODULE_2__["geoPath"])().projection(_this4.projection())(d),
           className: "country",
-          fill: "rgba(38,50,56,".concat(1 / _this3.state.worldData.length * i, ")"),
+          fill: "rgba(38,50,56,".concat(1 / _this4.state.worldData.length * i, ")"),
           stroke: "#FFFFFF",
           strokeWidth: 0.5
         });
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-        className: "markers"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("circle", {
-        cx: this.projection()([8, 48])[0],
-        cy: this.projection()([8, 48])[1],
-        r: 10,
-        fill: "#E91E63",
-        className: "marker"
-      })));
+      })), this.renderMarkers());
     }
   }, {
     key: "render",
@@ -108706,9 +108839,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _TweetCard_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TweetCard.jsx */ "./src/client/components/TwitterFeed/TweetCard.jsx");
 /* harmony import */ var _LoadingSpinner_LoadingSpinner_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../LoadingSpinner/LoadingSpinner.jsx */ "./src/client/components/LoadingSpinner/LoadingSpinner.jsx");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
-/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(underscore__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _GeoStream_GeoStreamComponent_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../GeoStream/GeoStreamComponent.jsx */ "./src/client/components/GeoStream/GeoStreamComponent.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(underscore__WEBPACK_IMPORTED_MODULE_6__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -108726,6 +108860,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -108776,8 +108911,9 @@ function (_Component) {
         });
       });
       socket.on('tweet', function (data) {
-        console.log(data);
-
+        // console.log(data)
+        // console.log(data.coordinates)
+        // console.log(data.geo)
         if (_this2.state.tweets.length == _this2.props.max) {
           var newTweetsArray = _this2.state.tweets.slice();
 
@@ -108801,7 +108937,7 @@ function (_Component) {
     value: function componentDidUpdate(prevProps) {
       var socket = this.props.socket;
 
-      if (prevProps.language !== this.props.language || underscore__WEBPACK_IMPORTED_MODULE_5__["isEqual"](prevProps.filters, this.props.filters)) {
+      if (prevProps.language !== this.props.language || underscore__WEBPACK_IMPORTED_MODULE_6__["isEqual"](prevProps.filters, this.props.filters)) {
         socket.emit('settingsUpdates', {
           filters: this.props.filters,
           language: this.props.language
@@ -108828,20 +108964,26 @@ function (_Component) {
   }, {
     key: "renderLoading",
     value: function renderLoading() {
-      //Update to the Material-ui one
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LoadingSpinner_LoadingSpinner_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+    }
+  }, {
+    key: "renderGeostream",
+    value: function renderGeostream() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeoStream_GeoStreamComponent_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        tweets: this.state.tweets
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, !this.state.isConnecting && this.state.tweets.length > 0 ? this.renderTweetDisplay() : this.renderLoading());
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, !this.state.isConnecting ? this.renderTweetDisplay() : this.renderLoading(), this.renderGeostream());
     }
   }]);
 
   return Stream;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps)(Stream));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps)(Stream));
 
 /***/ }),
 

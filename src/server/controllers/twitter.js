@@ -5,7 +5,7 @@ const twitterClient = new Twitter(config.twitter)
 
 var _stream = {}
 let filter = {
-    track: 'NBA'
+    track: 'trump'
 }
 let language = 'en'
 
