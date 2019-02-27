@@ -25,7 +25,7 @@ class GeoStreamComponent extends Component {
         fetch("/110m.json")
         .then(response => {
             if(response.status !== 200) {
-                this.state({
+                this.setState({
                     error: true
                 })
                 return 

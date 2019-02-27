@@ -106041,12 +106041,12 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
+ // https://medium.com/@zimrick/how-to-create-pure-react-svg-maps-with-topojson-and-d3-geo-e4a6b6848a98
 
 var GeoStreamComponent =
 /*#__PURE__*/
-function (_React$Component) {
-  _inherits(GeoStreamComponent, _React$Component);
+function (_Component) {
+  _inherits(GeoStreamComponent, _Component);
 
   function GeoStreamComponent(props) {
     var _this;
@@ -106073,7 +106073,7 @@ function (_React$Component) {
 
       fetch("/110m.json").then(function (response) {
         if (response.status !== 200) {
-          _this2.state({
+          _this2.setState({
             error: true
           });
 
@@ -106137,7 +106137,7 @@ function (_React$Component) {
   }]);
 
   return GeoStreamComponent;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (GeoStreamComponent);
 
