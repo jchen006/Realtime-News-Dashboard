@@ -5,11 +5,12 @@
   "main": "src/server/index.js",
   "scripts": {
     "start": "node src/server/index.js",
-    "start:desktop": "electron src/dist/app.js",
+    "start:electron:dev": "cross-env NODE_ENV=development electron src/dist/app.js",
     "build": "webpack --mode production",
     "client": "webpack --watch",
     "server": "nodemon src/server/index.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "desktop:dev": "concurrently \"npm run server\" \"npm run client\" \"npm run start:electron:dev\"",
+    "web:dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "license": "ISC",
   "dependencies": {
@@ -18,7 +19,9 @@
     "@material-ui/icons": "^3.0.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
+    "cross-env": "^5.2.0",
     "d3-geo": "^1.11.1",
+    "electron-devtools-installer": "^2.2.4",
     "express": "^4.16.3",
     "iso-3166-1": "^1.1.0",
     "iso-639-1": "^2.0.3",
