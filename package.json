@@ -5,6 +5,7 @@
   "main": "src/server/index.js",
   "scripts": {
     "start": "node src/server/index.js",
+    "start:desktop": "electron src/dist/app.js",
     "build": "webpack --mode production",
     "client": "webpack --watch",
     "server": "nodemon src/server/index.js",
@@ -52,6 +53,7 @@
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^4.0.0",
     "css-loader": "^1.0.0",
+    "electron": "^5.0.6",
     "eslint": "^5.0.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.11.0",
