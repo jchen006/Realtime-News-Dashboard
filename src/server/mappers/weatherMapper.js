@@ -123,4 +123,6 @@ const weatherMapper = ({
     }
 });
 
-module.exports = weatherMapper;
+module.exports = {
+    weatherMapper
+};
