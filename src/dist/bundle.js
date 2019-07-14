@@ -96766,7 +96766,7 @@ function (_Component) {
     _this.filter = {
       track: "NBA"
     };
-    var endpoint = 'localhost:8080';
+    var endpoint = 'https://localhost:8080';
     _this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_9___default()(endpoint);
     return _this;
   }

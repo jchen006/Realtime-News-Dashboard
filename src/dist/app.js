@@ -8,7 +8,7 @@ let createWindow = () => {
         height: 800
     });
     mainWindow.setMenu(null);
-    mainWindow.setResizable(false);
+    mainWindow.setResizable(true);
 
     mainWindow.loadFile('./index.html');
 
