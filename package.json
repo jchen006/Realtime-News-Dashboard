@@ -10,7 +10,8 @@
     "client": "webpack --watch",
     "server": "nodemon src/server/index.js",
     "desktop:dev": "concurrently \"npm run server\" \"npm run client\" \"npm run start:electron:dev\"",
-    "web:dev": "concurrently \"npm run server\" \"npm run client\""
+    "web:dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test:unit": "mocha src/**/__tests__/*.test.js"
   },
   "license": "ISC",
   "dependencies": {
@@ -64,6 +65,7 @@
     "eslint-plugin-react": "^7.7.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
+    "mocha": "^6.1.4",
     "nodemon": "^1.17.3",
     "style-loader": "^0.23.0",
     "url-loader": "^1.0.1",

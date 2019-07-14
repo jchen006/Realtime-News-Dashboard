@@ -24,45 +24,6 @@
 //         "visibility": 9.84,
 //         "ozone": 267.44
 //     },
-//     "minutely": {
-//         "summary": "Light rain stopping in 13 min., starting again 30 min. later.",
-//         "icon": "rain",
-//         "data": [{
-//             "time": 1509993240,
-//             "precipIntensity": 0.007,
-//             "precipIntensityError": 0.004,
-//             "precipProbability": 0.84,
-//             "precipType": "rain"
-//         },
-//       ...
-//       ]
-//     },
-//     "hourly": {
-//         "summary": "Rain starting later this afternoon, continuing until this evening.",
-//         "icon": "rain",
-//         "data": [{
-//             "time": 1509991200,
-//             "summary": "Mostly Cloudy",
-//             "icon": "partly-cloudy-day",
-//             "precipIntensity": 0.0007,
-//             "precipProbability": 0.1,
-//             "precipType": "rain",
-//             "temperature": 65.76,
-//             "apparentTemperature": 66.01,
-//             "dewPoint": 60.99,
-//             "humidity": 0.85,
-//             "pressure": 1010.57,
-//             "windSpeed": 4.23,
-//             "windGust": 9.52,
-//             "windBearing": 230,
-//             "cloudCover": 0.62,
-//             "uvIndex": 1,
-//             "visibility": 9.32,
-//             "ozone": 268.95
-//         },
-//       ...
-//       ]
-//     },
 //    "daily": {
 //         "summary": "Mixed precipitation throughout the week, with temperatures falling to 39°F on Saturday.",
 //         "icon": "rain",
@@ -129,13 +90,37 @@
 
 
 const weatherMapper = ({
-
+    latitude,
+    longitude,
+    timezone,
+    currently: {
+        time,
+        summary,
+        icon,
+        precipIntensity,
+        precipIntensityError,
+        precipProbability,
+        precipType,
+        temperature,
+        humidity,
+        windSpeed
+    }
 }) => ({
-
+    latitude,
+    longitude,
+    timezone,
+    currently: {
+        time,
+        summary,
+        icon,
+        precipIntensity,
+        precipIntensityError,
+        precipProbability,
+        precipType,
+        temperature,
+        humidity,
+        windSpeed
+    }
 });
-
-
-
-
 
 module.exports = weatherMapper;
