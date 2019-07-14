@@ -10,7 +10,6 @@ let filter = {
 let language = 'en'
 
 var initiateLiveStream = function(io, filter) {
-    console.log('initiating');
     twitterClient.stream('statuses/filter', filter, function(stream) {
         _stream = stream
         _stream.on('data', function(event) {
@@ -28,22 +27,11 @@ var initiateLiveStream = function(io, filter) {
 }
 
 let stream = function(server) {
+    console.log('Streaming......')
     let io = socket(server)
     io.on('connection', (client) => {
+        console.log('connection')
         initiateLiveStream(io, filter)
-        client.on('updateSettings', (data) => {
-            _stream.destroy()
-            if(data.filter) {
-                filter.track = data.filter
-            }
-        
-            if(data.lang) {
-                langauge = data.lang
-            }
-                
-            console.log("Updated filter: ", filter)
-            initiateLiveStream(io, filter)
-        })
     })
 }
 
