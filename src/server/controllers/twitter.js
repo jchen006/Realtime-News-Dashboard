@@ -13,8 +13,8 @@ var initiateLiveStream = function(io, filter) {
     twitterClient.stream('statuses/filter', filter, function(stream) {
         _stream = stream
         _stream.on('data', function(event) {
-            console.log('EVENT')
             if(event.lang == language) {
+                // Add a Twitter Mapper that does a sentiment analysis on it.
                 console.log(event && event.text)
                 io.emit('tweet', event)
             }
@@ -27,12 +27,11 @@ var initiateLiveStream = function(io, filter) {
 }
 
 let stream = function(server) {
-    console.log('Streaming......')
     let io = socket(server)
     io.on('connection', (client) => {
-        console.log('connection')
-        initiateLiveStream(io, filter)
-    })
+        console.log('Client and server are now connected');
+        initiateLiveStream(io, filter);
+    });
 }
 
 getLanguages = function(req, res) {
