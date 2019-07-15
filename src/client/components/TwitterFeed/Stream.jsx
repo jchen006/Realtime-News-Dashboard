@@ -30,6 +30,10 @@ class Stream extends Component {
         socket.on('connect', () => {
             console.log("Connected")
             this.setState( { isConnecting: false } )
+        });
+
+        socket.on('connect_error', (error) => {
+            console.log(error);
         })
     
         socket.on('tweet', (data) => {

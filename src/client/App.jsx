@@ -34,9 +34,9 @@ class App extends Component {
     }
     this.handleOnDrawerOpen = this.handleOnDrawerOpen.bind(this)
     this.simpleAction = this.simpleAction.bind(this)
-    this.filter = {track: "NBA"}
-    var endpoint = 'localhost:8080'
-    this.socket = io(endpoint)
+    this.filter = {track: "NBA"};
+    var endpoint = 'http://localhost:8080';
+    this.socket = io(endpoint, { reconnect: true });
   }
 
   handleOnDrawerOpen() {

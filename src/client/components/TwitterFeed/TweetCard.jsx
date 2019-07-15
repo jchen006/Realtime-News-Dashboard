@@ -31,6 +31,8 @@ const styles = theme => ({
     }
 });
 
+//Refactor 
+
 class TweetCard extends React.Component {
     /**
      * 

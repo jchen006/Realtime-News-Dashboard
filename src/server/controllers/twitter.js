@@ -14,6 +14,7 @@ var initiateLiveStream = function(io, filter) {
         _stream = stream
         _stream.on('data', function(event) {
             if(event.lang == language) {
+                // Add a Twitter Mapper that does a sentiment analysis on it.
                 console.log(event && event.text)
                 io.emit('tweet', event)
             }
@@ -28,21 +29,9 @@ var initiateLiveStream = function(io, filter) {
 let stream = function(server) {
     let io = socket(server)
     io.on('connection', (client) => {
-        initiateLiveStream(io, filter)
-        client.on('updateSettings', (data) => {
-            _stream.destroy()
-            if(data.filter) {
-                filter.track = data.filter
-            }
-        
-            if(data.lang) {
-                langauge = data.lang
-            }
-                
-            console.log("Updated filter: ", filter)
-            initiateLiveStream(io, filter)
-        })
-    })
+        console.log('Client and server are now connected');
+        initiateLiveStream(io, filter);
+    });
 }
 
 getLanguages = function(req, res) {
