@@ -15,7 +15,7 @@ var initiateLiveStream = function(io, filter) {
         _stream.on('data', function(event) {
             if(event.lang == language) {
                 // Add a Twitter Mapper that does a sentiment analysis on it.
-                // console.log(event && event.text)
+                console.log(event && event.text)
                 io.emit('tweet', event)
             }
         });
@@ -30,26 +30,25 @@ var initiateLiveStream = function(io, filter) {
 let stream = function(server) {
     let io = socket(server)
     io.on('connection', (client) => {
+        
+        client.on('filter:update', (filters) => {
+            console.log(`Client updated the filter ${filters}`);
+            _stream.destroy();
+        });
+
+        client.on('language:update', (language) => {
+            console.log(`Client update the language to ${language}`);
+            _stream.destroy();
+        });
+
+        client.on('locations:update', (location) => {
+            console.log('Client update the location');
+            _stream.destroy();
+        })
+
         console.log('Client and server are now connected');
         initiateLiveStream(io, filter);
-    });
 
-    // Needs to be a comma separated list
-    io.on('filter:update', (filters) => {
-        console.log(`Client updated the filter ${filters}`);
-        io.emit('ACK');
-        _stream.destroy();
-    });
-
-    io.on('language:update', (language) => {
-        console.log(`Client update the language to ${language}`);
-        _stream.destroy();
-    })
-
-    // Locations need to be a comma separated coordinates
-    io.on('locations:update', (location) => {
-        console.log('Client update the location');
-        _stream.destroy();
     });
 }
 
