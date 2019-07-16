@@ -98809,7 +98809,7 @@ function (_React$Component) {
       console.log(this.props.socket);
       var filtersString = Object(_utils_string__WEBPACK_IMPORTED_MODULE_2__["convertArrayToString"])(filter);
       console.log(filtersString);
-      this.props.socket.emit("filter:update", "test", function (response) {
+      this.props.socket.emit("filter:update", filtersString, function (response) {
         console.log(response);
       });
       this.props.updateFilters(filter);

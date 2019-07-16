@@ -59,7 +59,7 @@ class TwitterForm extends React.Component {
         console.log(this.props.socket)
         let filtersString = convertArrayToString(filter);
         console.log(filtersString);
-        this.props.socket.emit("filter:update", "test", (response) => {
+        this.props.socket.emit("filter:update", filtersString, (response) => {
             console.log(response);
         });
         this.props.updateFilters(filter)

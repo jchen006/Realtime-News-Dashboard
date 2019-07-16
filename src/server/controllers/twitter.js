@@ -34,6 +34,10 @@ let stream = function(server) {
         client.on('filter:update', (filters) => {
             console.log(`Client updated the filter ${filters}`);
             _stream.destroy();
+            let filterProps = {
+                track: filters
+            }
+            initiateLiveStream(io, filterProps);
         });
 
         client.on('language:update', (language) => {
