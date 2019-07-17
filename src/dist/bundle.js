@@ -98805,13 +98805,19 @@ function (_React$Component) {
   }, {
     key: "onFiltersChange",
     value: function onFiltersChange(filter) {
-      console.log(filter);
-      console.log(this.props.socket);
-      var filtersString = Object(_utils_string__WEBPACK_IMPORTED_MODULE_2__["convertArrayToString"])(filter);
-      console.log(filtersString);
-      this.props.socket.emit("filter:update", filtersString, function (response) {
-        console.log(response);
-      });
+      if (filter.length) {
+        var filtersString = Object(_utils_string__WEBPACK_IMPORTED_MODULE_2__["convertArrayToString"])(filter);
+        console.log('filter:', filtersString);
+        this.props.socket.emit("filter:update", filtersString, function (response) {
+          var ack = response.ack,
+              message = response.message;
+
+          if (ack) {
+            console.log(message);
+          }
+        });
+      }
+
       this.props.updateFilters(filter);
     }
   }, {
