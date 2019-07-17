@@ -1,4 +1,4 @@
-export default(state = {}, action) => {
+export default(state = {filters: [{label: 'NBA', value: 'NBA'}]}, action) => {
     let twitter
     switch(action.type) {
         case 'UPDATE_FILTERS':

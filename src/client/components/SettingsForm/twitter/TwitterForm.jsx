@@ -5,6 +5,7 @@ import {
     updateMaxDisplay,
     updateThrottle
 } from '../../../actions/twitterAction'
+import { convertArrayToString } from '../../../utils/string';
 import { withStyles } from '@material-ui/core/styles'
 import styles from './styles'
 import { connect } from 'react-redux';
@@ -43,7 +44,8 @@ class TwitterForm extends React.Component {
     }
 
     componentDidMount() {
-        fetch('/twitter/languages')
+        //Update to be based on environment
+        fetch('http://localhost:8080/twitter/languages')
             .then(response => response.json())
             .then(data => {
                 this.setState({
@@ -53,21 +55,21 @@ class TwitterForm extends React.Component {
     }
 
     onFiltersChange(filter) {
-        let filterString = ''
-        filter.forEach((item, i) => {
-            filterString += `${item.value}`
-            if(i != filter.length - 1) {
-                filterString += ','
-            }
-        })
-        this.props.socket.emit("updateSettings", {
-            filter: filterString
-        }) 
+        if(filter.length) {
+            let filtersString = convertArrayToString(filter);
+            console.log('filter:', filtersString);
+            this.props.socket.emit("filter:update", filtersString, (response) => {
+                const { ack, message } = response;
+                if(ack) {
+                    console.log(message);
+                }
+            });
+        }
         this.props.updateFilters(filter)
     }
 
     onLanguageChange(language) {
-        this.props.socket.emit("updateSettings", {
+        this.props.socket.emit("language:update", {
             lang: language.value
         })
         this.props.updateLanguage(language.value)

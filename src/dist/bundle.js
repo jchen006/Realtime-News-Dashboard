@@ -96763,11 +96763,15 @@ function (_Component) {
     };
     _this.handleOnDrawerOpen = _this.handleOnDrawerOpen.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.simpleAction = _this.simpleAction.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.filter = {
-      track: "NBA"
-    };
-    var endpoint = 'https://localhost:8080';
-    _this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_9___default()(endpoint);
+    var endpoint = 'http://localhost:8080';
+    _this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_9___default()(endpoint, {
+      reconnect: true
+    });
+
+    _this.socket.on('error', function (err) {
+      console.log(err);
+    });
+
     return _this;
   }
 
@@ -97282,6 +97286,7 @@ function (_React$Component) {
         case 'Enter':
           var newOptionObj = this.createOption(inputValue);
           var updatedQueries = [].concat(_toConsumableArray(this.props.values), [newOptionObj]);
+          console.log(updatedQueries);
           this.props.onChange(updatedQueries);
           this.setState({
             inputValue: ''
@@ -98699,13 +98704,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions_twitterAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/twitterAction */ "./src/client/actions/twitterAction.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/styles/index.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles */ "./src/client/components/SettingsForm/twitter/styles.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../SingleEntryField/SingleEntryField.jsx */ "./src/client/components/SingleEntryField/SingleEntryField.jsx");
-/* harmony import */ var _MultiEntryField_MultiEntryField_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../MultiEntryField/MultiEntryField.jsx */ "./src/client/components/MultiEntryField/MultiEntryField.jsx");
-/* harmony import */ var _SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../SingleSelectField/SingleSelectField.jsx */ "./src/client/components/SingleSelectField/SingleSelectField.jsx");
+/* harmony import */ var _utils_string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../utils/string */ "./src/client/utils/string.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/styles/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles */ "./src/client/components/SettingsForm/twitter/styles.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../SingleEntryField/SingleEntryField.jsx */ "./src/client/components/SingleEntryField/SingleEntryField.jsx");
+/* harmony import */ var _MultiEntryField_MultiEntryField_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../MultiEntryField/MultiEntryField.jsx */ "./src/client/components/MultiEntryField/MultiEntryField.jsx");
+/* harmony import */ var _SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../SingleSelectField/SingleSelectField.jsx */ "./src/client/components/SingleSelectField/SingleSelectField.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -98723,6 +98729,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -98786,7 +98793,8 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/twitter/languages').then(function (response) {
+      //Update to be based on environment
+      fetch('http://localhost:8080/twitter/languages').then(function (response) {
         return response.json();
       }).then(function (data) {
         _this2.setState({
@@ -98797,23 +98805,25 @@ function (_React$Component) {
   }, {
     key: "onFiltersChange",
     value: function onFiltersChange(filter) {
-      var filterString = '';
-      filter.forEach(function (item, i) {
-        filterString += "".concat(item.value);
+      if (filter.length) {
+        var filtersString = Object(_utils_string__WEBPACK_IMPORTED_MODULE_2__["convertArrayToString"])(filter);
+        console.log('filter:', filtersString);
+        this.props.socket.emit("filter:update", filtersString, function (response) {
+          var ack = response.ack,
+              message = response.message;
 
-        if (i != filter.length - 1) {
-          filterString += ',';
-        }
-      });
-      this.props.socket.emit("updateSettings", {
-        filter: filterString
-      });
+          if (ack) {
+            console.log(message);
+          }
+        });
+      }
+
       this.props.updateFilters(filter);
     }
   }, {
     key: "onLanguageChange",
     value: function onLanguageChange(language) {
-      this.props.socket.emit("updateSettings", {
+      this.props.socket.emit("language:update", {
         lang: language.value
       });
       this.props.updateLanguage(language.value);
@@ -98831,7 +98841,7 @@ function (_React$Component) {
   }, {
     key: "renderMaxTweetsField",
     value: function renderMaxTweetsField() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
         id: 'twitter-max-tweets-field',
         label: 'Max Tweets to Display',
         value: this.props.max,
@@ -98847,7 +98857,7 @@ function (_React$Component) {
           value: l.code
         };
       }) : [];
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleSelectField_SingleSelectField_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
         options: modifiedLanguages,
         placeholder: 'Select languages',
         onChange: this.onLanguageChange,
@@ -98858,7 +98868,7 @@ function (_React$Component) {
   }, {
     key: "renderThrottleField",
     value: function renderThrottleField() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SingleEntryField_SingleEntryField_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
         id: 'twitter-throttle-field',
         label: 'Throttle',
         value: this.props.throttle,
@@ -98868,7 +98878,7 @@ function (_React$Component) {
   }, {
     key: "renderFiltersField",
     value: function renderFiltersField() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MultiEntryField_MultiEntryField_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MultiEntryField_MultiEntryField_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
         onChange: this.onFiltersChange,
         placeholder: 'Enter filters',
         values: this.props.filters,
@@ -98892,7 +98902,7 @@ function (_React$Component) {
   return TwitterForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["withStyles"])(_styles__WEBPACK_IMPORTED_MODULE_3__["default"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps)(TwitterForm)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["withStyles"])(_styles__WEBPACK_IMPORTED_MODULE_4__["default"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps, mapDispatchToProps)(TwitterForm)));
 
 /***/ }),
 
@@ -99645,9 +99655,11 @@ function (_Component) {
           isConnecting: false
         });
       });
+      socket.on('connect_error', function (error) {
+        console.log(error);
+      });
       socket.on('tweet', function (data) {
-        console.log(data);
-
+        // console.log(data)
         if (_this2.state.tweets.length == _this2.props.max) {
           var newTweetsArray = _this2.state.tweets.slice();
 
@@ -100033,7 +100045,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    filters: [{
+      label: 'NBA',
+      value: 'NBA'
+    }]
+  };
   var action = arguments.length > 1 ? arguments[1] : undefined;
   var twitter;
 
@@ -100157,6 +100174,30 @@ var topHeadlinesUrl = function topHeadlinesUrl(country, category, sources, query
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (topHeadlinesUrl);
+
+/***/ }),
+
+/***/ "./src/client/utils/string.js":
+/*!************************************!*\
+  !*** ./src/client/utils/string.js ***!
+  \************************************/
+/*! exports provided: convertArrayToString */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "convertArrayToString", function() { return convertArrayToString; });
+var convertArrayToString = function convertArrayToString(list) {
+  var newString = '';
+  list.forEach(function (item, i) {
+    newString += "".concat(item.value);
+
+    if (i != list.length - 1) {
+      newString += ',';
+    }
+  });
+  return newString;
+};
 
 /***/ }),
 

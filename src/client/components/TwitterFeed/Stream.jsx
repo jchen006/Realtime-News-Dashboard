@@ -28,7 +28,8 @@ class Stream extends Component {
     componentDidMount() {
         const { socket } = this.props
         socket.on('connect', () => {
-            console.log("Connected")
+            console.log("Connected");
+
             this.setState( { isConnecting: false } )
         });
 
@@ -37,7 +38,7 @@ class Stream extends Component {
         })
     
         socket.on('tweet', (data) => {
-            console.log(data)
+            // console.log(data)
             if(this.state.tweets.length == this.props.max) {
                 var newTweetsArray = this.state.tweets.slice()
                 newTweetsArray.shift()

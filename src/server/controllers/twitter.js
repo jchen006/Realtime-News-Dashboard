@@ -21,6 +21,7 @@ var initiateLiveStream = function(io, filter) {
         });
     
         _stream.on('error', function(error) {
+            // Maybe fire back specific error codes
             console.log(error)
         });
     });
@@ -29,8 +30,38 @@ var initiateLiveStream = function(io, filter) {
 let stream = function(server) {
     let io = socket(server)
     io.on('connection', (client) => {
+        
+        client.on('filter:update', (filters, callback) => {
+            _stream.destroy();
+            callback({
+                ack: true,
+                message: `Successfully updated the filters to ${filters}`
+            })
+            filter.track = filters;
+            initiateLiveStream(io, filter);
+        });
+
+        client.on('language:update', (language, callback) => {
+            console.log(`Client update the language to ${language}`);
+            _stream.destroy();
+            callback({
+                ack: true,
+                message: `Successfully updated the language to ${language}`
+            });
+            filter.language = language;
+            initiateLiveStream(io, filter);
+        });
+
+        client.on('locations:update', (locations) => {
+            console.log('Client update the location');
+            _stream.destroy();
+            filter.locations = locations;
+            initiateLiveStream(io, filter);
+        })
+
         console.log('Client and server are now connected');
         initiateLiveStream(io, filter);
+
     });
 }
 
