@@ -57,11 +57,10 @@ class TwitterForm extends React.Component {
     onFiltersChange(filter) {
         if(filter.length) {
             let filtersString = convertArrayToString(filter);
-            console.log('filter:', filtersString);
             this.props.socket.emit("filter:update", filtersString, (response) => {
                 const { ack, message } = response;
                 if(ack) {
-                    console.log(message);
+                    this.props.handleSnackbarOpen(message);
                 }
             });
         }

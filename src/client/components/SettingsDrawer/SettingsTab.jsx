@@ -30,14 +30,14 @@ class SettingsTab extends React.Component {
     }
 
     renderTwitterSettingsPanel() {
-        const { classes, socket } = this.props
+        const { classes, socket, handleSnackbarOpen } = this.props
         return (
             <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography className={classes.heading}>Twitter</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                    <TwitterForm socket={socket}/>
+                    <TwitterForm socket={socket} handleSnackbarOpen={handleSnackbarOpen}/>
                 </ExpansionPanelDetails>
             </ExpansionPanel>
         )

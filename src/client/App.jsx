@@ -15,6 +15,7 @@ import keydown from 'react-keydown'
 
 import { connect } from 'react-redux';
 import { simpleAction } from './actions/SimpleAction'
+import SnackbarNotification from './components/SnackbarNotification/SnackbarNotification.jsx';
 
 const mapStateToProps = state => ({
   ...state
@@ -30,10 +31,16 @@ class App extends Component {
     super(props)
     this.state = 
     {
-      displaySettings: false
+      displaySettings: false,
+      twitterSnackbar: {
+        display: false,
+        message: ''
+      }
     }
     this.handleOnDrawerOpen = this.handleOnDrawerOpen.bind(this)
     this.simpleAction = this.simpleAction.bind(this)
+    this.handleSnackbarOpen = this.handleSnackbarOpen.bind(this);
+    this.handleSnackbarClose = this.handleSnackbarClose.bind(this);
     var endpoint = 'http://localhost:8080';
     this.socket = io(endpoint, { reconnect: true });
     this.socket.on('error', (err) => {
@@ -44,6 +51,27 @@ class App extends Component {
   handleOnDrawerOpen() {
     this.setState({
       displaySettings: !this.state.displaySettings
+    })
+  }
+
+  handleSnackbarOpen(message) {
+    this.setState({
+      twitterSnackbar: {
+        display: true,
+        message
+      }
+    })
+  }
+
+  handleSnackbarClose(event, reason) {
+    if(reason === 'clickaway') {
+      return;
+    }
+    this.setState({
+      twitterSnackbar: {
+        display: false,
+        message: ''
+      }
     })
   }
 
@@ -70,8 +98,14 @@ class App extends Component {
           </Grid>
         </Grid>
         <SettingsDrawer 
-          displaySettings={displaySettings} 
+          displaySettings={displaySettings}
+          handleSnackbarOpen={this.handleSnackbarOpen}
           socket={this.socket}
+        />
+        <SnackbarNotification
+          open={this.state.twitterSnackbar.display}
+          handleClose={this.handleSnackbarClose}
+          message={this.state.twitterSnackbar.message}
         />
       </div>
     );
