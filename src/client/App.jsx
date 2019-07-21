@@ -34,7 +34,8 @@ class App extends Component {
       displaySettings: false,
       twitterSnackbar: {
         display: false,
-        message: ''
+        message: '',
+        variant: ''
       }
     }
     this.handleOnDrawerOpen = this.handleOnDrawerOpen.bind(this)
@@ -54,11 +55,12 @@ class App extends Component {
     })
   }
 
-  handleSnackbarOpen(message) {
+  handleSnackbarOpen(message, variant) {
     this.setState({
       twitterSnackbar: {
         display: true,
-        message
+        message, 
+        variant
       }
     })
   }
@@ -70,7 +72,8 @@ class App extends Component {
     this.setState({
       twitterSnackbar: {
         display: false,
-        message: ''
+        message: '',
+        variant: ''
       }
     })
   }
@@ -106,6 +109,7 @@ class App extends Component {
           open={this.state.twitterSnackbar.display}
           handleClose={this.handleSnackbarClose}
           message={this.state.twitterSnackbar.message}
+          vairant={this.state.twitterSnackbar.variant}
         />
       </div>
     );
