@@ -13,6 +13,7 @@ class SnackbarNotification extends React.Component {
             message,
             variant
         } = this.props;
+        console.log('SBN', this.props)
         return (
             <React.Fragment>
                 <Snackbar
@@ -25,9 +26,9 @@ class SnackbarNotification extends React.Component {
                     onClose={handleClose}
                 >
                     <SnackBarNotificationContent
-                        onClose={handleClose}
                         variant={variant}
                         message={message}
+                        onClose={handleClose}
                     />
                 </Snackbar>
 

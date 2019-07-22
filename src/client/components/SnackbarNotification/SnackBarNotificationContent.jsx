@@ -1,12 +1,16 @@
 import { useSnackBarContentStyles, variantIcon } from './styles'
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+import React from 'react';
+import clsx from 'clsx';
 
 function SnackBarNotificationContent(props) {
     const classes = useSnackBarContentStyles();
+    console.log(props)
     const { className, message, onClose, variant, ...other } = props;
     const Icon = variantIcon[variant];
   
     return (
-      <SnackbarContent
+      message ? <SnackbarContent
         className={clsx(classes[variant], className)}
         aria-describedby="client-snackbar"
         message={
@@ -16,7 +20,7 @@ function SnackBarNotificationContent(props) {
           </span>
         }
         {...other}
-      />
+      /> : null
     );
 }
 

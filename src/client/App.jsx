@@ -69,12 +69,10 @@ class App extends Component {
     if(reason === 'clickaway') {
       return;
     }
+    let twitterSnackbar = {...this.state.twitterSnackbar};
+    twitterSnackbar.display = false;
     this.setState({
-      twitterSnackbar: {
-        display: false,
-        message: '',
-        variant: ''
-      }
+      twitterSnackbar
     })
   }
 
@@ -109,7 +107,7 @@ class App extends Component {
           open={this.state.twitterSnackbar.display}
           handleClose={this.handleSnackbarClose}
           message={this.state.twitterSnackbar.message}
-          vairant={this.state.twitterSnackbar.variant}
+          variant={this.state.twitterSnackbar.variant}
         />
       </div>
     );
