@@ -38,7 +38,7 @@ class Stream extends Component {
         })
     
         socket.on('tweet', (data) => {
-            // console.log(data)
+            console.log(data)
             if(this.state.tweets.length == this.props.max) {
                 var newTweetsArray = this.state.tweets.slice()
                 newTweetsArray.shift()

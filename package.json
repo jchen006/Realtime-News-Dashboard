@@ -38,6 +38,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "sentiment": "^5.0.1",
     "socket.io": "^2.1.1",
     "topojson-client": "^3.0.0",
     "twitter": "^1.7.1",
