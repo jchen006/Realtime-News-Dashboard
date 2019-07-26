@@ -2,12 +2,15 @@ const socket = require('socket.io')
 const Twitter = require('twitter')
 const config = require('../../config/tokens')
 const twitterClient = new Twitter(config.twitter)
+const SentimentModel = require('../models/SentimentModel');
+const { twitterMapper } = require('../mappers/twitterMapper');
 
 var _stream = {}
 let filter = {
     track: 'NBA'
 }
 let language = 'en'
+let model;
 
 var initiateLiveStream = function(io, filter) {
     twitterClient.stream('statuses/filter', filter, function(stream) {
@@ -15,22 +18,30 @@ var initiateLiveStream = function(io, filter) {
         _stream.on('data', function(event) {
             if(event.lang == language) {
                 // Add a Twitter Mapper that does a sentiment analysis on it.
-                console.log(event && event.text)
-                io.emit('tweet', event)
+                // console.log('[EVENT]: ', event && event.text);
+                if(event) {
+                    let mappedEvent = twitterMapper(event, model);
+                    // console.log(mappedEvent);
+                    io.emit('tweet', mappedEvent)
+                }
             }
         });
     
         _stream.on('error', function(error) {
-            // Maybe fire back specific error codes
-            console.log(error)
-        });
+            console.log('[ERROR]: ', error) //convert to chalk 
+            io.emit("error:stream", {
+                error
+            });
+        }); 
     });
 }
 
-let stream = function(server) {
-    let io = socket(server)
+let stream = function(server, client) {
+    let io = socket(server);
     io.on('connection', (client) => {
-        
+        console.log('[EVENT]: client connected');
+        client = client;
+        model = new SentimentModel(client);
         client.on('filter:update', (filters, callback) => {
             _stream.destroy();
             callback({

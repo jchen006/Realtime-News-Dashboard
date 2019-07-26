@@ -9,6 +9,7 @@ const healthCheck = require('./routes/healthCheck')
 
 const app = express();
 const port = 8080;
+let _client;
 
 app.use(express.static('src/dist'));
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
@@ -24,5 +25,5 @@ const server = app.listen(port, () => {
 });
 
 // Only specific to Twitter since it needs to pass in a server 
-twitter.stream(server)
+twitter.stream(server, _client)
 
