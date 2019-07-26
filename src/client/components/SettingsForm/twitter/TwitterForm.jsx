@@ -30,7 +30,6 @@ const mapDispatchToProps = dispatch => ({
     updateThrottle: (throttle) => dispatch(updateThrottle(throttle))
 })
 
-
 class TwitterForm extends React.Component {
     constructor(props) {
         super(props)
@@ -56,21 +55,21 @@ class TwitterForm extends React.Component {
 
     onFiltersChange(filter) {
         if(filter.length) {
-            let filtersString = convertArrayToString(filter);
-            console.log('filter:', filtersString);
-            this.props.socket.emit("filter:update", filtersString, (response) => {
+            this.props.socket.emit("filter:update", {filter}, (response) => {
                 const { ack, message } = response;
                 if(ack) {
-                    console.log(message);
+                    this.props.handleSnackbarOpen(message, 'success');
                 }
             });
+        } else {
+
         }
-        this.props.updateFilters(filter)
+        this.props.updateFilters(filter);
     }
 
     onLanguageChange(language) {
-        this.props.socket.emit("language:update", {
-            lang: language.value
+        this.props.socket.emit("language:update", language.value, (response) => {
+
         })
         this.props.updateLanguage(language.value)
     }
