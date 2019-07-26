@@ -7,12 +7,17 @@ import { connect } from 'react-redux';
 import * as _ from 'underscore'
 
 const mapStateToProps = state => {
-    const twitter = state.twitterReducer
+    const {
+        max,
+        language,
+        throttle,
+        filters
+    } = state.twitterReducer
     return {
-        max: twitter.max,
-        language: twitter.language,
-        throttle: twitter.throttle,
-        filters: twitter.filters
+        max,
+        language,
+        throttle,
+        filters
     }
 }
 
@@ -35,6 +40,7 @@ class Stream extends Component {
 
         socket.on('connect_error', (error) => {
             console.log(error);
+            //Failure message 
         })
     
         socket.on('tweet', (data) => {
