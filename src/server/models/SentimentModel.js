@@ -3,11 +3,12 @@ const Sentiment = require('sentiment');
 class SentimentModel {
     constructor(client) {
         this.sentiment = new Sentiment();
+        this.extras = {};
+
+        // Still need to test and verify 
         client.on('sentiment:valueUpdate', (extras) => {
             this.extras = extras;
         });
-        this.extras = {};
-
     }
 
     analyze(text) {
