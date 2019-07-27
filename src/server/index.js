@@ -6,13 +6,15 @@ const twitter = require('./controllers/twitter')
 const twitterRoute = require('./routes/twitter')
 const google = require('./routes/google')
 const healthCheck = require('./routes/healthCheck')
+const { morganMiddleware } = require('./middleware/morganMiddleware')
 
 const app = express();
 const port = 8080;
 let _client;
 
 app.use(express.static('src/dist'));
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+// for logging purposes
+app.use(morganMiddleware);
 app.use(bodyParser.json())
 
 //All declared routes will go here
