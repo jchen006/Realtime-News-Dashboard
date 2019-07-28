@@ -5,6 +5,7 @@ const twitter = require('./controllers/twitter')
 const twitterRoute = require('./routes/twitter')
 const google = require('./routes/google')
 const healthCheck = require('./routes/healthCheck')
+const weather = require('./routes/weather')
 const { morganMiddleware } = require('./middleware/logging');
 
 const app = express();
@@ -17,9 +18,10 @@ app.use(morganMiddleware);
 app.use(bodyParser.json())
 
 //All declared routes will go here
-app.use('/google', google)
-app.use('/twitter', twitterRoute)
-app.use('/healthCheck', healthCheck)
+app.use('/google', google);
+app.use('/twitter', twitterRoute);
+app.use('/healthCheck', healthCheck);
+app.use('/weather', weather);
 
 const server = app.listen(port, () => {
     console.log(`Listening on port ${port}!`)
