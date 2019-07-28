@@ -10,7 +10,8 @@
     "client": "webpack --watch",
     "server": "nodemon src/server/index.js",
     "desktop:dev": "concurrently \"npm run server\" \"npm run client\" \"npm run start:electron:dev\"",
-    "web:dev": "concurrently \"npm run server\" \"npm run client\""
+    "web:dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test:unit": "mocha src/**/__tests__/*.test.js"
   },
   "license": "ISC",
   "dependencies": {
@@ -18,6 +19,7 @@
     "@material-ui/core": "^4.2.1",
     "@material-ui/icons": "^4.2.1",
     "body-parser": "^1.18.3",
+    "chalk": "^2.4.2",
     "clsx": "^1.0.4",
     "colormap": "^2.3.1",
     "cors": "^2.8.4",
@@ -29,7 +31,9 @@
     "iso-639-1": "^2.0.3",
     "live-server": "^1.2.0",
     "material-ui": "^1.0.0-beta.47",
+    "moment": "^2.24.0",
     "morgan": "^1.9.1",
+    "morgan-body": "^2.4.7",
     "newsapi": "^2.4.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0-alpha.2",
@@ -68,6 +72,7 @@
     "eslint-plugin-react": "^7.7.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
+    "mocha": "^6.1.4",
     "nodemon": "^1.19.1",
     "style-loader": "^0.23.0",
     "url-loader": "^1.0.1",
