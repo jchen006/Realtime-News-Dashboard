@@ -1,18 +1,20 @@
 const express = require('express');
 const http = require('http');
-const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const twitter = require('./controllers/twitter')
 const twitterRoute = require('./routes/twitter')
 const google = require('./routes/google')
 const healthCheck = require('./routes/healthCheck')
 const weather = require('./routes/weather')
+const { morganMiddleware } = require('./middleware/logging');
 
 const app = express();
 const port = 8080;
+let _client;
 
 app.use(express.static('src/dist'));
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+// for logging purposes
+app.use(morganMiddleware);
 app.use(bodyParser.json())
 
 //All declared routes will go here
@@ -26,5 +28,5 @@ const server = app.listen(port, () => {
 });
 
 // Only specific to Twitter since it needs to pass in a server 
-twitter.stream(server)
+twitter.stream(server, _client)
 

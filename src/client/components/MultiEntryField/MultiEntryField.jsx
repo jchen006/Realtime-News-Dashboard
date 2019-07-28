@@ -45,7 +45,8 @@ class MultiEntryField extends React.Component {
         switch(key) {
             case 'Enter':
                 var newOptionObj = this.createOption(inputValue)
-                var updatedQueries = [...this.props.values, newOptionObj]  
+                var updatedQueries = [...this.props.values, newOptionObj]
+                console.log(updatedQueries) 
                 this.props.onChange(updatedQueries)
                 this.setState({
                     inputValue: ''
