@@ -31,6 +31,7 @@
     "iso-639-1": "^2.0.3",
     "live-server": "^1.2.0",
     "material-ui": "^1.0.0-beta.47",
+    "moment": "^2.24.0",
     "morgan": "^1.9.1",
     "morgan-body": "^2.4.7",
     "newsapi": "^2.4.0",

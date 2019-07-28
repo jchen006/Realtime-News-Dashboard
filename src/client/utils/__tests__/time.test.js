@@ -1,10 +1,9 @@
 const assert = require('assert');
-const { timeConversion } = require('../time');
+const { stringToDateObjectConversion } = require('../time');
 
 describe('Time', () => {
     describe('Time conversion', () => {
-        let convertedTime = timeConversion('Mon Jun 24 08:03:38 +0000 2019');
-        console.log(convertedTime.getHours());
+        let convertedTime = stringToDateObjectConversion('Mon Jun 24 08:03:38 +0000 2019');
         it('should be able to return the correct month', () => {
             assert.equal(convertedTime.getMonth(), 5)
         });
