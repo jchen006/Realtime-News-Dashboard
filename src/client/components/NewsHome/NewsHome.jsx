@@ -1,22 +1,18 @@
 import React from 'react';
 
-
+/**
+ * No API calls should be made here. 
+ * 
+ */
 class NewsHome extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            news: [],
-            twitter: [],
-            weather: {},
-        }
-    }
-
-    componentDidMount() {
-
     }
 
     render() {
-
+        return (
+            <h1>Home</h1>
+        );
     }
 }
 
