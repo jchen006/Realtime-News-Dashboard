@@ -1,25 +1,15 @@
-const request = require('request')
-const tokens = require('../../config/tokens')
-const url = require('../../config/url')
+const { queryTopHeadlines, queryAllSources, queryEverythingBySubject } = require('../apis/googleNewsApi');
 
-/** General batch of all the top headlines  */
-let queryTopHeadlines = (req, res) => {
-    let qs = req.query
-    var options = {
-        url: url.google.topHeadlines,
-        headers: {
-            'X-Api-Key': tokens.google.key
-        },
-        qs
-    }
-    request(options, (err, response, body) => {
-        if(!err && response.statusCode === 200) {
-            res.status(200).send(body)
+let getTopHeadlines = (req, res) => {
+    const callback = (response, err) => {
+        if(err) {
+            res.status(500).send(err);
         } else {
-            console.log(body)
-            res.status(500).send(err)
+            res.status(200).send(response);
         }
-    });
+    }
+    let qs = req.query;
+    queryTopHeadlines(qs, callback);
 }
 
 /**
@@ -28,46 +18,32 @@ let queryTopHeadlines = (req, res) => {
  * @param {*} res 
  */
 let getAllSources = (req, res) => {
-    let qs = req.query
-    var options = {
-        url: url.google.sources,
-        headers: {
-            'X-Api-Key': tokens.google.key
-        },
-        qs
-    }
-    request(options, (err, response, body) => {
-        if(!err && response.statusCode === 200) {
-            res.status(200).send(body)
+    const callback = (response, err) => {
+        if(err) {
+            res.status(500).send(err);
         } else {
-            res.status(500).send(err)
+            res.status(200).send(response);
         }
-    })
+    }
+    let qs = req.query
+    queryAllSources(qs, callback);
 }
 
-/**
- * Gets by specific query on subject matter
- * @param {*} req 
- * @param {*} res 
- */
-let queryEverything = (req, res) => {
-    let qs = req.query
-    var options = {
-        url: url.google.everything,
-        headers: {
-            'X-Api-Key': tokens.google.key
-        },
-        qs
-    }
-    request(options, (err, response, body) => {
-        if(!err && response.statusCode === 200) {
-            res.status(200).send(body)
+let getHeadlinesBySubject = (req, res) => {
+    const callback = (response, err) => {
+        if(err) {
+            res.status(500).send(err);
         } else {
-            res.status(500).send(err)
+            res.status(200).send(response);
         }
-    })
+    }
+    let qs = req.query;
+    queryEverythingBySubject(qs, callback);
 }
 
-module.exports.queryTopHeadlines = queryTopHeadlines
-module.exports.getAllSources = getAllSources
-module.exports.queryEverything = queryEverything
+
+module.exports = {
+    getTopHeadlines,
+    getAllSources,
+    getHeadlinesBySubject
+};

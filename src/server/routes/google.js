@@ -1,9 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const google = require('../controllers/google')
+const {
+    getTopHeadlines,
+    getAllSources,
+    getHeadlinesBySubject
+} = require('../controllers/google')
 
-router.get('/topHeadlines', google.queryTopHeadlines)
-router.get('/sources', google.getAllSources)
-router.get('/everything', google.queryEverything)
+router.get('/topHeadlines', getTopHeadlines)
+router.get('/sources', getAllSources)
+router.get('/everything', getHeadlinesBySubject)
 
 module.exports = router
