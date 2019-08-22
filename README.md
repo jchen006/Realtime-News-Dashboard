@@ -1,4 +1,4 @@
-# Twitter Real Time Tone Analyzer
+# Realtime News Dashboard
 
 ### Development mode
 
