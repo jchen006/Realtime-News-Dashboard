@@ -4,26 +4,32 @@ import NewsTiles from '../NewsTiles/index.jsx'
 class NewsHome extends React.Component {
     constructor(props) {
         super(props);
+        this.urls = [
+            'http://localhost:8080/google/topHeadlines?sources=bbc-news,the-new-york-times',
+            'http://localhost:8080/twitter/popularTweets',
+        ]
+    }
+
+    parseJSON(response) {
+        return response.json();
     }
 
     componentDidMount() {
-        // try {
-        //     let [
-        //         googleNews,
-        //         tweets,
-        //         forecast
-        //     ] = await Promise.all([
-        //         fetch('/google/topHeadlines?sources=bbc-news,the-new-york-times'),
-        //         fetch('/twitter/popularTweets'),
-        //         fetch('/weather/forecast')
-        //     ]);
+        Promise.all(this.urls.map(url => 
+            fetch(url)
+                .then(response => response.json())
+        ))
+        .then(data => {
+            console.log(data);
+            const [google, twitter] = data;
+            this.state({
+                google,
+                twitter
+            })
+        })
+        .catch(error => {
 
-        //     this.state = {
-                
-        //     }
-        // } catch(err) {
-        //     console.log(err);
-        // }
+        });
     }
 
     render() {
