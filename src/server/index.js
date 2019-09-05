@@ -6,6 +6,8 @@ const twitterRoute = require('./routes/twitter')
 const google = require('./routes/google')
 const healthCheck = require('./routes/healthCheck')
 const weather = require('./routes/weather')
+const productHunt = require('./routes/productHunt');
+const hackerNews = require('./routes/hackerNews');
 const { morganMiddleware } = require('./middleware/logging');
 
 const app = express();
@@ -18,10 +20,13 @@ app.use(morganMiddleware);
 app.use(bodyParser.json())
 
 //All declared routes will go here
+// app.use('/batch', batch);
 app.use('/google', google);
 app.use('/twitter', twitterRoute);
 app.use('/healthCheck', healthCheck);
 app.use('/weather', weather);
+app.use('/hackerNews', hackerNews);
+app.use('/productHunt', productHunt)
 
 const server = app.listen(port, () => {
     console.log(`Listening on port ${port}!`)

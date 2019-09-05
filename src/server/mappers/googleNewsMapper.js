@@ -1,0 +1,7 @@
+const googleNewsMapper = (newsSource) => {
+
+
+    return ({
+        
+    })
+}

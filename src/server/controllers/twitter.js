@@ -10,7 +10,7 @@ let filter = {
     track: 'NBA'
 }
 let language = 'en'
-let _model = new SentimentModel(client);;
+let _model;
 
 var initiateLiveStream = function(io, filter) {
     twitterClient.stream('statuses/filter', filter, function(stream) {
@@ -36,6 +36,7 @@ let stream = function(server, client) {
     io.on('connection', (client) => {
         console.log('[EVENT]: client connected');
         client = client;
+        _model = new SentimentModel(client);
         client.on('filter:update', (filters, callback) => {
             _stream.destroy();
             callback({
@@ -86,7 +87,7 @@ getLanguages = function(req, res) {
 }
 
 getPopularTweet = function(req, res) {
-    twitterClient.get('search/tweets.json?q=world%3Anews&lang=en&result_type=popular', (error, tweets, res) => {
+    twitterClient.get('search/tweets.json?q=world%3Anews&lang=en&result_type=popular', (error, tweets, response) => {
         if(error) {
             console.log(`[ERROR]: ${error}`);
             throw error

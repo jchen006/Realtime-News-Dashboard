@@ -75,4 +75,7 @@ typings/
 #DS_Store
 .DS_Store
 
+#Dist 
+src/dist/*
+
 src/config/tokens.js

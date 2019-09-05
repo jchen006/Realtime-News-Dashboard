@@ -109,18 +109,16 @@ const weatherMapper = ({
     latitude,
     longitude,
     timezone,
-    currently: {
-        time,
-        summary,
-        icon,
-        precipIntensity,
-        precipIntensityError,
-        precipProbability,
-        precipType,
-        temperature,
-        humidity,
-        windSpeed
-    }
+    time,
+    summary,
+    icon,
+    precipIntensity,
+    precipIntensityError,
+    precipProbability,
+    precipType,
+    temperature,
+    humidity,
+    windSpeed
 });
 
 module.exports = {

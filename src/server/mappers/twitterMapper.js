@@ -3,7 +3,7 @@ const twitterMapper = (event, model) => {
     if(event.text && model) {
         analyzedText = model.analyze(event.text);
     }
-    console.log(event)
+    // console.log(event)
     return ({
         geo: event.geo ? event.geo : null,
         coordinates: event.coordinates ? event.coordinates : null,
