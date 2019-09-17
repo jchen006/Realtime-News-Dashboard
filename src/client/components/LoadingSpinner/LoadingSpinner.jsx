@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import styles from './styles.js'
 
-function LoadingSpinner(props) {
+const LoadingSpinner = (props) => {
   const { classes } = props;
   return (
     <div>
@@ -14,6 +14,7 @@ function LoadingSpinner(props) {
 }
 
 LoadingSpinner.propTypes = {
+  //Change to one of 
   classes: PropTypes.object.isRequired,
 };
 
