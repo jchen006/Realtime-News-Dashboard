@@ -1,5 +1,10 @@
 const { getBestStories, getStoryById } = require('../apis/hackerNewsApi');
 
+/**
+ * Gets all the story details by id
+ * @param {*} req 
+ * @param {*} res 
+ */
 const story = (req, res) => {
     const callback = (responseBody, err) => {
         if(err) {
@@ -12,6 +17,11 @@ const story = (req, res) => {
     getStoryById(id, callback);
 }
 
+/**
+ * Gets all the top stories
+ * @param {*} req 
+ * @param {*} res 
+ */
 const topStories = (req, res) => {
     const callback = (responseBody, err) => {
         if(err) {
@@ -21,6 +31,15 @@ const topStories = (req, res) => {
         }
     }
     getBestStories(callback);
+}
+
+/**
+ * Gets all the top stories with the details related do it
+ * @param {*} req 
+ * @param {*} res 
+ */
+const getTopStoriesWithDetails = (req, res) => {
+
 }
 
 module.exports = {

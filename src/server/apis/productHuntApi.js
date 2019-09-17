@@ -10,7 +10,6 @@ const getTechPostToday = (callback) => {
         Host: 'api.producthunt.com',
         url: url.productHunt('posts')
     }
-    console.log(options);
     request(options, (err, response, body) => {
         if(!err && response.statusCode == 200) {
             callback(body, null);

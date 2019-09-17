@@ -8,6 +8,6 @@ const express = require('express');
 const router = express.Router();
 const home = require('../controllers/home');
 
-router.get('/batchAll', home);
+router.get('/batchAll', batchAll);
 
 module.exports = router;
