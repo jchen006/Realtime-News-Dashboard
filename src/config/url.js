@@ -1,3 +1,6 @@
+const { URL } = require('url');
+const { darkSky } = require('./tokens');
+
 module.exports = {
     google: {
         sources: 'https://newsapi.org/v2/sources',
@@ -5,7 +8,13 @@ module.exports = {
         topHeadlines: 'https://newsapi.org/v2/top-headlines'
     },
     crunchbase: (entity, key) => `https://api.crunchbase.com/v3.1/${entity}?user_key=${key}`,
-    darkSky: (key, {latitude, longitude}, exclude=[]) => `https://api.darksky.net/forecast/${key}/${latitude},${longitude}/${exclude}`,
+    darkSky: ({latitude, longitude, ...params}) => {
+        console.log(params)
+        let url = new URL(`https://api.darksky.net/forecast/${darkSky.key}/${latitude},${longitude}?`);
+        Object.keys(params).forEach(key => url += `${key}=${JSON.stringify(params[key])}`);
+        console.log(url)
+        return url;
+    },
     productHunt: (entity) => `https://api.producthunt.com/v1/${entity}`,
     hackerNews: {
         bestStories: `https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty`,

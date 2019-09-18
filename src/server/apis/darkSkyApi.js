@@ -2,25 +2,24 @@ const request = require('request');
 const { darkSky } = require('../../config/tokens');
 const url = require('../../config/url');
 const { weatherMapper } = require('../mappers/weatherMapper');
+const fetch = require('node-fetch');
 
-const getForecast = (callback, coordinates) => {
-    let requestUrl = url.darkSky(darkSky.key, coordinates)
-    let options = {
-        url: requestUrl,
-        qs: {
-            exclude: ['minutely', 'hourly', 'daily', 'flags']
-        }
+const getForecast = async (longitude, latitude, callback) => {
+    let requestUrl = url.darkSky({
+        longitude,
+        latitude,
+        exclude: ['minutely', 'hourly', 'daily', 'flags']
+    })
+    try {
+        const response = await fetch(requestUrl);
+        const json = await response.json();
+        const mappedData = weatherMapper(json);
+        callback(mappedData, null);
+    } catch(error) {
+        console.log(error);
+        callback(null, err);
+        throw new Error('');
     }
-    console.log(options);
-    request(options, (err, response, body) => {
-        if(!err && response.statusCode == 200) {
-            const bodyParsed = JSON.parse(body);
-            const responseBody = weatherMapper(bodyParsed);
-            callback(responseBody, null);
-        } else {
-            callback(null, err);
-        }
-    });
 }
 
 module.exports = {
