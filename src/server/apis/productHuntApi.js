@@ -1,6 +1,6 @@
 const request = require('request');
 const { productHunt } = require('../../config/tokens');
-const url = require('../../config/url');
+const { url } = require('../../utils/urlGenerator');
 const fetch = require('node-fetch');
 
 const options = {
