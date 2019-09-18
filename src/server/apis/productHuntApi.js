@@ -1,22 +1,28 @@
 const request = require('request');
 const { productHunt } = require('../../config/tokens');
 const url = require('../../config/url');
+const fetch = require('node-fetch');
 
-const getTechPostToday = (callback) => {
-    let options = {
+const options = {
+    headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: `Bearer ${productHunt.token}`,
-        Host: 'api.producthunt.com',
-        url: url.productHunt('posts')
+        Host: 'api.producthunt.com'
     }
-    request(options, (err, response, body) => {
-        if(!err && response.statusCode == 200) {
-            callback(body, null);
-        } else {
-            callback(null, err);
-        }
-    })
+};
+
+const getTechPostToday = async (callback) => {
+    const requestUrl = url.productHunt('posts');
+    try {
+        const response = await fetch(requestUrl, options);
+        const json = await response.json();
+        callback(null, json);
+    } catch(error) {
+        callback(err, null);
+        throw new Error('')
+    } 
+   
 }
 
 module.exports = {

@@ -1,14 +1,12 @@
 const { getTechPostToday } = require('../apis/productHuntApi');
 
 let productHunt = (req, res) => {
-    const callback = (responseBody, err) => {
+    getTechPostToday((err, data) => {
         if(err) {
             res.status(500).send(err);
-        } else {
-            res.status(200).send(responseBody);
         }
-    }
-    getForecast(callback);
+        res.status(200).send(data);
+    });
 }
 
 module.exports = {

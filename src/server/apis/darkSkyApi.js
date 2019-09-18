@@ -16,7 +16,6 @@ const getForecast = async (longitude, latitude, callback) => {
         const mappedData = weatherMapper(json);
         callback(mappedData, null);
     } catch(error) {
-        console.log(error);
         callback(null, err);
         throw new Error('');
     }
