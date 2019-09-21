@@ -1,3 +1,5 @@
+const apiTypes = require('../../enums/apiTypes');
+
 const twitterMapper = (event, model) => {
     let analyzedText;
     if(event.text && model) {
@@ -5,6 +7,7 @@ const twitterMapper = (event, model) => {
     }
     // console.log(event)
     return ({
+        apiSource: apiTypes.TWITTER,
         geo: event.geo ? event.geo : null,
         coordinates: event.coordinates ? event.coordinates : null,
         created_at: event.created_at ? event.created_at : null,

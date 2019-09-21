@@ -1,15 +1,13 @@
 const { queryTopHeadlines, queryAllSources, queryEverythingBySubject } = require('../apis/googleNewsApi');
 
 let getTopHeadlines = (req, res) => {
-    const callback = (response, err) => {
-        if(err) {
-            res.status(500).send(err);
-        } else {
-            res.status(200).send(response);
-        }
-    }
     let qs = req.query;
-    queryTopHeadlines(qs, callback);
+    queryTopHeadlines(qs, (response, error) => {
+        if(error) {
+            res.status(500).send(error);
+        }
+        res.status(200).send(response);
+    });
 }
 
 /**

@@ -1,5 +1,5 @@
 const request = require('request');
-const { bestStories, story } = require('../../config/url').hackerNews;
+// const { bestStories, story } = require('../../utils/urlGenerator').hackerNews;
 
 const getBestStories = (callback) => {
     let options = {
