@@ -2,17 +2,17 @@ const { URL } = require('url');
 
 //should rename request Url generator 
 
+// Need params check for each of the Google News API 
+// 
+
+const googleUrlGenerator = ({ route, params }) => {
+    let url = `https://newsapi.org/v2/${route}?`
+    Object.keys(params).forEach(key => url += `${key}=${params[key]}`);
+    return url;
+}
+
 module.exports = {
-    google: {
-        sources: 'https://newsapi.org/v2/sources',
-        everything: 'https://newsapi.org/v2/everything',
-        // topHeadlines: 'https://newsapi.org/v2/top-headlines'
-        topHeadlines: (params) => {
-            let url = new URL('https://newsapi.org/v2/top-headlines?');
-            Object.keys(params).forEach(key => url += `${key}=${params[key]}`);
-            return url;
-        }
-    },
+    google: googleUrlGenerator,
     crunchbase: (entity, key) => `https://api.crunchbase.com/v3.1/${entity}?user_key=${key}`,
     darkSky: ({latitude, longitude, apiKey, ...params}) => {
         let url = new URL(`https://api.darksky.net/forecast/${apiKey}/${latitude},${longitude}?`);

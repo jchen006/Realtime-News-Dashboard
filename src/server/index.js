@@ -8,6 +8,7 @@ const healthCheck = require('./routes/healthCheck')
 const weather = require('./routes/weather')
 const productHunt = require('./routes/productHunt');
 const hackerNews = require('./routes/hackerNews');
+// const quotes = require('./routes/quotes');
 const { morganMiddleware } = require('./middleware/logging');
 
 const app = express();
@@ -26,7 +27,8 @@ app.use('/twitter', twitterRoute);
 app.use('/healthCheck', healthCheck);
 app.use('/weather', weather);
 app.use('/hackerNews', hackerNews);
-app.use('/productHunt', productHunt)
+app.use('/productHunt', productHunt);
+// app.use('/quotes', quotes);
 
 const server = app.listen(port, () => {
     console.log(`Listening on port ${port}!`)

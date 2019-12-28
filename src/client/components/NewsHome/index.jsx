@@ -1,52 +1,23 @@
 import React from 'react';
-import NewsTiles from '../NewsTiles/index.jsx'
+import Grid from '@material-ui/core/Grid';
+// import Weather from '../NewsTiles/Weather.jsx';
+import Twitter from '../NewsTiles/Twitter.jsx';
+import { useStyles } from './styles';
 
-class NewsHome extends React.Component {
-    constructor(props) {
-        super(props);
-        this.urls = [
-            'http://localhost:8080/google/topHeadlines?sources=bbc-news,the-new-york-times',
-            'http://localhost:8080/twitter/popularTweets',
-        ];
-        this.state = {
-            error: ''
-        }
-    }
-
-    getAllData() {
-        Promise.all(this.urls.map(url => 
-            fetch(url)
-                .then(response => response.json())
-        ))
-        .then(data => {
-            const [google, twitter] = data;
-            this.state({
-                google,
-                twitter
-            })
-        })
-        .catch(error => {
-            this.state = {
-                error
-            }
-        });
-    }
-
-    parseJSON(response) {
-        return response.json();
-    }
-
-    componentDidMount() {
-        this.getAllData();
-    }
-
-    render() {
-        return (
-            <>
-                <NewsTiles/>
-            </>
-        );
-    }
+const NewsHome = (props) => {
+    const classes = useStyles();
+    return (
+        <div classes={classes.root}>
+            <Grid container spacing={3}>
+                <Grid item xs={6} sm={3}>
+                    {/* <Weather/> */}
+                </Grid>
+                <Grid item xs={18} sm={9}>
+                    <Twitter/>
+                </Grid>
+            </Grid>
+        </div>
+    );
 }
 
 export default NewsHome;

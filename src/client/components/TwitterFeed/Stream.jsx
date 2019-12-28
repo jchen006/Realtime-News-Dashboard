@@ -1,8 +1,6 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import TweetCard from './TweetCard.jsx'
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.jsx'
-
+import React, { Component } from 'react';
+import TweetCard from './TweetCard.jsx';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.jsx';
 import { connect } from 'react-redux';
 import * as _ from 'underscore'
 

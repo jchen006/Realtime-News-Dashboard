@@ -10,37 +10,54 @@ const options = {
 }
 
 /** General batch of all the top headlines  */
+
+// Validate all possible query strings that are legal 
+// Evaluate if this is the best pattern with async and await patterns 
 let queryTopHeadlines = async (qs, callback) => {
     try {
+        //Run a query validation
         const requestUrl = url.google.topHeadlines(qs);
         const response = await fetch(requestUrl, options);
         const json = await response.json();
         const {
-            articles = []
+            articles = [],
+            status = '',
+            code = '',
+            message = ''
         } = json;
-        const mappedArticles = articles.map(article => googleNewsMapper(article));
-        callback(mappedArticles, null);
+        if(status === 'error') {
+            callback(null, { message, code } );
+        } else if(status === 'ok') {
+            const mappedArticles = articles.map(article => googleNewsMapper(article));
+            callback(mappedArticles, null);
+        }
     } catch(error) {
         callback(null, error);
         throw new Error('')
     }
 }
 
-let queryAllSources = (qs, callback) => {
-    var options = {
-        url: url.google.sources,
-        headers: {
-            'X-Api-Key': tokens.google.key
-        },
-        qs
+let queryAllSources = async (qs, callback) => {
+    try {
+        // Query validation
+        const requestUrl = url.google.topSources(qs);
+        const response = await fetch(requestUrl, options);
+        const json = await response.json();
+        const {
+            articles = [],
+            status = '',
+            message = ''
+        } = json;
+        if(status === 'error') {
+            callback(null, message);
+        } else if(status === 'ok') {
+            const mappedArticles = articles.map(article => googleNewsMapper(article))
+            callback(mappedArticles, null);
+        }
+    } catch (error) {
+        callback(null, error);
+        throw new Error('');
     }
-    request(options, (err, response, body) => {
-       if(err) {
-           callback(null, err);
-       } else {
-           callback(body, null);
-       }
-    })
 }
 
 /**

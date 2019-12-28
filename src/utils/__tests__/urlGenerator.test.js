@@ -8,18 +8,37 @@ const {
 } = require('../urlGenerator');
 
 describe('URL Generator', () => {
-    describe.skip('google', () => {
+    describe('google', () => {
         it('should return the url for sources', () => {
-            let url = google.sources;
-            assert.equal(url, 'https://newsapi.org/v2/sources');
+            let params = {
+                test: '123'
+            }
+            let url = google({
+                route: 'sources', 
+                params
+            });
+            console.log(url)
+            assert.equal(url, 'https://newsapi.org/v2/sources?test=123');
         });
         it('should return the url for everything', () => {
-            let url = google.everything;
-            assert.equal(url, 'https://newsapi.org/v2/everything');
+            let params = {
+                test: '123'
+            }
+            let url = google({
+                route: 'everything', 
+                params
+            });
+            assert.equal(url, 'https://newsapi.org/v2/everything?test=123');
         });
         it('should return the url for topHeadlines', () => {
-            let url = google.topHeadlines;
-            assert.equal(url, 'https://newsapi.org/v2/top-headlines');
+            let params = {
+                test: '123'
+            }
+            let url = google({
+                route: 'top-headlines', 
+                params
+            });
+            assert.equal(url, 'https://newsapi.org/v2/top-headlines?test=123');
         });
     });
 

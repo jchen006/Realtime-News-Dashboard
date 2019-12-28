@@ -5,16 +5,20 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import styles from './styles.js'
 
 const LoadingSpinner = (props) => {
-  const { classes } = props;
+  const {
+    classes: {
+      progress
+    }
+  } = props;
   return (
-    <div>
-      <CircularProgress className={classes.progress} />
-    </div>
+    <React.Fragment>
+      <CircularProgress className={progress} />
+    </React.Fragment>
   );
 }
 
 LoadingSpinner.propTypes = {
-  //Change to one of 
+  // Change to one of types for now just to ensure consistency 
   classes: PropTypes.object.isRequired,
 };
 

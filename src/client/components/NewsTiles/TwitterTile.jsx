@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useStyles } from './styles'
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -8,9 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useStyles } from './styles';
 
-class Tile extends React.Component {
-
+export class TwitterTile extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -25,7 +23,7 @@ class Tile extends React.Component {
             />
         )
     }
-
+    
     renderContent() {
         const { title, user, content, source } = this.props;
         return (
@@ -39,7 +37,7 @@ class Tile extends React.Component {
             </CardContent>
         );
     }
-
+    
     renderActions() {
         return (
             <CardActions>
@@ -57,16 +55,12 @@ class Tile extends React.Component {
         const classes = useStyles();
         return (
             <Card className={classes.card}>
-                <CardActionArea>
-                    { image ? this.renderMedia(classes) : null }
-                    { this.renderContent() }
-                    { this.renderActions() }
-                </CardActionArea>
+                <h1>Test</h1>
             </Card>
         )
     }
 }
 
-Tile.propTypes = {
+export default TwitterTile;
 
-}
+

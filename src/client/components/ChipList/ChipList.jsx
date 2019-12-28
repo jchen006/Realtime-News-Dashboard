@@ -7,15 +7,15 @@ import Chip from '@material-ui/core/Chip'
 import styles from './styles.js'
 
 const ChipList = (props) => {
-    const { classes } = this.props
+    const { classes, values, onDelete } = props
     return (
         <div>
-            { this.props.values.map((value) => {
+            { values.map((value) => {
                 return (
                     <Chip
                         key={value.key}
                         label={value.label}
-                        onDelete={this.props.onDelete(value)}
+                        onDelete={onDelete(value)}
                         className={classes.chip}
                     />
                 );
