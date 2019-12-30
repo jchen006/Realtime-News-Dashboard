@@ -1,5 +1,5 @@
 import React from 'react';
-import TwitterTile from './TwitterTile.jsx';
+import { TwitterTile } from './TwitterTile.jsx';
 import Grid from '@material-ui/core/Grid';
 import io from 'socket.io-client';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.jsx';
@@ -32,10 +32,11 @@ export class Twitter extends React.Component {
         //Migrate to configs 
         let endpoint = "http://localhost:8080";
         this.socket = io(endpoint, { reconnect: true });
+        this.updateTweets = this.updateTweets.bind(this);
     }
 
     componentDidMount() {
-        this.stockEvents();
+        this.socketEvents();
     }
 
     socketEvents() {
@@ -51,22 +52,28 @@ export class Twitter extends React.Component {
             this.setState( { isConnecting: false });
         });
 
-        this.socket.on('tweet', this.updateTweets);
+        const throttleUpdateTweets = _.throttle(this.updateTweets, 5000);
+        this.socket.on('tweet', throttleUpdateTweets); //Throttle
     }
 
     updateTweets(data) {
-        const { tweets } = this.state;
-        const { max } = this.props;
+        const { tweets=[] } = this.state;
+        const { max=12 } = this.props;
         let updatedTweets = tweets.slice();
-        if(tweets.length === max) {
-            updatedTweets = updatedTweets.slice(1);
-            updatedTweets.push(data);
-        } else if(tweets.length < max) {
-            updatedTweets = updatedTweets.push(data);
+        let tweetExists = updatedTweets.find(tweet => tweet.id === data.id);
+        if(tweetExists) {
+            return;
+        } else {
+            if(tweets.length === max) {
+                updatedTweets = updatedTweets.slice(1);
+                updatedTweets.push(data);
+            } else if(tweets.length < max) {
+                updatedTweets.push(data);
+            }
+            this.setState({
+                tweets: updatedTweets
+            });
         }
-        this.setState({
-            tweets: updatedTweets
-        });
     }
 
     componentDidMount() {
@@ -85,12 +92,12 @@ export class Twitter extends React.Component {
     render() {
         const { tweets, isConnecting } = this.state;
         return (
-            isConnecting || this.state.tweet.length < 10 ?
+            isConnecting ?
             <LoadingSpinner/> :
             <Grid container className={'twitter-stream-container'} spacing={2}>
                 { tweets.map((tweet) => (
-                    <Grid item xs={6} sm={3}>
-                        <TwitterTile tweet={tweet}/>
+                    <Grid item xs={6} sm={3} key={tweet.id}>
+                        <TwitterTile {...tweet}/>
                     </Grid>
                 ))}
             </Grid>

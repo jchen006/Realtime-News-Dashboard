@@ -12,7 +12,7 @@ const NewsHome = (props) => {
                 <Grid item xs={6} sm={3}>
                     {/* <Weather/> */}
                 </Grid>
-                <Grid item xs={18} sm={9}>
+                <Grid item xs={6} sm={9}>
                     <Twitter/>
                 </Grid>
             </Grid>
