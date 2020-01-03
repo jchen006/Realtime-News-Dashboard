@@ -5,7 +5,7 @@ const { getForecast } = require('../apis/darkSkyApi');
 
 let forecast = (req, res) => {
     let { longitude, latitude } = req.body;
-    getForecast(longitude, latitude, (err, data) => {
+    getForecast(longitude, latitude, (data, err) => {
         if(err) {
             res.status(500).send(err);
         }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-// import Weather from '../NewsTiles/Weather.jsx';
+import Weather from '../NewsTiles/Weather.jsx';
 import Twitter from '../NewsTiles/Twitter.jsx';
 import { useStyles } from './styles';
 
@@ -10,7 +10,7 @@ const NewsHome = (props) => {
         <div classes={classes.root}>
             <Grid container spacing={3}>
                 <Grid item xs={6} sm={3}>
-                    {/* <Weather/> */}
+                    <Weather/>
                 </Grid>
                 <Grid item xs={6} sm={9}>
                     <Twitter/>

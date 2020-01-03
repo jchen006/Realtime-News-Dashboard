@@ -20,16 +20,16 @@ export const TwitterTile = (props) => {
 
     return (
         <Card className={classes.card}>
-        <CardActionArea>
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                    {`@${name}`} 
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {text}
-                </Typography>
-            </CardContent>
-        </CardActionArea>
+          <CardActionArea>
+              <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                      {`@${name}`} 
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                      {text}
+                  </Typography>
+              </CardContent>
+          </CardActionArea>
         </Card>
     );
 }

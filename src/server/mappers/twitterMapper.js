@@ -5,7 +5,7 @@ const twitterMapper = (event, model) => {
     if(event.text && model) {
         analyzedText = model.analyze(event.text);
     }
-    console.log(JSON.stringify(event, null, 2));
+    // console.log(JSON.stringify(event, null, 2));
     return ({
         apiSource: apiTypes.TWITTER,
         geo: event.geo ? event.geo : null,
