@@ -6,29 +6,22 @@ import Chip from '@material-ui/core/Chip'
 
 import styles from './styles.js'
 
-class ChipList extends React.Component {
-
-    constructor(props) {
-        super(props)
-    }
-
-    render() {
-        const { classes } = this.props
-        return (
-            <div>
-                { this.props.values.map((value) => {
-                    return (
-                        <Chip
-                            key={value.key}
-                            label={value.label}
-                            onDelete={this.props.onDelete(value)}
-                            className={classes.chip}
-                        />
-                    );
-                })}
-            </div>
-        )
-    }
+const ChipList = (props) => {
+    const { classes, values, onDelete } = props
+    return (
+        <div>
+            { values.map((value) => {
+                return (
+                    <Chip
+                        key={value.key}
+                        label={value.label}
+                        onDelete={onDelete(value)}
+                        className={classes.chip}
+                    />
+                );
+            })}
+        </div>
+    )
 }
 
 ChipList.propTypes = {

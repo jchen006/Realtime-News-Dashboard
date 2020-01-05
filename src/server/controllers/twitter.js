@@ -10,20 +10,15 @@ let filter = {
     track: 'NBA'
 }
 let language = 'en'
-let model;
+let _model;
 
 var initiateLiveStream = function(io, filter) {
     twitterClient.stream('statuses/filter', filter, function(stream) {
         _stream = stream
         _stream.on('data', function(event) {
-            if(event.lang == language) {
-                // Add a Twitter Mapper that does a sentiment analysis on it.
-                // console.log('[EVENT]: ', event && event.text);
-                if(event) {
-                    let mappedEvent = twitterMapper(event, model);
-                    // console.log(mappedEvent);
-                    io.emit('tweet', mappedEvent)
-                }
+            if(event && event.lang == language) {
+                let mappedEvent = twitterMapper(event, _model);
+                io.emit('tweet', mappedEvent)
             }
         });
     
@@ -41,7 +36,7 @@ let stream = function(server, client) {
     io.on('connection', (client) => {
         console.log('[EVENT]: client connected');
         client = client;
-        model = new SentimentModel(client);
+        _model = new SentimentModel(client);
         client.on('filter:update', (filters, callback) => {
             _stream.destroy();
             callback({
@@ -68,7 +63,11 @@ let stream = function(server, client) {
             _stream.destroy();
             filter.locations = locations;
             initiateLiveStream(io, filter);
-        })
+        });
+
+        client.on('sentiment:valueUpdate', (extras) => {
+            _model.update(extras);
+        });
 
         console.log('Client and server are now connected');
         initiateLiveStream(io, filter);
@@ -84,10 +83,25 @@ getLanguages = function(req, res) {
             res.status(200).send(languages)
         }
 
+    })  
+}
+
+getPopularTweet = function(req, res) {
+    twitterClient.get('search/tweets.json?q=world%3Anews&lang=en&result_type=popular', (error, tweets, response) => {
+        if(error) {
+            console.log(`[ERROR]: ${error}`);
+            throw error
+        } else {
+            let mappedTweets = tweets.statuses.map((tweet) => {
+                return twitterMapper(tweet, _model);
+            });
+            res.status(200).send(mappedTweets);
+        }
     })
 }
 
 module.exports = {
     stream,
-    getLanguages
+    getLanguages,
+    getPopularTweet
 }

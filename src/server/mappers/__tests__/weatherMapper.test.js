@@ -1,2 +1,0 @@
-const { weatherMapper } = require('../weatherMapper');
-
