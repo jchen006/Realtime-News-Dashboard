@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { quotes } = require('../controllers/quotes');
+const { quotesOfDay } = require('../controllers/quotes');
 
-router.get('/today', quotes);
+router.get('/', quotesOfDay);
 
-module.exports = quotes;
+module.exports = router;

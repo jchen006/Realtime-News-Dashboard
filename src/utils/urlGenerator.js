@@ -23,5 +23,6 @@ module.exports = {
     hackerNews: {
         bestStories: `https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty`,
         story: (number) => `https://hacker-news.firebaseio.com/v0/item/${number}.json?print=pretty`
-    }
+    },
+    quotes: () => 'http://quotes.rest/qod.json'
 }

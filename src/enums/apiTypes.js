@@ -4,7 +4,8 @@ const apiTypes = {
     CRUNCHBASE: 'crunchbase',
     HACKERNEWS: 'hackernews',
     PRODUCTHUNT: 'producthunt',
-    DARKSKY: 'darksky'
+    DARKSKY: 'darksky',
+    QUOTES: 'quotes'
 }
 
 module.exports = {
