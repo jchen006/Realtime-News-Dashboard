@@ -1,15 +1,13 @@
 const request = require('request');
-const { url } = require('../../utils/urlGenerator');
+const { quotes } = require('../../utils/urlGenerator');
 const fetch = require('node-fetch');
 
 const getTodaysQuote = async (callback) => {
-    const requestUrl = url.quote();
+    const requestUrl = quotes();
     try{
-        const response = await fetch(requestUrl)
-            .then((fetchRes) => {
-                return fetchRes.json
-            });
-        callback(null, response);
+        const response = await fetch(requestUrl);
+        const data = await response.json();
+        callback(null, data);
     } catch(error) {
         callback(err, null);
         throw new Error('')

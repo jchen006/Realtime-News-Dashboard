@@ -1,6 +1,6 @@
 const {getTodaysQuote} = require('../apis/quotesApi');
 
-let quoteOfDay = (req, res) => {
+let quotesOfDay = (req, res) => {
     getTodaysQuote((err, data) => {
         if(err){
             res.status(500).send(err);
