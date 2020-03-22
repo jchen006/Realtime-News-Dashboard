@@ -1,7 +1,12 @@
-const styles = theme => ({
-    progress: {
-      margin: theme.spacing.unit * 2,
-    },
-});
+import { makeStyles } from '@material-ui/core/styles';
 
-export default styles;
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));
+
+export { useStyles };

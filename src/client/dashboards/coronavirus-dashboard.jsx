@@ -1,6 +1,7 @@
 import React from 'react';
+import { CoronavirusConfirmedChart } from 'features/coronavirus-confirmed-chart';
 
-function CoronavirusMonitor() {
+function CoronavirusDashboard() {
     // Add a search functionality 
     // Add a running list of countries 
     // Add an option to follow 
@@ -8,8 +9,8 @@ function CoronavirusMonitor() {
     // including news and line graphs 
     // Tweets will be right side 
     return (
-        <div> Test </div>
+        <div> <CoronavirusConfirmedChart/> </div>
     )
 }
 
-export default CoronavirusMonitor
+export default CoronavirusDashboard;

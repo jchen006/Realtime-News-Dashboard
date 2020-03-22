@@ -4,8 +4,9 @@ import { useStyles } from './styles';
 import Divider from '@material-ui/core/Divider';
 import { Item } from './components/Item';
 
-function ListItems() {
+function ListItems(props) {
     const classes = useStyles();
+    const { value } = props;
 
     // "provinceState": "Hubei",
     // "countryRegion": "China",

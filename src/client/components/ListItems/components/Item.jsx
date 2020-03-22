@@ -1,6 +1,5 @@
 import React from 'react';
-import { ListItemAvatar } from '@material-ui/core';
-import Typography from 'material-ui/styles/typography';
+import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -40,13 +39,13 @@ function Item(props) {
     const { province, countryRegion, confirmed, recovered, deaths } = props;
     return (
         <ListItem alignItems="flex-start">
-            <ListItemAvatar>
+            {/* <ListItemAvatar>
                 <Avatar alt="" component={}/>
-                <ListItemText
-                    primary={<PrimaryText />}
-                    secondary={<SecondaryText/>}
-                />
-            </ListItemAvatar>
+            </ListItemAvatar> */}
+            <ListItemText
+                primary={<PrimaryText />}
+                secondary={<SecondaryText/>}
+            />
         </ListItem>
     )
 }
