@@ -22,7 +22,7 @@ function CoronavirusConfirmedChart() {
 
     return (
         <>
-            <ListItems item={value}/>
+            <ListItems items={value}/>
         </>
     )
 
