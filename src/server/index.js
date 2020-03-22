@@ -8,6 +8,7 @@ const healthCheck = require('./routes/healthCheck')
 const weather = require('./routes/weather')
 const productHunt = require('./routes/productHunt');
 const hackerNews = require('./routes/hackerNews');
+const path = require('path');
 // const quotes = require('./routes/quotes');
 const { morganMiddleware } = require('./middleware/logging');
 
@@ -15,23 +16,19 @@ const app = express();
 const port = 8080;
 let _client;
 
-app.use(express.static('src/dist'));
 // for logging purposes
 app.use(morganMiddleware);
 app.use(bodyParser.json())
 
 //All declared routes will go here
 // app.use('/batch', batch);
-app.use('/google', google);
-app.use('/twitter', twitterRoute);
-app.use('/healthCheck', healthCheck);
-app.use('/weather', weather);
-app.use('/hackerNews', hackerNews);
-app.use('/productHunt', productHunt);
+app.use('/api/google', google);
+app.use('/api/twitter', twitterRoute);
+app.use('/api/healthCheck', healthCheck);
+app.use('/api/weather', weather);
+app.use('/api/hackerNews', hackerNews);
+app.use('/api/productHunt', productHunt);
 // app.use('/quotes', quotes);
-app.get('*', (req, res) => {                       
-    res.sendFile(path.resolve(__dirname, 'src/dist', 'index.html'));                               
-});
 
 const server = app.listen(port, () => {
     console.log(`Listening on port ${port}!`)

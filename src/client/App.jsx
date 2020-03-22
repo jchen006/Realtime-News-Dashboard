@@ -1,13 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
 import NewsHome from './components/NewsHome/index.jsx';
-import TrackDashboad from './components/TrackDashboard/TrackDashboard.jsx';
+import TrackDashboad from './dashboard/index.jsx';
 
 const App = () => {
     return (
         <Switch>
             <Route path={'/'} component={NewsHome}/>
-            <Route exact path={'/track'} component={TrackDashboad}/>
+            <Route path={'/track'} component={TrackDashboad}/>
         </Switch>
     );
 }
