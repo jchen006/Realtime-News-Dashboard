@@ -67385,6 +67385,7 @@ var App = function App() {
     path: '/',
     component: _components_NewsHome_index_jsx__WEBPACK_IMPORTED_MODULE_2__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
     path: '/track',
     component: _components_TrackDashboard_TrackDashboard_jsx__WEBPACK_IMPORTED_MODULE_3__["default"]
   }));

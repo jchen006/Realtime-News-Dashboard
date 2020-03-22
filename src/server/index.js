@@ -29,6 +29,9 @@ app.use('/weather', weather);
 app.use('/hackerNews', hackerNews);
 app.use('/productHunt', productHunt);
 // app.use('/quotes', quotes);
+app.get('*', (req, res) => {                       
+    res.sendFile(path.resolve(__dirname, 'src/dist', 'index.html'));                               
+});
 
 const server = app.listen(port, () => {
     console.log(`Listening on port ${port}!`)
