@@ -6,6 +6,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import PropTypes from 'prop-types';
 import { useStyles } from '../styles';
+import moment from 'moment';
 
 function PrimaryText(props) {
     const { provinceState, countryRegion } = props;
@@ -26,7 +27,7 @@ PrimaryText.propTypes = {
 
 function SecondaryText(props) {
     const classes = useStyles();
-    const { confirmed, recovered, deaths} = props;
+    const { confirmed, recovered, deaths, lastUpdate} = props;
     return (
         <>
             <div>
@@ -36,7 +37,7 @@ function SecondaryText(props) {
                     className={classes.inline}
                     color="textPrimary"
                 >
-                Confirmed:
+                Confirmed:&nbsp;
               </Typography>
               { confirmed }
             </div>
@@ -47,7 +48,7 @@ function SecondaryText(props) {
                     className={classes.inline}
                     color="textPrimary"
                 >
-                Deaths:
+                Deaths:&nbsp;
               </Typography>
               { deaths }
             </div>
@@ -58,9 +59,14 @@ function SecondaryText(props) {
                     className={classes.inline}
                     color="textPrimary"
                 >
-                Recovered:
+                Recovered:&nbsp;
               </Typography>
               { recovered }
+            </div>
+            <div>
+            <Typography variant="caption" display="block" gutterBottom>
+                {moment(lastUpdate).fromNow()}
+            </Typography>
             </div>
         </>
     )
@@ -81,7 +87,7 @@ function SecondaryText(props) {
     // "combinedKey": null,
     // "iso2": "CN",
     // "iso3": "CHN"
-function Item(props) {
+function CoronavirusStatusItem(props) {
     const { provinceState, countryRegion, confirmed, recovered, deaths, lastUpdate, iso2 } = props;
     const flagString = iso2 ? `https://www.countryflags.io/${iso2.toLowerCase()}/flat/64.png` : '';
     return (
@@ -91,10 +97,10 @@ function Item(props) {
             </ListItemAvatar>
             <ListItemText
                 primary={<PrimaryText provinceState={provinceState} countryRegion={countryRegion}/>}
-                secondary={<SecondaryText confirmed={confirmed} recovered={recovered} deaths={deaths}/>}
+                secondary={<SecondaryText confirmed={confirmed} recovered={recovered} deaths={deaths} lastUpdate={lastUpdate}/>}
             />
         </ListItem>
     )
 }
 
-export { Item };
+export { CoronavirusStatusItem };

@@ -2,6 +2,7 @@ import React from 'react';
 import { useAsync } from 'react-use';
 import { ListItems } from 'components/ListItems';
 import { LoadingSpinner } from 'components/LoadingSpinner';
+import { CoronavirusStatusItem } from 'components/ListItems/components/CoronavirusStatusItem';
 
 function CoronavirusConfirmedChart() {
     const { value, error, loading} = useAsync(async () => {
@@ -10,7 +11,6 @@ function CoronavirusConfirmedChart() {
         return result;
     });
 
-    console.log({value});
     if(loading || !value) {
         return <LoadingSpinner/>;
     }
@@ -22,7 +22,7 @@ function CoronavirusConfirmedChart() {
 
     return (
         <>
-            <ListItems items={value}/>
+            <ListItems items={value} ItemComponent={CoronavirusStatusItem}/>
         </>
     )
 
