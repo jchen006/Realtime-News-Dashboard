@@ -17,6 +17,17 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      components: path.resolve(__dirname, 'src/client/components'),
+      features: path.resolve(__dirname, 'src/client/features'),
+      dashboards: path.resolve(__dirname, 'src/client/dashboards'),
+      constants: path.resolve(__dirname, 'src/client/constants'),
+      reducers: path.resolve(__dirname, 'src/client/reducers'),
+      actions: path.resolve(__dirname, 'src/client/actions'),
+    },
+    extensions: ['.jsx', '.js']
+  },
   mode: 'development',
   devtool: 'source-map'
 };

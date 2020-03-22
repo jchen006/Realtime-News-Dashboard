@@ -4546,7 +4546,7 @@ var defaultTheme = Object(_createMuiTheme__WEBPACK_IMPORTED_MODULE_0__["default"
 /*!************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/styles/index.js ***!
   \************************************************************/
-/*! exports provided: createMuiTheme, createStyles, makeStyles, MuiThemeProvider, responsiveFontSizes, styled, useTheme, withStyles, withTheme, hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, easing, duration, formatMs, isString, isNumber */
+/*! exports provided: hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, createMuiTheme, createStyles, makeStyles, MuiThemeProvider, responsiveFontSizes, styled, easing, duration, formatMs, isString, isNumber, useTheme, withStyles, withTheme */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56077,7 +56077,7 @@ module.exports = hoistNonReactStatics;
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -67375,6 +67375,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_NewsHome_index_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/NewsHome/index.jsx */ "./src/client/components/NewsHome/index.jsx");
 /* harmony import */ var _components_TrackDashboard_TrackDashboard_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/TrackDashboard/TrackDashboard.jsx */ "./src/client/components/TrackDashboard/TrackDashboard.jsx");
+/* harmony import */ var dashboards_Coronavirus__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! dashboards/Coronavirus */ "./src/client/dashboards/Coronavirus.jsx");
+
 
 
 
@@ -67387,6 +67389,9 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: '/track',
     component: _components_TrackDashboard_TrackDashboard_jsx__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: '/coronavirusMonitor',
+    component: dashboards_Coronavirus__WEBPACK_IMPORTED_MODULE_4__["default"]
   }));
 };
 
@@ -67414,7 +67419,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ //TODO: deprecate to a functional component with hooks.
 
 var LoadingSpinner = function LoadingSpinner(props) {
   var progress = props.classes.progress;
@@ -68000,6 +68005,33 @@ var TrackDashboard = function TrackDashboard(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TrackDashboard);
+
+/***/ }),
+
+/***/ "./src/client/dashboards/Coronavirus.jsx":
+/*!***********************************************!*\
+  !*** ./src/client/dashboards/Coronavirus.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function CoronavirusMonitor() {
+  // Add a search functionality 
+  // Add a running list of countries 
+  // Add an option to follow 
+  // follow will open up to see more deatils 
+  // including news and line graphs 
+  // Tweets will be right side 
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " Test ");
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (CoronavirusMonitor);
 
 /***/ }),
 

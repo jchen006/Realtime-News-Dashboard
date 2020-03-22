@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import styles from './styles.js'
 
+//TODO: deprecate to a functional component with hooks.
 const LoadingSpinner = (props) => {
   const {
     classes: {
