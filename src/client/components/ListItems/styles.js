@@ -4,8 +4,9 @@ export const useStyles = makeStyles(theme => ({
     root: {
       width: '100%',
       maxWidth: '36ch',
+      margin: 20,
       backgroundColor: theme.palette.background.paper,
-      height: '600px',
+      height: '40vw',
       overflow: 'scroll'
     },
     inline: {

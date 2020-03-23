@@ -19,16 +19,15 @@ module.exports = {
   },
   resolve: {
     alias: {
-      components: path.resolve(__dirname, 'src/client/components'),
-      features: path.resolve(__dirname, 'src/client/features'),
-      dashboards: path.resolve(__dirname, 'src/client/dashboards'),
-      constants: path.resolve(__dirname, 'src/client/constants'),
-      reducers: path.resolve(__dirname, 'src/client/reducers'),
-      actions: path.resolve(__dirname, 'src/client/actions'),
+      features: path.resolve(__dirname, './src/client/features'),
+      actions: path.resolve(__dirname, './src/client/actions'),
+      components: path.resolve(__dirname, './src/client/components'),
+      dashboards: path.resolve(__dirname, './src/client/dashboards'),
+      constants: path.resolve(__dirname, './src/client/constants'),
+      reducers: path.resolve(__dirname, './src/client/reducers'),
     },
     extensions: ['.jsx', '.js']
   },
   mode: 'development',
   devtool: 'source-map'
 };
-//Add an alias for actions, copmonents, reducers, utils, and constants, config

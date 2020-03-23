@@ -19,7 +19,6 @@ function CoronavirusConfirmedChart() {
         console.log(error);
     }
 
-
     return (
         <>
             <ListItems items={value} ItemComponent={CoronavirusStatusItem}/>
