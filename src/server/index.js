@@ -9,7 +9,7 @@ const weather = require('./routes/weather')
 const productHunt = require('./routes/productHunt');
 const hackerNews = require('./routes/hackerNews');
 const coronavirus = require('./routes/covid19/coronavirusMonitor');
-var path=require('path');
+const worldMap = require('./110m.json');
 // const quotes = require('./routes/quotes');
 const { morganMiddleware } = require('./middleware/logging');
 
@@ -18,9 +18,6 @@ const port = 8080;
 let _client;
 
 app.use(express.static('src/dist'));
-app.get('*', (req, res) => {
-    res.sendFile('index.html', {root: path.join(__dirname, '../dist')})
-});
 // for logging purposes
 app.use(morganMiddleware);
 app.use(bodyParser.json())
@@ -34,6 +31,9 @@ app.use('/weather', weather);
 app.use('/hackerNews', hackerNews);
 app.use('/productHunt', productHunt);
 app.use('/coronavirus', coronavirus);
+app.get('/worldMapConfig', (req, res) => {
+    res.status(200).send(worldMap);
+})
 // app.use('/quotes', quotes);
 
 const server = app.listen(port, () => {

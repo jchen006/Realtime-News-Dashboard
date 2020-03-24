@@ -5,6 +5,9 @@ import {
     updateCurrentPage
 } from 'actions/appAction';
 import { CoronavirusBreadcrumbs } from 'features/coronavirus-breadcrumbs';
+import { CoronavirusWorldMap } from 'features/coronavirus-world-map';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -23,8 +26,15 @@ function CoronavirusDashboard(props) {
     // Tweets will be right side 
     return (
         <div>
-            <CoronavirusConfirmedChart/>
-            <CoronavirusBreadcrumbs/>
+            <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="center"
+            >
+                <CoronavirusConfirmedChart/>
+                <CoronavirusWorldMap/>
+            </Grid>
         </div>
     )
 }
