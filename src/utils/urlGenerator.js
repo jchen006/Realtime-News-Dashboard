@@ -23,5 +23,13 @@ module.exports = {
     hackerNews: {
         bestStories: `https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty`,
         story: (number) => `https://hacker-news.firebaseio.com/v0/item/${number}.json?print=pretty`
+    },
+    coronavirusMonitor: {
+        countries: 'https://covid19.mathdro.id/api/countries',
+        dailySummary: 'https://covid19.mathdro.id/api/daily',
+        country: country => `https://covid19.mathdro.id/api/countries/${country}`,
+        date: date => `https://covid19.mathdro.id/api/daily/${date}`,
+        confirmed: 'https://covid19.mathdro.id/api/confirmed',
+        deaths: 'https://covid19.mathdro.id/api/deaths'
     }
 }

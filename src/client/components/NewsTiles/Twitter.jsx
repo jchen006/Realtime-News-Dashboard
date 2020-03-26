@@ -2,7 +2,7 @@ import React from 'react';
 import { TwitterTile } from './TwitterTile.jsx';
 import Grid from '@material-ui/core/Grid';
 import io from 'socket.io-client';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.jsx';
+import { LoadingSpinner } from 'components/LoadingSpinner';
 import { connect } from 'react-redux';
 import * as _ from 'underscore';
 
