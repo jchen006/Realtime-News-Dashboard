@@ -12,7 +12,7 @@ function CoronavirusConfirmedChart() {
     });
 
     if(loading || !value) {
-        return <LoadingSpinner/>;
+        return <LoadingSpinner text={'Loading most recent data Loading most recent data Loading most recent data Loading most recent data'}/>;
     }
 
     if(error) {
@@ -20,11 +20,8 @@ function CoronavirusConfirmedChart() {
     }
 
     return (
-        <>
-            <ListItems items={value} ItemComponent={CoronavirusStatusItem}/>
-        </>
+        <ListItems items={value} ItemComponent={CoronavirusStatusItem}/>
     )
-
 }
 
 export { CoronavirusConfirmedChart }

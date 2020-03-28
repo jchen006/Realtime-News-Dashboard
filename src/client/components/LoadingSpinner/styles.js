@@ -8,6 +8,11 @@ const useStyles = makeStyles(theme => ({
       marginLeft: theme.spacing(2),
     },
   },
+  text: {
+    display: 'inline-block',
+    paddingTop: 36,
+    maxWidth: 200
+  }
 }));
 
 export { useStyles };

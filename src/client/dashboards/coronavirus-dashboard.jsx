@@ -6,6 +6,7 @@ import {
 } from 'actions/appAction';
 import { CoronavirusBreadcrumbs } from 'features/coronavirus-breadcrumbs';
 import { CoronavirusWorldMap } from 'features/coronavirus-world-map';
+import { CoronavirusNewsfeed } from 'features/coronavirus-newsfeed';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 
@@ -34,6 +35,7 @@ function CoronavirusDashboard(props) {
             >
                 <CoronavirusConfirmedChart/>
                 <CoronavirusWorldMap/>
+                <CoronavirusNewsfeed/>
             </Grid>
         </div>
     )
