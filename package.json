@@ -13,7 +13,7 @@
     "client": "webpack --watch",
     "server": "nodemon src/server/index.js",
     "desktop:dev": "concurrently \"npm run server\" \"npm run client\" \"npm run start:electron:dev\"",
-    "web:dev": "concurrently \"npm run server\" \"npm run client\"",
+    "web:dev": "concurrently \"npm run server\" \"npm run next\"",
     "test:unit": "mocha src/**/__tests__/*.test.js"
   },
   "license": "ISC",
