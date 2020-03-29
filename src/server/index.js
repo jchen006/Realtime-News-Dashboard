@@ -17,10 +17,6 @@ const app = express();
 const port = 8080;
 let _client;
 
-app.use(express.static('src/dist'));
-app.get('*', (req, res) => {
-    res.sendFile('index.html', {root: path.join(__dirname, '../dist')})
-});
 // for logging purposes
 app.use(morganMiddleware);
 app.use(bodyParser.json())
