@@ -1,11 +1,22 @@
 {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      ["@babel/plugin-proposal-decorators", { "legacy": true }],
-      ["@babel/plugin-proposal-class-properties", { "loose": true}],
-      ["@babel/transform-runtime"]
-    ]
-  }
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true}],
+    ["@babel/transform-runtime"],
+    ["module-resolver", {
+      "root": [""],
+      "alias": {
+        "components": "./src/client/components",
+        "features": "./src/client/features",
+        "dashboards": "./src/client/dashboards",
+        "constants": "./src/client/constants",
+        "reducers": "./src/client/reducers",
+        "actions": "./src/client/actions",
+      }
+    }]
+  ]
+}

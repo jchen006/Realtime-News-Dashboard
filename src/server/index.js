@@ -17,7 +17,6 @@ const app = express();
 const port = 8080;
 let _client;
 
-app.use(express.static('src/dist'));
 // for logging purposes
 app.use(morganMiddleware);
 app.use(bodyParser.json())
