@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useSocket } from 'use-socketio';
+import { LoadingSpinner } from 'components/LoadingSpinner';
 
-function TwitterNewsfeed(props) {
-    const { filters } = props;
+
+function TwitterNewsfeed() {
+
     const [tweets, setTweets] = useState([]);
-    
+
     const { socket, subscribe, unsubscribe } = useSocket("tweet", (newTweet) => {
         console.log(newTweet);
         let currentTweets = [...tweets];
         let tweetExists = updatedTweets.find(tweet => tweet.id === newTweet.id);
-        if(!tweetExists) {
+        let(!tweetExists) {
             if(tweets.length === 10) {
                 currentTweets = currentTweets.slice(1);
                 currentTweets.unshift(newTweet);
@@ -18,33 +20,24 @@ function TwitterNewsfeed(props) {
                 setTweets([newTweet, ...tweets]);
             }
         }
-    });
+    })
 
     const updateFilters = () => {
-      socket.emit('settingsUpdates', {
-        filters
-      })
+        socket.emit('settingsUpdates', {
+            filters
+        })
     }
 
-    // Might need to update this into a deep equal effect 
     useEffect(updateFilters, [filters]);
 
-    // Change this a flipboard based type of render 
-    // Might need to do section with reddit, google, and twitter 
-    // 
-    if(tweets.length > 0) {
-      return (
-        <div>
-          <ul>
-            {tweets.map(tweet => (
-              <li key={tweet.id}>{tweet.text}</li>
-            ))}
-          </ul>
-        </div>
-      )
+    if(tweets.length === 0) {
+        return <><LoadingSpinner text="Connecting to Twitter Stream"/></>
     }
 
-    return <div> <p>Actually waiting for the websocket server...</p> </div>;
+    return (
+        <>
+        </>
+    )
 }
 
-export { TwitterNewsfeed };
+export default TwitterNewsfeed;
