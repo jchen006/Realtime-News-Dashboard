@@ -11,6 +11,7 @@ export const configureStore = (initialState={}) => {
     return createStore(
         rootReducer,
         initialState,
+        // composeEnhancers(applyMiddleware(...middlewares)),
     );
 }
 
