@@ -23,7 +23,7 @@ function PrimaryText(props) {
     const { title } = props;
     return (
         <>
-            <Typography>
+            <Typography component="span" variant="h6" className={classes.inline} color="textPrimary">
                 { title }
             </Typography>
         </>
@@ -31,7 +31,21 @@ function PrimaryText(props) {
 }
 
 function SecondaryText(props) {
-
+    const { author, publishedAt, source} = props;
+    return (
+        <>
+            <div>
+                <Typography component="span" variant="body2" className={classes.inline} color="textPrimary">
+                    { author } - {source}
+                </Typography>
+            </div>
+            <div>
+                <Typography component="span" variant="body2" className={classes.inline} color="textPrimary">
+                    { moment(publishedAt).fromNow() }
+                </Typography>
+            </div>
+        </>
+    );
 }
 
 
@@ -41,8 +55,17 @@ function GoogleNewsItem(props) {
         name
         }
     } = props;
+
+    const handleOnClick = () => {
+        window.open(url);
+    }
+
+    const handleOnHover = () => {
+
+    }
+
     return (
-        <ListItem alignItems="flex-start">
+        <ListItem alignItems="flex-start" onClick={handleOnClick} onHover={handleOnHover}>
             <ListItemAvatar>
                 <NewsfeedAvatar sourceId={id} sourceName={name}/>
             </ListItemAvatar>

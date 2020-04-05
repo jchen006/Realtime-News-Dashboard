@@ -1,1 +1,2 @@
-export { default as TwitterNewsfeed } from './TwitterNewsfeed.jsx';
+export * from './TwitterNewsfeed.jsx';
+export * from './GoogleNewsfeed.jsx';

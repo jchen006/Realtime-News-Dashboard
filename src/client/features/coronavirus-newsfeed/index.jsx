@@ -1,9 +1,7 @@
 import React from 'react';
-import { TwitterNewsfeed } from './newsfeeds';
+import { TwitterNewsfeed, GoogleNewsfeed } from './newsfeeds';
 import Grid from '@material-ui/core/Grid';
-import { NewsfeedPanel } from 'components/NewsfeedPanel';
-
-// Look into adjustable panels later 
+import { NewsfeedPanel } from 'components/Newsfeed/components/NewsfeedPanel';
 
 function CoronaviursNewsfeed() {
     return (
@@ -13,12 +11,14 @@ function CoronaviursNewsfeed() {
                 direction="column"
                 justify="flex-start"
                 alignItems="center"
+                spacing={4}
             >
                 <NewsfeedPanel panelTitle={'Twitter'}>
                     <TwitterNewsfeed/>
                 </NewsfeedPanel>
-                <NewsfeedPanel/>
-                <NewsfeedPanel/> 
+                {/* <NewsfeedPanel panelTitle={'Google'}>
+                    {/* <GoogleNewsfeed/> */}
+                {/* </NewsfeedPanel> */} */}
             </Grid>
         </div>
     )

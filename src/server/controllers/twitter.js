@@ -17,6 +17,7 @@ var initiateLiveStream = function(io, filter) {
         _stream = stream
         _stream.on('data', function(event) {
             if(event && event.lang == language) {
+                console.log('tweet');
                 let mappedEvent = twitterMapper(event, _model);
                 io.emit('tweet', mappedEvent)
             }

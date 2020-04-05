@@ -1,5 +1,6 @@
 import React from 'react';
 import { CoronavirusConfirmedChart } from '../../src/client/features/coronavirus-confirmed-chart';
+import { CoronaviursNewsfeed } from '../../src/client/features/coronavirus-newsfeed';
 
 function CoronavirusDashboard() {
     // Add a search functionality 
@@ -9,7 +10,10 @@ function CoronavirusDashboard() {
     // including news and line graphs 
     // Tweets will be right side 
     return (
-        <div> <CoronavirusConfirmedChart/> </div>
+        <div>
+            {/* <CoronavirusConfirmedChart/> */}
+            <CoronaviursNewsfeed/>
+        </div>
     )
 }
 

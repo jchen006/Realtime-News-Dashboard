@@ -15,7 +15,7 @@ const socketIoOptions = {
 ReactDOM.render(
     <Provider store={configureStore()}>
         <BrowserRouter>
-            <SocketIOProvider url="http://localhost:8080" opts={socketIoOptions}>
+            <SocketIOProvider url="http://localhost:8080">
                 <App/>
             </SocketIOProvider>
         </BrowserRouter>
