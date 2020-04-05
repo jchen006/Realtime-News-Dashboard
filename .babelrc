@@ -1,8 +1,15 @@
 {
   "presets": [
-    "@babel/preset-env",
-    "@babel/preset-react"
+    "next/babel"
   ],
+  "env": {
+    "test": {
+      "presets": [
+        ["next/babel", { "preset-env": { "targets": { "node": "current" } } }]
+      ],
+      "plugins": ["dynamic-import-node"]
+    }
+  },
   "plugins": [
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["@babel/plugin-proposal-class-properties", { "loose": true}],
@@ -16,6 +23,7 @@
         "constants": "./src/client/constants",
         "reducers": "./src/client/reducers",
         "actions": "./src/client/actions",
+        "client": "./src/client",
       }
     }]
   ]
