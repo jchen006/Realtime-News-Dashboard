@@ -3,12 +3,17 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers/RootReducer';
 import logger from 'redux-logger'
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const reduxDevtools = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__() && window.__REDUX_DEVTOOLS_EXTENSION__();
+const composeEnhancers = reduxDevtools || compose;
 
-export default function configureStore(initialState={}) {
-    const middlewares = [thunk, logger]
+export const configureStore = (initialState={}) => {
+    const middlewares = [thunk, logger];
     return createStore(
         rootReducer,
-        composeEnhancer(applyMiddleware(...middlewares)),
+        initialState,
+        // composeEnhancers(applyMiddleware(...middlewares)),
     );
 }
+
+
+
