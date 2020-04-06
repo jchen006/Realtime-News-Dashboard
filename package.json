@@ -14,7 +14,8 @@
     "server": "nodemon src/server/index.js",
     "desktop:dev": "concurrently \"npm run server\" \"npm run client\" \"npm run start:electron:dev\"",
     "web:dev": "concurrently \"npm run server\" \"npm run next\"",
-    "test:unit": "mocha src/**/__tests__/*.test.js"
+    "test:unit": "mocha src/**/__tests__/*.test.js",
+    "storybook": "start-storybook"
   },
   "license": "ISC",
   "dependencies": {
@@ -77,6 +78,7 @@
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/react": "^5.3.18",
     "babel": "^6.23.0",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.0",
