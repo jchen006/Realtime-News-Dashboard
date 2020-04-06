@@ -4,7 +4,6 @@ import Icon from "@mdi/react";
 
 function NewsfeedAvatar(props) {
     const { sourceId } = props; 
-    console.log(sourceId);
 
     const getIcon = () => {
         let icon = {path: '', title: '', color: ''};
@@ -19,7 +18,7 @@ function NewsfeedAvatar(props) {
                 icon.title = 'Reddit';
                 icon.color = '#FF5700'
                 break;
-            case 'google-news':
+            // case 'google-news':
             case 'Google':
                 icon.path = mdiGoogle;
                 icon.title = "Google";
@@ -31,7 +30,6 @@ function NewsfeedAvatar(props) {
     }
 
     const iconDetails = getIcon();
-    console.log({iconDetails});
     const { path, title, color } = iconDetails;
     return (
         <Icon path={path}

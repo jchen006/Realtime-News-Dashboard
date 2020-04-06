@@ -10,9 +10,14 @@ import moment from 'moment';
 function PrimaryText(props) {
     const { title } = props;
     const classes = useStyles();
+
+    const handleOnClick = () => {
+        window.open(`https://twitter.com/${title}`);
+    }
+
     return (
         <>
-            <Typography component="span" variant="h6" className={classes.inline} color="textPrimary">
+            <Typography component="span" variant="h6" className={classes.inline} color="textPrimary" onClick={handleOnClick}>
                 @{ title }
             </Typography>
         </>

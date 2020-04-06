@@ -34,13 +34,13 @@ function PrimaryText(props) {
 }
 
 function SecondaryText(props) {
-    const { author, publishedAt, source} = props;
+    const { publishedAt, source} = props;
     const classes = useStyles();
     return (
         <>
             <div>
                 <Typography component="span" variant="caption" className={classes.inline} color="textPrimary">
-                    { author } - {source}
+                    {source}
                 </Typography>
             </div>
             <div>
@@ -56,7 +56,6 @@ function SecondaryText(props) {
 function GoogleNewsItem(props) {
     const { 
         title, 
-        author,
         url,
         publishedAt,
         source: {
@@ -69,19 +68,14 @@ function GoogleNewsItem(props) {
         window.open(url);
     }
 
-    const handleOnHover = () => {
-
-    }
-
-    console.log({id, name});
     return (
-        <ListItem alignItems="flex-start">
+        <ListItem alignItems="flex-start" onClick={handleOnClick}>
             <ListItemAvatar>
                 <NewsfeedAvatar sourceId={id} sourceName={name}/>
             </ListItemAvatar>
             <ListItemText
                 primary={<PrimaryText title={title}/>}
-                secondary={<SecondaryText author={author} publishedAt={publishedAt} source={name}/>}
+                secondary={<SecondaryText publishedAt={publishedAt} source={name}/>}
             />
         </ListItem>
     )

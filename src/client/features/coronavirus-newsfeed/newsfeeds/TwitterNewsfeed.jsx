@@ -10,17 +10,17 @@ function TwitterNewsfeed(props) {
 
     const { socket } = useSocket("tweet", (newTweet) => {
         console.log(newTweet);
-        // let currentTweets = [...tweets];
-        // let tweetExists = updatedTweets.find(tweet => tweet.id === newTweet.id);
-        // if (!tweetExists) {
-        //     if(tweets.length === 10) {
-        //         currentTweets = currentTweets.slice(1);
-        //         currentTweets.unshift(newTweet);
-        //         setTweets(currentTweets);
-        //     } else {
-        //         setTweets([newTweet, ...tweets]);
-        //     }
-        // }
+        let currentTweets = [...tweets];
+        let tweetExists = updatedTweets.find(tweet => tweet.id === newTweet.id);
+        if (!tweetExists) {
+            if(tweets.length === 10) {
+                currentTweets = currentTweets.slice(1);
+                currentTweets.unshift(newTweet);
+                setTweets(currentTweets);
+            } else {
+                setTweets([newTweet, ...tweets]);
+            }
+        }
     })
 
     // const updateFilters = () => {
