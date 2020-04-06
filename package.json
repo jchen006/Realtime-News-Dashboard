@@ -13,8 +13,9 @@
     "client": "webpack --watch",
     "server": "nodemon src/server/index.js",
     "desktop:dev": "concurrently \"npm run server\" \"npm run client\" \"npm run start:electron:dev\"",
-    "web:dev": "concurrently \"npm run server\" \"npm run next\"",
+    "web:dev": "concurrently \"npm run server\" \"npm run next\" \"redux-devtools\"",
     "test:unit": "mocha src/**/__tests__/*.test.js",
+    "redux-devtools": "redux-devtools --hostname=localhost --port=8000",
     "storybook": "start-storybook"
   },
   "license": "ISC",
@@ -96,6 +97,7 @@
     "html-webpack-plugin": "^3.2.0",
     "mocha": "^6.1.4",
     "nodemon": "^1.19.1",
+    "redux-devtools-cli": "0.0.1-1",
     "style-loader": "^0.23.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.5.0",
