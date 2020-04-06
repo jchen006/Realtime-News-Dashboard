@@ -12,6 +12,8 @@ const coronavirus = require('./routes/covid19/coronavirusMonitor');
 const worldMap = require('./110m.json');
 // const quotes = require('./routes/quotes');
 const { morganMiddleware } = require('./middleware/logging');
+var reduxDevTools = require('redux-devtools-cli');
+
 
 const app = express();
 const port = 8080;
@@ -41,4 +43,7 @@ const server = app.listen(port, () => {
 
 // Only specific to Twitter since it needs to pass in a server 
 twitter.stream(server, _client)
+
+// Specific to redux dev tooling. Should add yargs to hide it. 
+reduxDevTools({ hostname: 'localhost', port: 8000 });
 

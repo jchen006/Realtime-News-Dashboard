@@ -2,13 +2,15 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/RootReducer';
 import logger from 'redux-logger'
+import { composeWithDevTools } from 'remote-redux-devtools'
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = composeWithDevTools({ realtime: true, port: 8000 })
 
-export default function configureStore(initialState={}) {
-    const middlewares = [thunk, logger]
+export const configureStore = (initialState={}) => {
+    const middlewares = [thunk, logger];
     return createStore(
         rootReducer,
-        composeEnhancer(applyMiddleware(...middlewares)),
+        initialState,
+        composeEnhancers(applyMiddleware(...middlewares)),
     );
 }
