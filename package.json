@@ -15,7 +15,8 @@
     "desktop:dev": "concurrently \"npm run server\" \"npm run client\" \"npm run start:electron:dev\"",
     "web:dev": "concurrently \"npm run server\" \"npm run next\" \"redux-devtools\"",
     "test:unit": "mocha src/**/__tests__/*.test.js",
-    "redux-devtools": "redux-devtools --hostname=localhost --port=8000"
+    "redux-devtools": "redux-devtools --hostname=localhost --port=8000",
+    "storybook": "start-storybook"
   },
   "license": "ISC",
   "dependencies": {
@@ -78,6 +79,7 @@
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/react": "^5.3.18",
     "babel": "^6.23.0",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.0",
