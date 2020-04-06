@@ -1,9 +1,11 @@
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import moment from 'moment';
 import Typography from '@material-ui/core/Typography';
 import { NewsfeedAvatar } from './NewsfeedAvatar';
+import { useStyles } from '../styles';
 
 // TODO add a functoinality to expand 
 // {
@@ -21,10 +23,11 @@ import { NewsfeedAvatar } from './NewsfeedAvatar';
 //     }
 function PrimaryText(props) {
     const { title } = props;
+    const classes = useStyles();
     return (
         <>
-            <Typography component="span" variant="h6" className={classes.inline} color="textPrimary">
-                { title }
+            <Typography component="div" variant="body1" className={classes.inline} color="textPrimary">
+                <b>{ title }</b>
             </Typography>
         </>
     );
@@ -32,15 +35,16 @@ function PrimaryText(props) {
 
 function SecondaryText(props) {
     const { author, publishedAt, source} = props;
+    const classes = useStyles();
     return (
         <>
             <div>
-                <Typography component="span" variant="body2" className={classes.inline} color="textPrimary">
+                <Typography component="span" variant="caption" className={classes.inline} color="textPrimary">
                     { author } - {source}
                 </Typography>
             </div>
             <div>
-                <Typography component="span" variant="body2" className={classes.inline} color="textPrimary">
+                <Typography component="span" variant="caption" className={classes.inline} color="textPrimary">
                     { moment(publishedAt).fromNow() }
                 </Typography>
             </div>
@@ -50,9 +54,14 @@ function SecondaryText(props) {
 
 
 function GoogleNewsItem(props) {
-    const { title, author, url, publishedAt, source: {
-        id,
-        name
+    const { 
+        title, 
+        author,
+        url,
+        publishedAt,
+        source: {
+            id,
+            name
         }
     } = props;
 
@@ -64,14 +73,15 @@ function GoogleNewsItem(props) {
 
     }
 
+    console.log({id, name});
     return (
-        <ListItem alignItems="flex-start" onClick={handleOnClick} onHover={handleOnHover}>
+        <ListItem alignItems="flex-start">
             <ListItemAvatar>
                 <NewsfeedAvatar sourceId={id} sourceName={name}/>
             </ListItemAvatar>
             <ListItemText
-                primaryText={<PrimaryText title={title}/>}
-                secondaryText={<SecondaryText author={author} publishedAt={publishedAt} source={name}/>}
+                primary={<PrimaryText title={title}/>}
+                secondary={<SecondaryText author={author} publishedAt={publishedAt} source={name}/>}
             />
         </ListItem>
     )

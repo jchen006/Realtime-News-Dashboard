@@ -1,13 +1,14 @@
 import React from 'react';
-import { mdiReddit, mdiTwitter } from '@mdi/js';
+import { mdiReddit, mdiTwitter, mdiGoogle } from '@mdi/js';
 import Icon from "@mdi/react";
 
 function NewsfeedAvatar(props) {
-    const { source } = props; 
+    const { sourceId } = props; 
+    console.log(sourceId);
 
     const getIcon = () => {
         let icon = {path: '', title: '', color: ''};
-        switch(source) {
+        switch(sourceId) {
             case 'Twitter':
                 icon.path = mdiTwitter;
                 icon.title = 'Twitter';
@@ -18,6 +19,11 @@ function NewsfeedAvatar(props) {
                 icon.title = 'Reddit';
                 icon.color = '#FF5700'
                 break;
+            case 'google-news':
+            case 'Google':
+                icon.path = mdiGoogle;
+                icon.title = "Google";
+                icon.color = "#008744";
             default:
                 break;
         }
@@ -25,14 +31,13 @@ function NewsfeedAvatar(props) {
     }
 
     const iconDetails = getIcon();
+    console.log({iconDetails});
     const { path, title, color } = iconDetails;
     return (
         <Icon path={path}
             title={title}
             size={1}
-            horizontal
             color={color}
-            spin
         />
     );
 }
