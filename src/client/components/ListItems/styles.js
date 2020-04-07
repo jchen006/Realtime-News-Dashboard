@@ -6,7 +6,7 @@ export const useStyles = makeStyles(theme => ({
       maxWidth: '32ch',
       margin: 20,
       backgroundColor: theme.palette.background.paper,
-      height: '40vw',
+      height: '35vw',
       overflow: 'scroll'
     },
     inline: {

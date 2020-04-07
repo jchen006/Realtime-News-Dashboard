@@ -18,6 +18,8 @@ function NewsfeedPanel(props) {
                     aria-label="Expand"
                     aria-controls="additional-actions1-content"
                     id="additional-actions1-header"
+                    className={classes.header}
+                    defaultExpanded
                 >
                     <Typography className={classes.heading}>{panelTitle}</Typography>
                 </ExpansionPanelSummary>

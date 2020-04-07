@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSocket } from 'use-socketio';
 import { LoadingSpinner } from 'components/LoadingSpinner';
 import { TwitterItem } from 'components/ListItems/components/TwitterItem';
+import { ListItems } from 'components/ListItems';
 
 
 function TwitterNewsfeed(props) {
@@ -11,7 +12,7 @@ function TwitterNewsfeed(props) {
     const { socket } = useSocket("tweet", (newTweet) => {
         console.log(newTweet);
         let currentTweets = [...tweets];
-        let tweetExists = updatedTweets.find(tweet => tweet.id === newTweet.id);
+        let tweetExists = tweets.find(tweet => tweet.id === newTweet.id);
         if (!tweetExists) {
             if(tweets.length === 10) {
                 currentTweets = currentTweets.slice(1);
@@ -37,11 +38,7 @@ function TwitterNewsfeed(props) {
 
     return (
         <>
-        {
-            tweets.map((tweet) => {
-                <ListItems items={articles} ItemComponent={TwitterItem}/>
-            })
-        }
+            <ListItems items={tweets} ItemComponent={TwitterItem}/>
         </>
     )
 }

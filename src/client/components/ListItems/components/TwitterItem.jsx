@@ -44,8 +44,8 @@ function SecondaryText(props) {
 }
 
 function TwitterItem(props) {
-
     const {
+        name,
         text,
         screen_name
     } = props;
@@ -56,7 +56,7 @@ function TwitterItem(props) {
                 <NewsfeedAvatar sourceId="Twitter"/>
             </ListItemAvatar>
             <ListItemText
-                primary={<PrimaryText title={screen_name}/>}
+                primary={<PrimaryText title={screen_name ? screen_name : name}/>}
                 secondary={<SecondaryText text={text}/>}
             />
         </ListItem>

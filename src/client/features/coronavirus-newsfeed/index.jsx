@@ -18,7 +18,7 @@ function CoronaviursNewsfeed() {
                 </NewsfeedPanel>
                 {/* <NewsfeedPanel panelTitle={'Google'}>
                     {/* <GoogleNewsfeed/> */}
-                {/* </NewsfeedPanel> */} */}
+                {/* </NewsfeedPanel> */}
             </Grid>
         </div>
     )

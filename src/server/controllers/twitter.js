@@ -7,7 +7,7 @@ const { twitterMapper } = require('../mappers/twitterMapper');
 
 var _stream = {}
 let filter = {
-    track: 'NBA'
+    track: 'covid-19,coronavirus'
 }
 let language = 'en'
 let _model;
@@ -17,7 +17,6 @@ var initiateLiveStream = function(io, filter) {
         _stream = stream
         _stream.on('data', function(event) {
             if(event && event.lang == language) {
-                console.log('tweet');
                 let mappedEvent = twitterMapper(event, _model);
                 io.emit('tweet', mappedEvent)
             }
