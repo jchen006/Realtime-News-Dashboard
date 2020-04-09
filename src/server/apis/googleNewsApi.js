@@ -17,7 +17,6 @@ let queryTopHeadlines = async (qs, callback) => {
     try {
         //Run a query validation
         const requestUrl = url.google({ route: 'top-headlines', params: qs});
-        console.log({requestUrl});
         const response = await fetch(requestUrl, options);
         const json = await response.json();
         const {
@@ -33,7 +32,6 @@ let queryTopHeadlines = async (qs, callback) => {
             callback(mappedArticles, null);
         }
     } catch(error) {
-        console.log({error});
         callback(null, error);
 
         throw new Error(error)
@@ -58,7 +56,6 @@ let queryAllSources = async (qs, callback) => {
             callback(mappedArticles, null);
         }
     } catch (error) {
-        console.log({error})
         callback(null, error);
         throw new Error('');
     }

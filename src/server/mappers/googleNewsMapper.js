@@ -7,7 +7,6 @@ const googleNewsMapper = ({
     },
     ...rest
 }) => {
-    console.log(rest);
     return ({
         apiType: 'google',
         sourceId: id,
