@@ -70,9 +70,6 @@ function GoogleNewsItem(props) {
 
     return (
         <ListItem alignItems="flex-start" onClick={handleOnClick}>
-            <ListItemAvatar>
-                <NewsfeedAvatar sourceId={id} sourceName={name}/>
-            </ListItemAvatar>
             <ListItemText
                 primary={<PrimaryText title={title}/>}
                 secondary={<SecondaryText publishedAt={publishedAt} source={name}/>}

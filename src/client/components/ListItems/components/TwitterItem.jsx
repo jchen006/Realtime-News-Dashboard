@@ -49,12 +49,10 @@ function TwitterItem(props) {
         text,
         screen_name
     } = props;
+    const classes = useStyles();
 
     return (
-        <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-                <NewsfeedAvatar sourceId="Twitter"/>
-            </ListItemAvatar>
+        <ListItem alignItems="flex-start" className={classes.tweetItem}>
             <ListItemText
                 primary={<PrimaryText title={screen_name ? screen_name : name}/>}
                 secondary={<SecondaryText text={text}/>}

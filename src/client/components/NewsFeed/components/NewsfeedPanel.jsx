@@ -1,8 +1,7 @@
 import React from 'react';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import { ExpansionPanel } from './ExpansionPanel';
+import { ExpansionPanelSummary } from './ExpansionPanelSummary';
+import { ExpansionPanelDetails } from './ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import { useNewsfeedPanelStyles as useStyles } from './styles';
 
@@ -12,16 +11,12 @@ function NewsfeedPanel(props) {
     const { panelTitle, children } = props;
     return (
         <div className={classes.root}>
-            <ExpansionPanel>
+            <ExpansionPanel square expanded={true} disabled={true}>
                 <ExpansionPanelSummary
-                    expandIcon={<ExpandMoreIcon/>}
-                    aria-label="Expand"
-                    aria-controls="additional-actions1-content"
-                    id="additional-actions1-header"
-                    className={classes.header}
-                    defaultExpanded
+                    aria-controls={`${panelTitle}-content`}
+                    id={`${panelTitle}-header`}
                 >
-                    <Typography className={classes.heading}>{panelTitle}</Typography>
+                    <Typography variant={"h6"}>{panelTitle}</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     { children }
