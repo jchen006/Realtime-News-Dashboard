@@ -13,12 +13,12 @@ function CoronaviursNewsfeed() {
                 alignItems="center"
                 spacing={4}
             >
-                <NewsfeedPanel panelTitle={'Twitter'}>
+                {/* <NewsfeedPanel panelTitle={'Twitter'}>
                     <TwitterNewsfeed/>
+                </NewsfeedPanel> */}
+                <NewsfeedPanel panelTitle={'Google'}>
+                    <GoogleNewsfeed/>
                 </NewsfeedPanel>
-                {/* <NewsfeedPanel panelTitle={'Google'}>
-                    {/* <GoogleNewsfeed/> */}
-                {/* </NewsfeedPanel> */}
             </Grid>
         </div>
     )

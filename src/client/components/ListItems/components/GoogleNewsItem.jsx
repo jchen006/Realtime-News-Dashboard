@@ -58,10 +58,8 @@ function GoogleNewsItem(props) {
         title, 
         url,
         publishedAt,
-        source: {
-            id,
-            name
-        }
+        sourceId,
+        sourceName
     } = props;
 
     const handleOnClick = () => {
@@ -69,10 +67,10 @@ function GoogleNewsItem(props) {
     }
 
     return (
-        <ListItem alignItems="flex-start" onClick={handleOnClick}>
+        <ListItem alignItems="flex-start" button onClick={handleOnClick}>
             <ListItemText
                 primary={<PrimaryText title={title}/>}
-                secondary={<SecondaryText publishedAt={publishedAt} source={name}/>}
+                secondary={<SecondaryText publishedAt={publishedAt} source={sourceName}/>}
             />
         </ListItem>
     )

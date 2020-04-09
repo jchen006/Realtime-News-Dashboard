@@ -9,10 +9,6 @@ import { mockGoogleData } from './mocks/google';
 export default { title: 'Newsfeed Panel' };
 
 export const NewsfeedPanelWithTwitterItem = () => {
-    // Fixes
-    // (1) make it way more compact with the newsfeed items on the height
-    // (4) Add transitions 
-    // (5) 
     return (
         <NewsfeedPanel panelTitle={'Twitter'}>
             <ListItems items={mockTwitterData} ItemComponent={TwitterItem}/>

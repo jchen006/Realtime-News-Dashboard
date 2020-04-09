@@ -9,13 +9,14 @@ const weather = require('./routes/weather')
 const productHunt = require('./routes/productHunt');
 const hackerNews = require('./routes/hackerNews');
 const coronavirus = require('./routes/covid19/coronavirusMonitor');
-const worldMap = require('./110m.json');
+var cors = require('cors');
 // const quotes = require('./routes/quotes');
 const { morganMiddleware } = require('./middleware/logging');
 var reduxDevTools = require('redux-devtools-cli');
 
 
 const app = express();
+app.use(cors())
 const port = 8080;
 let _client;
 
