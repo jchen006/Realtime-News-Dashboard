@@ -7,7 +7,7 @@ const { twitterMapper } = require('../mappers/twitterMapper');
 
 var _stream = {}
 let filter = {
-    track: 'NBA'
+    track: 'covid-19,coronavirus'
 }
 let language = 'en'
 let _model;

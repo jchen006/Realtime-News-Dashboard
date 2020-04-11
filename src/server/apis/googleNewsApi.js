@@ -16,7 +16,7 @@ const options = {
 let queryTopHeadlines = async (qs, callback) => {
     try {
         //Run a query validation
-        const requestUrl = url.google.topHeadlines(qs);
+        const requestUrl = url.google({ route: 'top-headlines', params: qs});
         const response = await fetch(requestUrl, options);
         const json = await response.json();
         const {
@@ -33,14 +33,15 @@ let queryTopHeadlines = async (qs, callback) => {
         }
     } catch(error) {
         callback(null, error);
-        throw new Error('')
+
+        throw new Error(error)
     }
 }
 
 let queryAllSources = async (qs, callback) => {
     try {
         // Query validation
-        const requestUrl = url.google.topSources(qs);
+        const requestUrl = url.google({route: 'everything', params: qs});
         const response = await fetch(requestUrl, options);
         const json = await response.json();
         const {
