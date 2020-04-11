@@ -13,9 +13,9 @@ function CoronaviursNewsfeed() {
                 alignItems="center"
                 spacing={4}
             >
-                <NewsfeedPanel panelTitle={'Twitter'}>
+                {/* <NewsfeedPanel panelTitle={'Twitter'}>
                     <TwitterNewsfeed/>
-                </NewsfeedPanel>
+                </NewsfeedPanel> */}
                 <NewsfeedPanel panelTitle={'Google'}>
                     <GoogleNewsfeed/>
                 </NewsfeedPanel>

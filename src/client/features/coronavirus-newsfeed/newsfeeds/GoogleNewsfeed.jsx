@@ -1,51 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { topHeadlinesUrl } from 'lib/url';
 import { ListItems } from 'components/ListItems';
 import { LoadingSpinner } from 'components/LoadingSpinner';
 import { GoogleNewsItem } from 'components/ListItems/components/GoogleNewsItem';
+import { useSelector } from "react-redux";
+import {useAsync, useInterval} from 'react-use';
 
-function GoogleNewsfeed(props) {
-    // const {
-    //     country,
-    //     category,
-    //     language,
-    //     sources,
-    //     query
-    // } = props;
-    const [articles, setArticles] = useState([]);
+const getGoogleNews = async () => {
+    const url = "http://localhost:8080/google/topHeadlines?q=coronavirus";
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+}
 
-    const getGoogleNews = async () => {
-        try {
-            const url = "http://localhost:8080/google/topHeadlines?q=coronavirus";
-            const response = await fetch(url);
-            const data = await response.json();
-            setArticles(data);
-        } catch(error) {
-            console.log(error);
-        }
-    }
+function GoogleNewsfeed() {
+    const polling_interval = useSelector(state => state.googleReducer.polling_interval);
+    const { value, error, loading } = useAsync(getGoogleNews); 
+    useInterval(() => {
+        getGoogleNews();
+    }, polling_interval);
 
-    getGoogleNews();
-     
-    // useEffect(() => {
-    //     if(interval) clearInterval(interval);
-    //     setInternalInterval(setInterval(getGoogleNews, 40000));
-    //     return () => {
-    //         clearInterval(interval);
-    //     }
-    // }, [])
-
-    // useEffect(async () => {
-    //     const queryUrl = await topHeadlinesUrl(country, category);
-    //     setUrl(queryUrl);
-    // }, [country, category, language, sources, query]);
-
-    if(articles.length == 0) {
+    if(loading || !value) {
         return <LoadingSpinner text="Connecting to Google News"/>
     }
 
+    if(error) console.log(error)
+
     return (
-        <ListItems items={articles} ItemComponent={GoogleNewsItem}/>
+        <ListItems items={value} ItemComponent={GoogleNewsItem}/>
     )
 }
 
