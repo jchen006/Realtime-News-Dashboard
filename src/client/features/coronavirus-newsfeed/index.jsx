@@ -16,9 +16,9 @@ function CoronaviursNewsfeed() {
                 <NewsfeedPanel panelTitle={'Twitter'}>
                     <TwitterNewsfeed/>
                 </NewsfeedPanel>
-                <NewsfeedPanel panelTitle={'Google'}>
+                {/* <NewsfeedPanel panelTitle={'Google'}>
                     <GoogleNewsfeed/>
-                </NewsfeedPanel>
+                </NewsfeedPanel> */}
             </Grid>
         </div>
     )

@@ -15,7 +15,7 @@ function ListItems(props) {
                 items.map((item, index, list) => {
                     return (
                         <>
-                            <ItemComponent {...item}/>
+                            <ItemComponent index={index} {...item}/>
                             { index !== list.length - 1 ? <Divider variant="middle" component="li" /> : null}
                         </>
                     );
