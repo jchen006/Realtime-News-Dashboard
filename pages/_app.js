@@ -3,7 +3,7 @@ import {Provider} from "react-redux";
 import App, {Container} from "next/app";
 import withRedux from "next-redux-wrapper";
 import { configureStore } from '../src/client/store';
-import { SocketIOProvider } from "use-socketio";
+
 
 class MyApp extends App {
     static async getInitialProps({Component, ctx}) {
@@ -17,18 +17,12 @@ class MyApp extends App {
 
     render() {
         const {Component, pageProps, store} = this.props;
-        const socketIoOptions = {
-            path: '',
-            reconnection: true,
-            timeout: 2000
-        }
+        
         return (
             <Container>
-                <SocketIOProvider url="http://localhost:8080" opts={socketIoOptions}>
-                    <Provider store={store}>
-                        <Component {...pageProps} />
-                    </Provider>
-                </SocketIOProvider>
+                <Provider store={store}>
+                    <Component {...pageProps} />
+                </Provider>
             </Container>
         );
     }
