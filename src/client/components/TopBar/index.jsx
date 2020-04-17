@@ -16,7 +16,7 @@ function TopBar() {
     return (
         <div className={classes.root}>
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar variant="dense">
                     <Typography className={classes.title} variant="h6" noWrap>
                         City, Province, Country
                     </Typography>

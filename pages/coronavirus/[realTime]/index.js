@@ -4,14 +4,10 @@ import { CoronaviursNewsfeed } from '../../../src/client/features/coronavirus-ne
 import { TopBar } from '../../../src/client/components/TopBar';
 import { useRouter } from 'next/router'
 import { SocketIOProvider } from "use-socketio";
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 function CoronavirusDashboard() {
-    // Add a search functionality 
-    // Add a running list of countries 
-    // Add an option to follow 
-    // follow will open up to see more deatils 
-    // including news and line graphs 
-    // Tweets will be right side
     const socketIoOptions = {
         path: '',
         reconnection: true,
@@ -24,9 +20,23 @@ function CoronavirusDashboard() {
         return (
             <>
                 <TopBar/>
-                {/* <CoronavirusConfirmedChart/> */}
-                {/* <Tabs/> */}
-                {/* <CoronaviursNewsfeed/> */}
+                <Container maxWidth='xl' style={{paddingTop: '24px'}}>
+                    <Grid container spacing={3}>
+                        <Grid item xs={3}>
+                            <div style={{backgroundColor: 'grey', height: '85vh'}}/>
+                            {/* <CoronavirusConfirmedChart/> */}
+                        </Grid>
+                        <Grid item xs={6}>
+                            <div style={{backgroundColor: 'grey', height: '85vh'}}/>
+                            {/* <Tabs/> */}
+                        </Grid>
+                        <Grid item xs={3}>
+                            <div style={{backgroundColor: 'grey', height: '85vh'}}/>
+                            {/* <CoronaviursNewsfeed/> */}
+                        </Grid>
+                    </Grid>
+                </Container>
+
             </>
         )
     }
