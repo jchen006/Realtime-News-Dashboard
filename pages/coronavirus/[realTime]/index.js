@@ -23,15 +23,15 @@ function CoronavirusDashboard() {
                 <Container maxWidth='xl' style={{paddingTop: '24px'}}>
                     <Grid container spacing={3}>
                         <Grid item xs={3}>
-                            <div style={{backgroundColor: 'grey', height: '88vh'}}/>
+                            <div style={{height: '88vh'}}/>
                             {/* <CoronavirusConfirmedChart/> */}
                         </Grid>
                         <Grid item xs={6}>
-                            <div style={{backgroundColor: 'grey', height: '88vh'}}/>
+                            <div style={{height: '88vh'}}/>
                             {/* <Tabs/> */}
                         </Grid>
                         <Grid item xs={3}>
-                            <div style={{backgroundColor: 'grey', height: '88vh'}}/>
+                            <div style={{height: '88vh'}}/>
                             {/* <CoronaviursNewsfeed/> */}
                         </Grid>
                     </Grid>
