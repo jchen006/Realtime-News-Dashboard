@@ -43,7 +43,7 @@ const server = app.listen(port, () => {
 });
 
 // Only specific to Twitter since it needs to pass in a server 
-// twitter.stream(server, _client)
+twitter.stream(server, _client)
 
 // Specific to redux dev tooling. Should add yargs to hide it. 
 reduxDevTools({ hostname: 'localhost', port: 8000 });
