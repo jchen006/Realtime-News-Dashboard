@@ -1,86 +1,36 @@
 const request = require('request');
 const tokens = require('../../config/tokens');
-const url = require('../../utils/urlGenerator');
-const fetch = require('node-fetch');
-const { googleNewsMapper } = require('../mappers/googleNewsMapper')
-const options = {
-    headers: {
-        'X-Api-Key': tokens.google.key
-    }
-}
+const NewsAPI = require('newsapi');
+const newsapi = new NewsAPI(tokens.google.key);
 
-/** General batch of all the top headlines  */
-
-// Validate all possible query strings that are legal 
-// Evaluate if this is the best pattern with async and await patterns 
-let queryTopHeadlines = async (qs, callback) => {
+let queryTopHeadlines = async (qs) => {
     try {
-        //Run a query validation
-        const requestUrl = url.google({ route: 'top-headlines', params: qs});
-        const response = await fetch(requestUrl, options);
-        const json = await response.json();
-        const {
-            articles = [],
-            status = '',
-            code = '',
-            message = ''
-        } = json;
-        if(status === 'error') {
-            callback(null, { message, code } );
-        } else if(status === 'ok') {
-            const mappedArticles = articles.map(article => googleNewsMapper(article));
-            callback(mappedArticles, null);
-        }
+        const response = await newsapi.v2.topHeadlines(qs);
+        return response;
     } catch(error) {
-        callback(null, error);
-
-        throw new Error(error)
+        throw new Error(error);
+        return;
     }
 }
 
-let queryAllSources = async (qs, callback) => {
+let queryAllSources = async (qs) => {
     try {
-        // Query validation
-        const requestUrl = url.google({route: 'everything', params: qs});
-        const response = await fetch(requestUrl, options);
-        const json = await response.json();
-        const {
-            articles = [],
-            status = '',
-            message = ''
-        } = json;
-        if(status === 'error') {
-            callback(null, message);
-        } else if(status === 'ok') {
-            const mappedArticles = articles.map(article => googleNewsMapper(article))
-            callback(mappedArticles, null);
-        }
+        const response = await newsapi.v2.sources(qs);
+        return response;
     } catch (error) {
-        callback(null, error);
-        throw new Error('');
+        throw new Error(error);
+        return;
     }
 }
 
-/**
-* Gets by specific query on subject matter
-* @param {*} req 
-* @param {*} res 
-*/
-let queryEverythingBySubject = (qs, callback) => {
-   var options = {
-       url: url.google.everything,
-       headers: {
-           'X-Api-Key': tokens.google.key
-       },
-       qs
-   }
-   request(options, (err, response, body) => {
-       if(err) {
-           callback(null, err);
-       } else {
-           callback(body, null);
-       }
-   })
+let queryEverythingBySubject = async (qs) => {
+    try {
+        const response = await newsapi.v2.everything(qs);
+        return response;
+    } catch (error) {
+        throw new Error(error);
+        return;
+    }
 }
 
 module.exports = {
