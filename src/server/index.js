@@ -9,6 +9,7 @@ const weather = require('./routes/weather')
 const productHunt = require('./routes/productHunt');
 const hackerNews = require('./routes/hackerNews');
 const coronavirus = require('./routes/covid19/coronavirusMonitor');
+const geocode = require('./routes/geocode');
 var cors = require('cors');
 // const quotes = require('./routes/quotes');
 const { morganMiddleware } = require('./middleware/logging');
@@ -33,6 +34,7 @@ app.use('/weather', weather);
 app.use('/hackerNews', hackerNews);
 app.use('/productHunt', productHunt);
 app.use('/coronavirus', coronavirus);
+app.use('/geocode', geocode);
 app.get('/worldMapConfig', (req, res) => {
     res.status(200).send(worldMap);
 })
