@@ -1,11 +1,12 @@
 import React from 'react';
 import { WorldMap } from './index';
+import { HeatMap } from './HeatMap';
+import { statesData } from './mock/usStatesData'
 
 export default { title: 'World Map' };
 
 
 export const WorldMapExample = () => {
-
     const props = {
         latitude: -0.09,
         longitude: 51.505,
@@ -35,4 +36,34 @@ export const WorldMapExample = () => {
     return (
         <WorldMap {...props}/>
     )
+}
+
+export const HeatMapExample = () => {
+    
+    const getColor = (d) => {
+        return d > 1000 ? '#800026' :
+           d > 500  ? '#BD0026' :
+           d > 200  ? '#E31A1C' :
+           d > 100  ? '#FC4E2A' :
+           d > 50   ? '#FD8D3C' :
+           d > 20   ? '#FEB24C' :
+           d > 10   ? '#FED976' :
+                      '#FFEDA0';
+    }
+
+    function style(feature) {
+        return {
+            fillColor: getColor(feature.properties.density),
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.7
+        };
+    }
+
+    return (
+        <HeatMap style={style} data={statesData}/>
+    )
+
 }
