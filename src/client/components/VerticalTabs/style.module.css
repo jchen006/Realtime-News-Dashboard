@@ -1,0 +1,13 @@
+.root {
+  --background-color: #fff;
+  display: flex;
+  flex-grow: 1;
+  background-color: var(--background-color);
+  justify-content: stretch;
+  flex-direction: row;
+}
+
+.tabs {
+  --divider-color: #d0d0d0;
+  border-right: 1px solid var(--divider-color);
+}
