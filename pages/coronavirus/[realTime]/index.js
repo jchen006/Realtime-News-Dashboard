@@ -9,6 +9,7 @@ import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import dynamic from "next/dynamic";
+import MediaCard from "client/components/Card";
 
 const DynamicWorldMap = dynamic(() => import("client/components/WorldMap"), {
   ssr: false,
@@ -113,7 +114,9 @@ function CoronavirusDashboard() {
       component: () => (
         <>
           <h1> Test </h1>
-          <DynamicWorldMap {...props} />
+          <MediaCard>
+            <DynamicWorldMap {...props} />
+          </MediaCard>
         </>
       ),
     },
