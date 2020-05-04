@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CoronavirusConfirmedChart } from "client/features/coronavirus-confirmed-chart";
 import { CoronaviursNewsfeed } from "client/features/coronavirus-newsfeed";
 import { VerticalTabs } from "client/components/VerticalTabs";
@@ -10,6 +10,10 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import dynamic from "next/dynamic";
 import MediaCard from "client/components/Card";
+import { useDispatch } from "react-redux";
+import { showModal } from "client/actions/appAction";
+import { useHotkeys } from "react-hotkeys-hook";
+import { Modal } from "client/components/Modal";
 
 const DynamicWorldMap = dynamic(() => import("client/components/WorldMap"), {
   ssr: false,
@@ -98,37 +102,45 @@ const props = {
   },
 };
 
+// const socketIoOptions = {
+//   path: "",
+//   reconnection: realTime,
+//   timeout: 2000,
+//   autoConnect: realTime,
+// };
+
+const tabs = [
+  {
+    label: "Maps",
+    component: () => (
+      <>
+        <h1> Test </h1>
+        <MediaCard>
+          <DynamicWorldMap {...props} />
+        </MediaCard>
+      </>
+    ),
+  },
+  {
+    label: "Heat Maps",
+    component: () => <h1> Heat Map </h1>,
+  },
+  {
+    label: "Chart 1",
+    component: () => <h1> Chart 1 </h1>,
+  },
+];
+
 function CoronavirusDashboard() {
   const router = useRouter();
   const realTime = Boolean(router.query.realTime);
-  const socketIoOptions = {
-    path: "",
-    reconnection: realTime,
-    timeout: 2000,
-    autoConnect: realTime,
+  const dispatch = useDispatch();
+
+  const handleOpenSettingsModal = () => {
+    dispatch(showModal());
   };
 
-  const tabs = [
-    {
-      label: "Maps",
-      component: () => (
-        <>
-          <h1> Test </h1>
-          <MediaCard>
-            <DynamicWorldMap {...props} />
-          </MediaCard>
-        </>
-      ),
-    },
-    {
-      label: "Heat Maps",
-      component: () => <h1> Heat Map </h1>,
-    },
-    {
-      label: "Chart 1",
-      component: () => <h1> Chart 1 </h1>,
-    },
-  ];
+  useHotkeys("s", handleOpenSettingsModal);
 
   // <SocketIOProvider url="http://localhost:8081" opts={socketIoOptions}>
   // </SocketIOProvider>
@@ -137,6 +149,9 @@ function CoronavirusDashboard() {
     <Container maxWidth="xl" style={{ padding: 0, height: "100vh" }}>
       <CssBaseline />
       <TopBar />
+      <Modal>
+        <h1> Test </h1>
+      </Modal>
       <Grid container alignItems="stretch" style={{ height: "100%" }}>
         <Grid item xs={9}>
           <VerticalTabs tabs={tabs} />
